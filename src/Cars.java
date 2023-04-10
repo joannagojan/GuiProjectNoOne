@@ -1,9 +1,8 @@
 public abstract class Cars {
     private Integer carID;
-    private Integer numberOfSeats;
-
     private static Integer carIDCounter = 0;
 
+    // automaticly assigns ID number to new Objects of all Car classes
     public Cars() {
         this.carID = ++carIDCounter;
     }
@@ -13,8 +12,6 @@ public abstract class Cars {
 
     // Child classes will calculate needed electricity based on other atributes
     public abstract Integer getHowMuchElectricity();
-
-    ;
 
     // determining the need to connect to electricity
     public abstract boolean requiredElectricity();
