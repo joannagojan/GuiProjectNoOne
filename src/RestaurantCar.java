@@ -1,6 +1,13 @@
 public class RestaurantCar extends Cars {
-    public RestaurantCar(String securityInformation, Integer netWeight) {
-        super(securityInformation, netWeight);
+
+    @Override
+    public Integer getNetWeight() {
+        return null;
+    }
+
+    @Override
+    public Integer getHowMuchElectricity() {
+        return null;
     }
 
     @Override

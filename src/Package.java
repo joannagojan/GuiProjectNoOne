@@ -3,17 +3,13 @@ abstract class Package {
     private Integer packageWidth;
     private Integer packageHeight;
     private Integer packageLength;
-    Integer mailCarWidth = 240; // Baggage and Mail Car width in cm
-    Integer mailCarHeight = 260; // Baggage and Mail Car height in cm
-    Integer mailCarLength = 1500; // Baggage and Mail Car width in cm
-    Integer maxMailCarWeight = 100; // Baggage and Mail Car maximum load in tons
 
 
     public Package(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
        if (!isPackageSizeWeightValid(packageWeight, packageWidth, packageHeight, packageLength))  {
            throw new IllegalArgumentException("Package size is too big, maximum size available on this train: " +
-                   this.mailCarWidth + "cmx"+ this.mailCarHeight +"cmx" + this.mailCarLength +
-                   "cm, the weight cannot exceed: " + this.maxMailCarWeight + "tons.");}
+                   carWidth + "cmx"+ this.carHeight +"cmx" + this.carLength +
+                   "cm, the weight cannot exceed: " + this.carWeight + "tons.");}
        this.packageWeight = packageWeight;
         this.packageWidth = packageWidth;
         this.packageHeight = packageHeight;
@@ -21,8 +17,10 @@ abstract class Package {
     }
 
     public boolean isPackageSizeWeightValid(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
-        if (packageWidth <= this.mailCarWidth && packageHeight <= this.mailCarHeight
-                && packageLength <= this.mailCarLength && packageWeight <= this.maxMailCarWeight) {return true;}
+        Integer mailCarWidth = Cars.getCarWidth();
+        Integer mailCarHeight = Cars.getCarWidth();
+        if (packageWidth <= mailCarWidth && packageHeight <= mailCarHeight
+                && packageLength <= carLength && packageWeight <= maxCarWeight) {return true;}
         else {return false;}
     }
 

@@ -3,8 +3,6 @@ import java.util.List;
 
 public class PostOfficeCar extends Cars{
 
-    public PostOfficeCar() {
-    }
     private List<Package> packages = new LinkedList<>();
 
     public void addPackage(Package package) {
@@ -18,7 +16,6 @@ public class PostOfficeCar extends Cars{
         }
         return sum;
     }
-}
 
 
 

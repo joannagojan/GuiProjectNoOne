@@ -1,10 +1,8 @@
 public class BaggageAndMailCar extends Cars {
-    public BaggageAndMailCar(String securityInformation, Integer netWeight) {
-        super(securityInformation, netWeight);
+// how many Baggage Cars are needed based on packages
+
+    public BaggageAndMailCar(Integer carWidth, Integer carHeight, Integer carLength, Integer carWeight) {
+        super(carWidth, carHeight, carLength, carWeight);
     }
 
-    @Override
-    public boolean requiredElectricity() {
-        return false;
-    }
 }
