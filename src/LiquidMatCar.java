@@ -19,8 +19,8 @@ public abstract class LiquidMatCar extends BasicFreightCar{
 // allowing only specific types on non-toxic liquids to be chosen
     private boolean availableLiquidType(String liquidType) {
         String[] availableLiquidTypes = {"gasoline", "oil", "milk"};
-        for (String color : availableLiquidTypes) {
-            if (color.equals(liquidType)) {
+        for (String liquid : availableLiquidTypes) {
+            if (liquid.equals(liquidType)) {
                 return true;
             }
         }
