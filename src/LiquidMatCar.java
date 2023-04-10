@@ -13,7 +13,7 @@ public class LiquidMatCar extends BasicFreightCar{
         if (availableLiquidType(liquidType)) {
             this.liquidType = liquidType;
         } else {
-            throw new IllegalArgumentException("Invalid fur color: " + liquidType);
+            throw new IllegalArgumentException("Invalid liquid type: " + liquidType);
         }
     }
 
