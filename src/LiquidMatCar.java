@@ -1,5 +1,6 @@
+
 public class LiquidMatCar extends BasicFreightCar{
-    private Integer basicPackageWeight = 20;
+    private Integer liquidPackageWeight;
     private String[] typesOfLiquid = {"gasoline", "oil", "milk"};
     private String liquidType;
     //is flammable
@@ -7,9 +8,8 @@ public class LiquidMatCar extends BasicFreightCar{
 
     public LiquidMatCar(String securityInformation, Integer netWeight,
                         Integer shipperNumber, Integer standardPackageWeight,
-                        Integer basicPackageWeight, String liquidType) {
+                        String liquidType) {
         super(securityInformation, netWeight, shipperNumber, standardPackageWeight);
-        this.basicPackageWeight = basicPackageWeight;
         if (availableLiquidType(liquidType)) {
             this.liquidType = liquidType;
         } else {
@@ -30,8 +30,16 @@ public class LiquidMatCar extends BasicFreightCar{
 
     @Override
     public Integer getPackageWeight() {
-        return basicPackageWeight;
-
+        if (liquidType.equals("gasoline")) {
+            liquidPackageWeight = 20;
+        }
+        if (liquidType.equals("oil")) {
+            liquidPackageWeight = 40;
+        }
+        if (liquidType.equals("milk")) {
+            liquidPackageWeight = 30;
+        }
+        return liquidPackageWeight;
     }
 
     @Override
