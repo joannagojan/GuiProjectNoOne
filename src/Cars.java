@@ -1,18 +1,22 @@
 public abstract class Cars {
-    private String securityInformation;
-    private Integer netWeight;
-    private Integer numberOfSeats;
     private Integer carID;
-    private static Integer carIDCounter = 0;
-    private static Integer howMuchElectricity = 50; // on average on connected car needs 50 kilowatts of electricity
+    private Integer numberOfSeats;
 
-    public Cars(String securityInformation, Integer netWeight) {
-        this.securityInformation = securityInformation;
-        this.netWeight = netWeight;
+    private static Integer carIDCounter = 0;
+
+    public Cars() {
         this.carID = ++carIDCounter;
     }
 
+    // Child classes will calculate their own net weight of a car
+    public abstract Integer getNetWeight();
 
-    public abstract boolean requiredElectricity(); // determining the need to connect to electricity
+    // Child classes will calculate needed electricity based on other atributes
+    public abstract Integer getHowMuchElectricity();
+
+    ;
+
+    // determining the need to connect to electricity
+    public abstract boolean requiredElectricity();
 
 }

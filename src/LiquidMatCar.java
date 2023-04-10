@@ -1,11 +1,10 @@
 
-public class LiquidMatCar extends BasicFreightCar{
+public abstract class LiquidMatCar extends BasicFreightCar{
     private Integer liquidPackageWeight;
-    private String[] typesOfLiquid = {"gasoline", "oil", "milk"};
     private String liquidType;
-    //is flammable
 
 
+    // Constructor and limit on types of liquids
     public LiquidMatCar(String securityInformation, Integer netWeight,
                         Integer shipperNumber, Integer standardPackageWeight,
                         String liquidType) {
@@ -17,7 +16,7 @@ public class LiquidMatCar extends BasicFreightCar{
         }
     }
 
-
+// allowing only specific types on non-toxic liquids to be chosen
     private boolean availableLiquidType(String liquidType) {
         String[] availableLiquidTypes = {"gasoline", "oil", "milk"};
         for (String color : availableLiquidTypes) {
@@ -27,7 +26,7 @@ public class LiquidMatCar extends BasicFreightCar{
         }
         return false;
     }
-
+// setting a weight for each type of liquid
     @Override
     public Integer getPackageWeight() {
         if (liquidType.equals("gasoline")) {
