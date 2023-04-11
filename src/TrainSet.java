@@ -3,7 +3,7 @@ import java.util.List;
 
 public class TrainSet {
     private Locomotive randomLocomotive;
-    private List<Cars> carsInTrainSet = new ArrayList<>();
+    private List<Cars> carsInTrainSet;
 
 
     // Randomly choosing a locomotive for a trainset
@@ -37,5 +37,9 @@ public class TrainSet {
         }
     }
 
+    public void createTrainSetRandomly(List<Locomotive> allLocomotives, List<Cars> allCars) {
+        addRandomLocomotive(allLocomotives);
+        addRandomCars(allCars);
+    }
 
 }
