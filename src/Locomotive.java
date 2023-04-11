@@ -1,6 +1,6 @@
 public class Locomotive {
 
-    public final Integer locomotiveID;
+    private Integer locomotiveID;
     private String locomotiveName;
     private Station locoHomeStation;
     private Station locoDestinationStation;
@@ -25,7 +25,7 @@ public class Locomotive {
         this.locomotiveName = locomotiveName;
         this.locoHomeStation = locoHomeStation;
         this.locoDestinationStation = locoDestinationStation;
-        this.maxNumberCars = maxNumberCars;
+        Locomotive.maxNumberCars = maxNumberCars;
         this.maxLocoLoadWeight = maxLocoLoadWeight;
         this.locomotiveSpeed = locomotiveSpeed;
 
@@ -41,7 +41,7 @@ public class Locomotive {
                 + locomotiveSpeed  + '.';
     }
 
-    public static Integer getMaxNumberCars() {
+    public Integer getMaxNumberCars() {
         return maxNumberCars;
     }
 
@@ -49,7 +49,7 @@ public class Locomotive {
         Locomotive.maxNumberCars = maxNumberCars;
     }
 
-    public static Integer getMaxLocoLoadWeight() {
+    public Integer getMaxLocoLoadWeight() {
         return maxLocoLoadWeight;
     }
 

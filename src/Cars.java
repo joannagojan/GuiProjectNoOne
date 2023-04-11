@@ -17,6 +17,8 @@ public abstract class Cars {
     // Child classes will calculate their own net weight of a car
     public abstract Integer getNetWeight();
 
+    public abstract Integer getGrossWeight();
+
     // Child classes will calculate needed electricity based on other atributes
     public abstract Integer getHowMuchElectricity();
 
