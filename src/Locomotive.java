@@ -4,8 +4,8 @@ public class Locomotive {
     private String locomotiveName;
     private Station locoHomeStation;
     private Station locoDestinationStation;
-    private Integer maxNumberCars; // maximum number of cars that can be connected to a locomotive object
-    private Integer maxLocoLoadWeight; // maximum load a locomotive object can carry
+    private static Integer maxNumberCars; // maximum number of cars that can be connected to a locomotive object
+    private static Integer maxLocoLoadWeight; // maximum load a locomotive object can carry
     private Integer locomotiveSpeed; // assigned speed to a locomotive object
 
     private static Integer locomotiveIDCounter = 0;
@@ -39,5 +39,21 @@ public class Locomotive {
                 " with maximum number of cars of " + maxNumberCars + " and maximum weight load "
                 + maxLocoLoadWeight + " of the speef of "
                 + locomotiveSpeed  + '.';
+    }
+
+    public static Integer getMaxNumberCars() {
+        return maxNumberCars;
+    }
+
+    public static void setMaxNumberCars(Integer maxNumberCars) {
+        Locomotive.maxNumberCars = maxNumberCars;
+    }
+
+    public static Integer getMaxLocoLoadWeight() {
+        return maxLocoLoadWeight;
+    }
+
+    public static void setMaxLocoLoadWeight(Integer maxLocoLoadWeight) {
+        Locomotive.maxLocoLoadWeight = maxLocoLoadWeight;
     }
 }
