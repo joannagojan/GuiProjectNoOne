@@ -1,3 +1,3 @@
-public class BasicFreightCar extends FreightCar {
+public abstract class BasicFreightCar extends FreightCar {
 
 }
