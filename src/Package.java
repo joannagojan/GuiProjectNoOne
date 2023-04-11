@@ -8,8 +8,8 @@ abstract class Package {
     public Package(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
        if (!isPackageSizeWeightValid(packageWeight, packageWidth, packageHeight, packageLength))  {
            throw new IllegalArgumentException("Package size is too big, maximum size available on this train: " +
-                   carWidth + "cmx"+ this.carHeight +"cmx" + this.carLength +
-                   "cm, the weight cannot exceed: " + this.carWeight + "tons.");}
+                   Cars.getCarWidth() + "cmx"+ Cars.getCarHeight() +"cmx" + Cars.getCarLength() +
+                   "cm, the weight cannot exceed: " + Cars.getStandardMaxCarLoad() + "tons.");}
        this.packageWeight = packageWeight;
         this.packageWidth = packageWidth;
         this.packageHeight = packageHeight;
@@ -17,10 +17,8 @@ abstract class Package {
     }
 
     public boolean isPackageSizeWeightValid(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
-        Integer mailCarWidth = Cars.getCarWidth();
-        Integer mailCarHeight = Cars.getCarWidth();
-        if (packageWidth <= mailCarWidth && packageHeight <= mailCarHeight
-                && packageLength <= carLength && packageWeight <= maxCarWeight) {return true;}
+        if (packageWidth <= Cars.getCarWidth() && packageHeight <= Cars.getCarHeight()
+                && packageLength <= Cars.getCarLength() && packageWeight <= Cars.getStandardMaxCarLoad()) {return true;}
         else {return false;}
     }
 
@@ -39,4 +37,37 @@ abstract class Package {
         } else {
             return "Large";
         }
-    }}
+    }
+
+    public Integer getPackageWeight() {
+        return packageWeight;
+    }
+
+    public void setPackageWeight(Integer packageWeight) {
+        this.packageWeight = packageWeight;
+    }
+
+    public Integer getPackageWidth() {
+        return packageWidth;
+    }
+
+    public void setPackageWidth(Integer packageWidth) {
+        this.packageWidth = packageWidth;
+    }
+
+    public Integer getPackageHeight() {
+        return packageHeight;
+    }
+
+    public void setPackageHeight(Integer packageHeight) {
+        this.packageHeight = packageHeight;
+    }
+
+    public Integer getPackageLength() {
+        return packageLength;
+    }
+
+    public void setPackageLength(Integer packageLength) {
+        this.packageLength = packageLength;
+    }
+}

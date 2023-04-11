@@ -1,12 +1,16 @@
-public abstract class FreightCar extends Cars {
+import java.util.LinkedList;
+import java.util.List;
 
-    public abstract Integer getPackageWeight(); //child classes calculate their own package weight
+abstract class FreightCar extends Cars {
+    private List<Package> packages = new LinkedList<>();
 
-    public abstract Integer getShipperNumber(); //how many packages are being transported
 
     public Integer getTotalWeightOfPackages() {
-        return getPackageWeight() * getShipperNumber();
+        Integer sum = 0;
+        for (Package p : packages) {
+            sum += p.getPackageWeight();
+        }
+        return sum;
     }
 
-   public abstract Integer getSecurityAlertLevel(); // child classes calculate the
 }
