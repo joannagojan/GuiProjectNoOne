@@ -10,11 +10,12 @@ public class Packages implements CustomerLoad {
 
 
     public Packages(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
-       if (!isPackageSizeWeightValid(packageWeight, packageWidth, packageHeight, packageLength))  {
-           throw new IllegalArgumentException("Package size is too big, maximum size available on this train: " +
-                   Cars.getCarWidth() + "cmx"+ Cars.getCarHeight() +"cmx" + Cars.getCarLength() +
-                   "cm, the weight cannot exceed: " + Cars.getStandardMaxCarLoad() + "tons.");}
-       this.packageWeight = packageWeight;
+        if (!isPackageSizeWeightValid(packageWeight, packageWidth, packageHeight, packageLength)) {
+            throw new IllegalArgumentException("Package size is too big, maximum size available on this train: " +
+                    Cars.getCarWidth() + "cmx" + Cars.getCarHeight() + "cmx" + Cars.getCarLength() +
+                    "cm, the weight cannot exceed: " + Cars.getStandardMaxCarLoad() + "tons.");
+        }
+        this.packageWeight = packageWeight;
         this.packageWidth = packageWidth;
         this.packageHeight = packageHeight;
         this.packageLength = packageLength;
@@ -22,14 +23,18 @@ public class Packages implements CustomerLoad {
 
     public boolean isPackageSizeWeightValid(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
         if (packageWidth <= Cars.getCarWidth() && packageHeight <= Cars.getCarHeight()
-                && packageLength <= Cars.getCarLength() && packageWeight <= Cars.getStandardMaxCarLoad()) {return true;}
-        else {return false;}
+                && packageLength <= Cars.getCarLength() && packageWeight <= Cars.getStandardMaxCarLoad()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
     public int calculatePackageVolume() {
         return packageWidth * packageHeight * packageLength;
     }
+
     public String getPackageType() {
         int packageVolume = calculatePackageVolume();
         if (packageWeight <= 50 && packageVolume <= 9000) {

@@ -6,6 +6,7 @@ public class Baggage implements CustomerLoad {
     public Baggage(Passenger passenger) {
         this.ownerOfBaggage = passenger;
     }
+
     @Override
     public Integer getLoadWeight() {
         return ownerOfBaggage.getWeightOfBaggage();

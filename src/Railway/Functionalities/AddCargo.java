@@ -1,22 +1,24 @@
 package Railway.Functionalities;
 
+import Railway.CarTypes.CargoCars;
 import Railway.CarTypes.Cars;
 import Railway.CustomerLoad;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddCargo<T extends CustomerLoad, C> {
+public class AddCargo<T extends CustomerLoad> {
 
-    public boolean addBagsAndMailCar(List<T> bagsAndMailToAdd, C cargoCar) {
+    public boolean addBagsAndMailCar(List<T> bagsAndMailToAdd, CargoCars cargoCars) {
         Integer maxLoadWeight = Cars.getStandardMaxCarLoad();
         Integer currentWeight = 0;
-        ArrayList<T> allCargo = null;
+        ArrayList allCargo = cargoCars.getAllCargo();
         for (T bag : bagsAndMailToAdd) {
             if (currentWeight + bag.getLoadWeight() <= maxLoadWeight) {
                 allCargo.add(bag);
+            } else {
+                return false;
             }
-            else {return false;}
         }
         return true;
     }
