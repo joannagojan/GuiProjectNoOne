@@ -1,5 +1,7 @@
+import CarTypes.Cars;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Random;
 
 public class CreateTrainSet {
@@ -8,7 +10,6 @@ public class CreateTrainSet {
 
     // Randomly choosing a locomotive for a trainset !!!!!! in progress
   private Locomotive addRandomLocomotive(List<Locomotive> allLocomotives) {
-      Queue<Loco> q;
      Random random = new Random();
      randomLocomotive = allLocomotives.get(random.nextInt(allLocomotives.size()));
      return randomLocomotive;
@@ -28,7 +29,7 @@ public class CreateTrainSet {
     private List<Cars> addRandomCars(List<Cars> allCars) {
         Integer maxLoadInTrainset = getLocoMaxLoadWeight(randomLocomotive);
         Integer maxNumCarsInTrainset = getLocoMaxCarNumber(randomLocomotive);
-        List<Cars> carsInTrainSet;
+        List<Cars> carsInTrainSet = new ArrayList<Cars>();
 
         // assigning
         while (maxLoadInTrainset > 0 && carsInTrainSet.size() < maxNumCarsInTrainset) {

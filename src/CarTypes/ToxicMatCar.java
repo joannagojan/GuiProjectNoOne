@@ -1,4 +1,6 @@
-public class ToxicMatCar extends HeavyFreightCar{
+package CarTypes;
+
+public class ToxicMatCar extends HeavyFreightCar {
 
 
 

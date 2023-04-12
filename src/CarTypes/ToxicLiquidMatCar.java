@@ -1,4 +1,6 @@
-public class ToxicLiquidMatCar extends LiquidMatCar{
+package CarTypes;
+
+public class ToxicLiquidMatCar extends LiquidMatCar {
     public ToxicLiquidMatCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight) {
         super(securityInformation, netWeight, shipperNumber, standardPackageWeight);
     }

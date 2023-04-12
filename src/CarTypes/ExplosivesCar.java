@@ -1,4 +1,6 @@
-public class ExplosivesCar extends HeavyFreightCar{
+package CarTypes;
+
+public class ExplosivesCar extends HeavyFreightCar {
     private Integer explosiveWeight = 100;
     public ExplosivesCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight) {
         super(securityInformation, netWeight, shipperNumber, standardPackageWeight);

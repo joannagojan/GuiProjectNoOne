@@ -1,4 +1,6 @@
-class Package implements CustomerLoad {
+import CarTypes.Cars;
+
+public class Package implements CustomerLoad {
     private Integer packageWeight;
     private Integer packageWidth;
     private Integer packageHeight;
@@ -39,7 +41,7 @@ class Package implements CustomerLoad {
         }
     }
 
-    @Override
+
     public Integer getLoadWeight() {
         return packageWeight;
     }

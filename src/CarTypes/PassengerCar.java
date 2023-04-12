@@ -1,3 +1,5 @@
+package CarTypes;
+
 public class PassengerCar extends Cars {
     private Integer numberOfSeats; // how many seats are available
     private Integer currentNumberOfPassengers;
@@ -17,7 +19,7 @@ public class PassengerCar extends Cars {
 
     @Override
     public Integer getGrossWeight() {
-        return Cars.getStandardNetWeight() * currentNumberOfPassengers;
+        return getStandardNetWeight() * currentNumberOfPassengers;
     }
 
     @Override

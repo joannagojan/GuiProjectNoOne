@@ -1,5 +1,6 @@
+package CarTypes;
 
-public abstract class LiquidMatCar extends BasicFreightCar{
+public abstract class LiquidMatCar extends BasicFreightCar {
     private Integer liquidPackageWeight;
     private String liquidType;
 

@@ -1,3 +1,5 @@
+package CarTypes;
+
 public abstract class Cars {
     private Integer carID;
     private static Integer carIDCounter = 0;

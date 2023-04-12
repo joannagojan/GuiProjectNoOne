@@ -1,3 +1,5 @@
+package CarTypes;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ abstract class FreightCar extends Cars {
     public Integer getTotalWeightOfPackages() {
         Integer sum = 0;
         for (Package p : packages) {
-            sum += p.getPackageWeight();
+            sum += p.;
         }
         return sum;
     }

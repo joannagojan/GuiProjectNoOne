@@ -1,3 +1,5 @@
+package CarTypes;
+
 public abstract class HeavyFreightCar extends FreightCar {
     private static Integer carHeight = 350; // Heavy Freight Car height in cm
     private static Integer carLength = 2000; // Heavy Freight Car width in cm

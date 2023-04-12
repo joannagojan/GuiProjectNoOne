@@ -1,17 +1,18 @@
-public class GaseousMatCar extends BasicFreightCar{
-    private Integer gaseousPackageWeight = 10;
-    public GaseousMatCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight) {
+package CarTypes;
+
+public class RefrigeratedCar extends BasicFreightCar {
+    public RefrigeratedCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight) {
         super(securityInformation, netWeight, shipperNumber, standardPackageWeight);
     }
 
     @Override
     public Integer getPackageWeight() {
-        return gaseousPackageWeight;
+        return super.getPackageWeight();
     }
 
     @Override
     public boolean requiredElectricity() {
-        return false;
+        return true;
     }
 
     @Override
