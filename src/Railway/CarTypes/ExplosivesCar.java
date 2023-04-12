@@ -1,7 +1,6 @@
 package Railway.CarTypes;
 
 public class ExplosivesCar extends HeavyFreightCar {
-    private Integer explosiveWeight = 100;
 
 
     @Override

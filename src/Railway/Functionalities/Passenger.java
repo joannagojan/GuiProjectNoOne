@@ -1,4 +1,4 @@
-package Railway;
+package Railway.Functionalities;
 
 public class Passenger {
 

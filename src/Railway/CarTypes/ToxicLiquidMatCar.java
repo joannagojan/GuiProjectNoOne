@@ -2,8 +2,9 @@ package Railway.CarTypes;
 
 public class ToxicLiquidMatCar extends LiquidMatCar {
 
-    public ToxicLiquidMatCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight, String liquidType) {
-        super(securityInformation, netWeight, shipperNumber, standardPackageWeight, liquidType);
+
+    public ToxicLiquidMatCar(String liquidType) {
+        super(liquidType);
     }
 
     @Override
