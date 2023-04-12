@@ -1,5 +1,4 @@
 public class Baggage implements CustomerLoad {
-    private Integer baggage;
     private Passenger ownerOfBaggage;
 
     public Baggage(Passenger passenger) {
