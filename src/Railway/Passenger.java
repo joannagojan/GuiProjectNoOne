@@ -1,3 +1,5 @@
+package Railway;
+
 public class Passenger {
 
     private Integer passengerID;

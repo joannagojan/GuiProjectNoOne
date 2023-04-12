@@ -1,3 +1,5 @@
+package Railway;
+
 public class Baggage implements CustomerLoad {
     private Passenger ownerOfBaggage;
 

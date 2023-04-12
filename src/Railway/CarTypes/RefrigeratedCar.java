@@ -1,6 +1,7 @@
-package CarTypes;
+package Railway.CarTypes;
 
-public class GaseousMatCar extends BasicFreightCar {
+public class RefrigeratedCar extends BasicFreightCar {
+
 
     @Override
     public Integer getGrossWeight() {
@@ -9,7 +10,7 @@ public class GaseousMatCar extends BasicFreightCar {
 
     @Override
     public boolean requiredElectricity() {
-        return false;
+        return true;
     }
 
     @Override

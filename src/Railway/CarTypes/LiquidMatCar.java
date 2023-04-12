@@ -1,4 +1,4 @@
-package CarTypes;
+package Railway.CarTypes;
 
 public abstract class LiquidMatCar extends BasicFreightCar {
     private Integer liquidPackageWeight;

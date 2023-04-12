@@ -1,4 +1,4 @@
-package CarTypes;
+package Railway.CarTypes;
 
 public abstract class HeavyFreightCar extends FreightCar {
     private static Integer carHeight = 350; // Heavy Freight Car height in cm

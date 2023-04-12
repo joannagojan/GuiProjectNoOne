@@ -1,4 +1,4 @@
-package CarTypes;
+package Railway.CarTypes;
 
 public class RestaurantCar extends Cars {
     public RestaurantCar() {

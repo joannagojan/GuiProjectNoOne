@@ -1,7 +1,6 @@
-package CarTypes;
+package Railway.CarTypes;
 
-public class ExplosivesCar extends HeavyFreightCar {
-    private Integer explosiveWeight = 100;
+public class ToxicMatCar extends HeavyFreightCar {
 
 
     @Override

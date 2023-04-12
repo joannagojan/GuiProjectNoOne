@@ -1,3 +1,5 @@
+package Railway;
+
 public class Locomotive {
 
     private Integer locomotiveID;
@@ -12,7 +14,7 @@ public class Locomotive {
 
 
 
-    //Construtor of Locomotive class
+    //Construtor of Railway.Locomotive class
     public Locomotive(String locomotiveName, Station locoHomeStation, Station locoDestinationStation,
                       Integer maxNumberCars, Integer maxLocoLoadWeight,
                       Integer locomotiveSpeed) {
@@ -31,7 +33,7 @@ public class Locomotive {
 
     }
 
-    // toString for printing information about Locomotive class
+    // toString for printing information about Railway.Locomotive class
     @Override
     public String toString() {
         return "This is locomotive number " + locomotiveID + " called " + locomotiveName + " it departs from " + locoHomeStation

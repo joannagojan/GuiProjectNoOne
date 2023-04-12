@@ -1,4 +1,4 @@
-package CarTypes;
+package Railway.CarTypes;
 
 public class PassengerCar extends Cars {
     private Integer numberOfSeats; // how many seats are available
