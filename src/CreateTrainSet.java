@@ -1,16 +1,18 @@
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 public class CreateTrainSet {
 
     private Locomotive randomLocomotive;
 
-    // Randomly choosing a locomotive for a trainset
-    private Locomotive addRandomLocomotive(List<Locomotive> allLocomotives) {
-        Random random = new Random();
-        randomLocomotive = allLocomotives.get(random.nextInt(allLocomotives.size()));
-        return randomLocomotive;
-    }
+    // Randomly choosing a locomotive for a trainset !!!!!! in progress
+  private Locomotive addRandomLocomotive(List<Locomotive> allLocomotives) {
+      Queue<Loco> q;
+     Random random = new Random();
+     randomLocomotive = allLocomotives.get(random.nextInt(allLocomotives.size()));
+     return randomLocomotive;
+   }
 
     // Method to get the chosen locomotive's Max Load Weight
     private Integer getLocoMaxLoadWeight(Locomotive locomotive) {

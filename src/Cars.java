@@ -5,22 +5,14 @@ public abstract class Cars {
     private static Integer carHeight = 260; // Standard Car height in cm
     private static Integer carLength = 1500; // Standard Car width in cm
     private static Integer standardMaxCarLoad = 100; // Standard Car maximum load in tons (for all classes except Heavy Freight)
+    private static Integer standardNetWeight = 50000; // Standard Net Weight of a car in kgs
 
 
     // constructor that automatically assigns ID number to new Objects of all Car classes
-
-
     public Cars() {
         this.carID = ++carIDCounter;
     }
-
-    // Child classes will calculate their own net weight of a car
-    public abstract Integer getNetWeight();
-
     public abstract Integer getGrossWeight();
-
-    // Child classes will calculate needed electricity based on other atributes
-    public abstract Integer getHowMuchElectricity();
 
     // determining the need to connect to electricity
     public abstract boolean requiredElectricity();
@@ -63,5 +55,12 @@ public abstract class Cars {
 
     public void setCarWeight(Integer carWeight) {
         this.standardMaxCarLoad = carWeight;
+    }
+
+    public static Integer getStandardNetWeight() {
+        return standardNetWeight;
+    }
+    public static void setStandardNetWeight(Integer standardNetWeight) {
+        Cars.standardNetWeight = standardNetWeight;
     }
 }
