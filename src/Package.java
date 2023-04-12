@@ -1,4 +1,4 @@
-abstract class Package {
+class Package implements CustomerLoad {
     private Integer packageWeight;
     private Integer packageWidth;
     private Integer packageHeight;
@@ -39,7 +39,8 @@ abstract class Package {
         }
     }
 
-    public Integer getPackageWeight() {
+    @Override
+    public Integer getLoadWeight() {
         return packageWeight;
     }
 

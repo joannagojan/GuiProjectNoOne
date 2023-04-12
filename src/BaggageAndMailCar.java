@@ -1,12 +1,17 @@
-public class BaggageAndMailCar extends Cars {
-// how many Baggage Cars are needed based on packages
+import java.util.ArrayList;
+import java.util.List;
 
+public class BaggageAndMailCar<T extends CustomerLoad> extends Cars {
+    private List<T> objects = new ArrayList<>();
+    public BaggageAndMailCar(List<Package> packagesInMailCar) {
+    }
 
-    public BaggageAndMailCar() {
+    public boolean addBagsAndMailCar(List<T> bagsAndMailToAdd) {
+    return true ;
     }
 
     @Override
-    public Integer getNetWeight() {
+    public Integer getGrossWeight() {
         return null;
     }
 
