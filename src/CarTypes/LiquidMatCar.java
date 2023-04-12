@@ -9,7 +9,6 @@ public abstract class LiquidMatCar extends BasicFreightCar {
     public LiquidMatCar(String securityInformation, Integer netWeight,
                         Integer shipperNumber, Integer standardPackageWeight,
                         String liquidType) {
-        super(securityInformation, netWeight, shipperNumber, standardPackageWeight);
         if (availableLiquidType(liquidType)) {
             this.liquidType = liquidType;
         } else {
@@ -28,7 +27,7 @@ public abstract class LiquidMatCar extends BasicFreightCar {
         return false;
     }
 // setting a weight for each type of liquid
-    @Override
+
     public Integer getPackageWeight() {
         if (liquidType.equals("gasoline")) {
             liquidPackageWeight = 20;

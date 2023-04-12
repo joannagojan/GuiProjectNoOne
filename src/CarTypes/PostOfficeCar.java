@@ -7,28 +7,20 @@ public class PostOfficeCar extends Cars{
 
     private List<Package> packages = new LinkedList<>();
 
-    public void addPackage(Package package) {
-        packages.add(package);
-    }
+//    public void addPackage(Package package) {
+//        packages.add(package);
+//    }
 
     public Integer getTotalWeight() {
         int sum = 0;
         for (Package p : packages) {
-            sum += p.getWeight();
+            sum += p.get;
         }
         return sum;
     }
 
-
-
-
     @Override
-    public Integer getNetWeight() {
-        return null;
-    }
-
-    @Override
-    public Integer getHowMuchElectricity() {
+    public Integer getGrossWeight() {
         return null;
     }
 

@@ -1,13 +1,14 @@
 package CarTypes;
 
 public class ToxicLiquidMatCar extends LiquidMatCar {
-    public ToxicLiquidMatCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight) {
-        super(securityInformation, netWeight, shipperNumber, standardPackageWeight);
+
+    public ToxicLiquidMatCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight, String liquidType) {
+        super(securityInformation, netWeight, shipperNumber, standardPackageWeight, liquidType);
     }
 
     @Override
-    public Integer getPackageWeight() {
-        return super.getPackageWeight();
+    public Integer getGrossWeight() {
+        return null;
     }
 
     @Override

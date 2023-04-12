@@ -1,13 +1,11 @@
 package CarTypes;
 
 public class RefrigeratedCar extends BasicFreightCar {
-    public RefrigeratedCar(String securityInformation, Integer netWeight, Integer shipperNumber, Integer standardPackageWeight) {
-        super(securityInformation, netWeight, shipperNumber, standardPackageWeight);
-    }
+
 
     @Override
-    public Integer getPackageWeight() {
-        return super.getPackageWeight();
+    public Integer getGrossWeight() {
+        return null;
     }
 
     @Override

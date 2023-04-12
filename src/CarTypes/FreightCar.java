@@ -10,7 +10,7 @@ public abstract class FreightCar extends Cars {
     public Integer getTotalWeightOfPackages() {
         Integer sum = 0;
         for (Package p : packages) {
-            sum += p.get;
+            sum += p.;
         }
         return sum;
     }
