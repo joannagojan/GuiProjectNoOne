@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class PostOfficeCar extends Cars{
+public class PostOfficeCar extends Cars {
 
     private List<Packages> packages = new LinkedList<>();
 

@@ -1,33 +1,29 @@
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class BaggageAndMailCar<T> extends Cars {
-//    private List<T> bagsAndMailInCar = new ArrayList<>();
-//
-//
-//    public <T> boolean addBagsAndMailCar(List<T> bagsAndMailToAdd) {
-//        Integer maxLoadWeight = Cars.getStandardMaxCarLoad();
-//        Integer currentWeight = 0;
-//        for (T bag : bagsAndMailToAdd) {
-//            if (currentWeight + bag.getLoadWeight() <= maxLoadWeight) {
-//                bagsAndMailInCar.add(bag);
-//            }
-//            else {return false;}
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public Integer getGrossWeight() {
-//        Integer totalWeightOfLoad = 0;
-//        for (T bag : bagsAndMailInCar) {
-//            totalWeightOfLoad += bag.getLoadWeight();
-//        }
-//        return totalWeightOfLoad;
-//    }
-//
-//    @Override
-//    public boolean requiredElectricity() {
-//        return false;
-//    }
-//}
+package Railway.CarTypes;
+import Railway.CarTypes.Cars;
+import Railway.CustomerLoad;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BaggageAndMailCar<T extends CustomerLoad> extends Cars {
+    ArrayList<T> allCargo;
+    Integer maxNumberOfPackages;
+
+    public BaggageAndMailCar(Integer maxNumberOfPackages) {
+        this.allCargo = new ArrayList<>();
+        this.maxNumberOfPackages = maxNumberOfPackages;
+    }
+
+    @Override
+    public Integer getGrossWeight() {
+        Integer totalWeightOfLoad = 0;
+        for (T bag : allCargo) {
+            totalWeightOfLoad += bag.getLoadWeight();
+        }
+        return totalWeightOfLoad;
+    }
+
+    @Override
+    public boolean requiredElectricity() {
+        return false;
+    }
+}
