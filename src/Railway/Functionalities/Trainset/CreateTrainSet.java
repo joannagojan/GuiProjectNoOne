@@ -11,7 +11,7 @@ public class CreateTrainSet {
 
     private Locomotive randomLocomotive;
 
-    // Randomly choosing a locomotive for a trainset  one locomotive can be in one trainset !!!!!! in progress
+    // Randomly choosing a locomotive for a trainset one locomotive can be in one trainset !!!!!! in progress
   private void addRandomLocomotive(List<Locomotive> allLocomotives) {
       Random rand = new Random();
       while(allLocomotives.size() > 0) {
