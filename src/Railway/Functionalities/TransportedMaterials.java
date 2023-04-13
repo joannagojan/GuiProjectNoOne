@@ -1,8 +1,12 @@
 package Railway.Functionalities;
 
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class TransportedMaterials {
+    private static final AtomicInteger cargoIDCounter = new AtomicInteger(0);
+    private final Integer cargoID;
+
     private String name;
     private Integer securityLevel;
 
@@ -10,6 +14,7 @@ public abstract class TransportedMaterials {
     public TransportedMaterials(String name, Integer securityLevel) {
         this.name = name;
         this.securityLevel = securityLevel;
+        this.cargoID = cargoIDCounter.incrementAndGet();
     }
 
     public String getName() {
