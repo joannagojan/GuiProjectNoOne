@@ -1,8 +1,10 @@
 package Railway.CarTypes;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public abstract class Cars {
-    private Integer carID;
-    private static Integer carIDCounter = 0;
+    private static final AtomicInteger carIDCounter = new AtomicInteger(0);
+    private final Integer carID;
     private static Integer carWidth = 240; // Standard Car width in cm
     private static Integer carHeight = 260; // Standard Car height in cm
     private static Integer carLength = 1500; // Standard Car width in cm
@@ -12,7 +14,8 @@ public abstract class Cars {
 
     // constructor that automatically assigns ID number to new Objects of all Car classes
     public Cars() {
-        this.carID = ++carIDCounter;
+
+        this.carID = carIDCounter.incrementAndGet();
     }
     public abstract Integer getGrossWeight();
 
@@ -23,9 +26,6 @@ public abstract class Cars {
         return carID;
     }
 
-    public void setCarID(Integer carID) {
-        this.carID = carID;
-    }
 
     public static Integer getCarWidth() {
         return carWidth;
