@@ -2,7 +2,6 @@ package Railway.Functionalities;
 
 import Railway.CarTypes.CargoCars;
 import Railway.CarTypes.Cars;
-import Railway.CustomerLoad;
 
 import java.util.ArrayList;
 import java.util.List;

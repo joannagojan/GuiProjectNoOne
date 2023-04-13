@@ -1,6 +1,7 @@
-package Railway;
+package Railway.Functionalities.Trainset;
 
 import Railway.CarTypes.Cars;
+import Railway.Locomotive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +11,15 @@ public class CreateTrainSet {
 
     private Locomotive randomLocomotive;
 
-    // Randomly choosing a locomotive for a trainset !!!!!! in progress
-  private Locomotive addRandomLocomotive(List<Locomotive> allLocomotives) {
-     Random random = new Random();
-     randomLocomotive = allLocomotives.get(random.nextInt(allLocomotives.size()));
-     return randomLocomotive;
-   }
+    // Randomly choosing a locomotive for a trainset  one locomotive can be in one trainset !!!!!! in progress
+  private void addRandomLocomotive(List<Locomotive> allLocomotives) {
+      Random rand = new Random();
+      while(allLocomotives.size() > 0) {
+          int index = rand.nextInt(allLocomotives.size());
+          allLocomotives.remove(index);
+      }
+      System.out.println(allLocomotives);
+  }
 
     // Method to get the chosen locomotive's Max Load Weight
     private Integer getLocoMaxLoadWeight(Locomotive locomotive) {

@@ -1,7 +1,6 @@
 package Railway.Functionalities;
 
 import Railway.CarTypes.Cars;
-import Railway.CustomerLoad;
 
 public class Packages implements CustomerLoad {
     private Integer packageWeight;

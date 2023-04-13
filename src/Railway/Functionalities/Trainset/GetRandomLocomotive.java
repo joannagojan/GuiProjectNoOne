@@ -1,4 +1,6 @@
-package Railway;
+package Railway.Functionalities.Trainset;
+
+import Railway.Locomotive;
 
 import java.util.ArrayList;
 import java.util.Collections;

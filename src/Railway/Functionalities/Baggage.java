@@ -1,8 +1,5 @@
 package Railway.Functionalities;
 
-import Railway.CustomerLoad;
-import Railway.Functionalities.Passenger;
-
 public class Baggage implements CustomerLoad {
     private Passenger ownerOfBaggage;
 
