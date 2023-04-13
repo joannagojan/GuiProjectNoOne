@@ -17,7 +17,7 @@ public class GetRandomLocomotive {
         shuffleLocomotives();
     }
 
-    public Locomotive select() {
+    public Locomotive getLocomotive() {
         if (locomotives.isEmpty()) {
             throw new IllegalStateException("No more available locomotives.");
         }

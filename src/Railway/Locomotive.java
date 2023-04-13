@@ -2,11 +2,11 @@ package Railway;
 
 import Railway.CarTypes.Cars;
 
+import java.lang.reflect.Array;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Locomotive {
-
-    private Integer locomotiveID;
     private String locomotiveName;
     private Station locoHomeStation;
     private Station locoDestinationStation;
@@ -14,7 +14,8 @@ public class Locomotive {
     private static Integer maxLocoLoadWeight; // maximum load a locomotive object can carry
     private Integer locomotiveSpeed; // assigned speed to a locomotive object
 
-    private static Integer locomotiveIDCounter = 0;
+    private static final AtomicInteger locomotiveIDCounter = new AtomicInteger(0);
+    private final Integer locomotiveID;
 
 
 
@@ -23,15 +24,15 @@ public class Locomotive {
                       Integer maxNumberCars, Integer maxLocoLoadWeight,
                       Integer locomotiveSpeed) {
         // max weight of the load cannot be smaller than 5000 tons and bigger than 13000 tons
-        if (maxLocoLoadWeight < 5000 || maxLocoLoadWeight < 13000) {
+        if (maxLocoLoadWeight < 5000 || maxLocoLoadWeight > 13000) {
             throw new IllegalArgumentException("Maximum load weight must be in range of 5000-13000 tons ");
         }
 
-        this.locomotiveID = ++locomotiveIDCounter; // automatic ID counter with every created object
+        this.locomotiveID = locomotiveIDCounter.incrementAndGet();
         this.locomotiveName = locomotiveName;
         this.locoHomeStation = locoHomeStation;
         this.locoDestinationStation = locoDestinationStation;
-        Locomotive.maxNumberCars = maxNumberCars;
+        this.maxNumberCars = maxNumberCars;
         this.maxLocoLoadWeight = maxLocoLoadWeight;
         this.locomotiveSpeed = locomotiveSpeed;
 
@@ -46,6 +47,19 @@ public class Locomotive {
                 + maxLocoLoadWeight + " of the speef of "
                 + locomotiveSpeed  + '.';
     }
+
+
+//    public Integer[] getAvailableLocomotiveIDS () {
+//        Integer[] availableLocomotiveIDS = new Integer[locomotiveIDCounter];
+//        for (int i = 0; i < locomotiveIDCounter; i++)
+//        {availableLocomotiveIDS[i] = i +1;}
+//        return availableLocomotiveIDS;
+//    }
+
+    public Integer getLocomotiveID() {
+        return locomotiveID;
+    }
+
 
     public Integer getMaxNumberCars() {
         return maxNumberCars;
@@ -63,13 +77,4 @@ public class Locomotive {
         Locomotive.maxLocoLoadWeight = maxLocoLoadWeight;
     }
 
-    public static class TrainSet {
-        private Locomotive randomLocomotive;
-        private List<Cars> carsInTrainSet;
-
-        public TrainSet(Locomotive randomLocomotive, List<Cars> carsInTrainSet) {
-            this.randomLocomotive = randomLocomotive;
-            this.carsInTrainSet = carsInTrainSet;
-        }
-    }
 }
