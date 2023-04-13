@@ -11,16 +11,6 @@ public class CreateTrainSet {
 
     private Locomotive randomLocomotive;
 
-    // Randomly choosing a locomotive for a trainset one locomotive can be in one trainset !!!!!! in progress
-  private void addRandomLocomotive(List<Locomotive> allLocomotives) {
-      Random rand = new Random();
-      while(allLocomotives.size() > 0) {
-          int index = rand.nextInt(allLocomotives.size());
-          allLocomotives.remove(index);
-      }
-      System.out.println(allLocomotives);
-  }
-
     // Method to get the chosen locomotive's Max Load Weight
     private Integer getLocoMaxLoadWeight(Locomotive locomotive) {
         return locomotive.getMaxLocoLoadWeight();
@@ -36,8 +26,6 @@ public class CreateTrainSet {
         Integer maxLoadInTrainset = getLocoMaxLoadWeight(randomLocomotive);
         Integer maxNumCarsInTrainset = getLocoMaxCarNumber(randomLocomotive);
         List<Cars> carsInTrainSet = new ArrayList<Cars>();
-
-        // assigning
         while (maxLoadInTrainset > 0 && carsInTrainSet.size() < maxNumCarsInTrainset) {
             Cars randomCar = allCars.get((int) (Math.random() * allCars.size()));
             if (getLocoMaxLoadWeight(randomLocomotive) >= randomCar.getGrossWeight()) {

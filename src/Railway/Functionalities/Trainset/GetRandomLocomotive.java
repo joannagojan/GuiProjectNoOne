@@ -5,37 +5,35 @@ import Railway.Locomotive;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GetRandomLocomotive {
-    private List<Locomotive> availableLocomotives;
+    private List<Locomotive> locomotives;
     private int nextLocomotiveIndex;
-    private Random random;
 
-    public GetRandomLocomotive(List<Locomotive> availableLocomotives) {
-        this.availableLocomotives = new ArrayList<>(availableLocomotives);
+    public GetRandomLocomotive(List<Locomotive> locomotives) {
+        this.locomotives = new ArrayList<>(locomotives);
         this.nextLocomotiveIndex = 0;
-        this.random = new Random();
         shuffleLocomotives();
     }
 
-    public Locomotive getNextLocomotive() {
-        if (availableLocomotives.isEmpty()) {
+    public Locomotive select() {
+        if (locomotives.isEmpty()) {
             throw new IllegalStateException("No more available locomotives.");
         }
 
-        if (nextLocomotiveIndex >= availableLocomotives.size()) {
+        if (nextLocomotiveIndex >= locomotives.size()) {
             shuffleLocomotives();
             nextLocomotiveIndex = 0;
         }
 
-        Locomotive locomotive = availableLocomotives.get(nextLocomotiveIndex);
+        Locomotive locomotive = locomotives.get(nextLocomotiveIndex);
         nextLocomotiveIndex++;
-        availableLocomotives.remove(locomotive);
+        locomotives.remove(locomotive);
         return locomotive;
     }
 
     private void shuffleLocomotives() {
-        Collections.shuffle(availableLocomotives, random);
+        Collections.shuffle(locomotives, ThreadLocalRandom.current());
     }
 }
