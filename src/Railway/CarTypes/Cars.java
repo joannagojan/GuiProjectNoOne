@@ -14,8 +14,13 @@ public abstract class Cars {
 
     // constructor that automatically assigns ID number to new Objects of all Car classes
     public Cars() {
-
         this.carID = carIDCounter.incrementAndGet();
+    }
+
+    public static int getMaxId() {
+        AtomicInteger x = carIDCounter;
+        int y = x.intValue();
+        return y;
     }
     public abstract Integer getGrossWeight();
 

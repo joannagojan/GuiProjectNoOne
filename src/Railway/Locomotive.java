@@ -1,9 +1,5 @@
 package Railway;
 
-import Railway.CarTypes.Cars;
-
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Locomotive {
@@ -14,7 +10,7 @@ public class Locomotive {
     private static Integer maxLocoLoadWeight; // maximum load a locomotive object can carry
     private Integer locomotiveSpeed; // assigned speed to a locomotive object
 
-    private static final AtomicInteger locomotiveIDCounter = new AtomicInteger(0);
+    private Integer locomotiveIDCounter = 0;
     private final Integer locomotiveID;
 
 
@@ -28,7 +24,7 @@ public class Locomotive {
             throw new IllegalArgumentException("Maximum load weight must be in range of 5000-13000 tons ");
         }
 
-        this.locomotiveID = locomotiveIDCounter.incrementAndGet();
+        this.locomotiveID = locomotiveIDCounter++;
         this.locomotiveName = locomotiveName;
         this.locoHomeStation = locoHomeStation;
         this.locoDestinationStation = locoDestinationStation;
@@ -49,12 +45,7 @@ public class Locomotive {
     }
 
 
-//    public Integer[] getAvailableLocomotiveIDS () {
-//        Integer[] availableLocomotiveIDS = new Integer[locomotiveIDCounter];
-//        for (int i = 0; i < locomotiveIDCounter; i++)
-//        {availableLocomotiveIDS[i] = i +1;}
-//        return availableLocomotiveIDS;
-//    }
+
 
     public Integer getLocomotiveID() {
         return locomotiveID;
