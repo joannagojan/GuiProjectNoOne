@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Random;
 
 public class CreateTrainSet {
-//
-//    private ArrayList<Locomotive>;
-////    private Locomotive randomLocomotive = ;
+
+    private Integer locoMaxIndex; // number that shows how many locomotive objects are there
 
     // Method to get the chosen locomotive's Max Load Weight
     private Integer getLocoMaxLoadWeight(Locomotive locomotive) {

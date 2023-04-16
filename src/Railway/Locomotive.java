@@ -10,9 +10,8 @@ public class Locomotive {
     private static Integer maxLocoLoadWeight; // maximum load a locomotive object can carry
     private Integer locomotiveSpeed; // assigned speed to a locomotive object
 
-    private Integer locomotiveIDCounter = 0;
+    private static final AtomicInteger locomotiveIDCounter = new AtomicInteger(0);
     private final Integer locomotiveID;
-
 
 
     //Construtor of Railway.Locomotive class
@@ -24,7 +23,7 @@ public class Locomotive {
             throw new IllegalArgumentException("Maximum load weight must be in range of 5000-13000 tons ");
         }
 
-        this.locomotiveID = locomotiveIDCounter++;
+        this.locomotiveID = locomotiveIDCounter.incrementAndGet();
         this.locomotiveName = locomotiveName;
         this.locoHomeStation = locoHomeStation;
         this.locoDestinationStation = locoDestinationStation;
@@ -40,12 +39,16 @@ public class Locomotive {
         return "This is locomotive number " + locomotiveID + " called " + locomotiveName + " it departs from " + locoHomeStation
                 + "with a destination in " + locoDestinationStation +
                 " with maximum number of cars of " + maxNumberCars + " and maximum weight load "
-                + maxLocoLoadWeight + " of the speef of "
+                + maxLocoLoadWeight + " of the speed of "
                 + locomotiveSpeed  + '.';
     }
 
 
-
+    public static int getMaxId() {
+        AtomicInteger x = locomotiveIDCounter;
+        int y = x.intValue();
+        return y;
+    }
 
     public Integer getLocomotiveID() {
         return locomotiveID;

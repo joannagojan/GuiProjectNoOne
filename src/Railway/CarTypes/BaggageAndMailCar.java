@@ -4,7 +4,7 @@ import Railway.Functionalities.CustomerLoad;
 
 import java.util.ArrayList;
 
-public class BaggageAndMailCar<T extends CustomerLoad> extends Cars implements CargoCars<T> {
+public class BaggageAndMailCar<T extends CustomerLoad> extends Cars implements CargoCars {
     private ArrayList<T> allCargo;
     private Integer maxNumberOfPackages;
 

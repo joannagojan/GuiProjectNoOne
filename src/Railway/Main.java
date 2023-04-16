@@ -21,7 +21,8 @@ public class Main {
 PostOfficeCar car1 = new PostOfficeCar();
 PostOfficeCar car3 = new PostOfficeCar();
 PostOfficeCar car2 = new PostOfficeCar();
-System.out.println("max id" + Cars.getMaxId());
+
+        System.out.println("max id" + Cars.getMaxId());
 
 //
 //        int locoIDmax = Locomotive.getLocomotiveCounterMax();
