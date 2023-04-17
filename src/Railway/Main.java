@@ -10,6 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
+        try {
         Station st1 = new Station("d");
 
         Locomotive loco1 = new Locomotive("g", st1, st1, 1, 6000, 4, 5);
@@ -23,8 +25,16 @@ PostOfficeCar car3 = new PostOfficeCar();
 PostOfficeCar car2 = new PostOfficeCar();
 
         System.out.println("max id" + Cars.getMaxId());
-        Trainset tset = new Trainset(loco1);
-        tset.addCar(car1);
+        Trainset tset1 = new Trainset(loco1);
+        tset1.addCar(car1);
+        Trainset tset2 = new Trainset(loco1);
+            tset1.addCar(car1);
+        }
+
+        catch (Exception e ) {
+            System.out.println("Exception; " + e);
+        }
+
 
     }
 }

@@ -9,7 +9,7 @@ public abstract class Cars {
     private static Integer carHeight = 260; // Standard Car height in cm
     private static Integer carLength = 1500; // Standard Car width in cm
     private static Integer standardMaxCarLoad = 100; // Standard Car maximum load in tons (for all classes except Heavy Freight)
-    private static Integer standardNetWeight = 50000; // Standard Net Weight of a car in kgs
+    private static Integer standardNetWeight = 5000; // Standard Net Weight of a car in kgs
 
 
     // constructor that automatically assigns ID number to new Objects of all Car classes

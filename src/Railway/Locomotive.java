@@ -12,7 +12,7 @@ public class Locomotive {
 
     private static final AtomicInteger locomotiveIDCounter = new AtomicInteger(0);
     private final Integer locomotiveID;
-
+private Integer trainsetID;
     private Integer maxElectricCarsConnected;
 
     //Construtor of Railway.Locomotive class
@@ -46,7 +46,13 @@ public class Locomotive {
     }
 
 
+    public Integer getTrainsetID() {
+        return trainsetID;
+    }
 
+    public void setTrainsetID(Integer trainsetID) {
+        this.trainsetID = trainsetID;
+    }
     public Integer getLocomotiveID() {
         return locomotiveID;
     }
