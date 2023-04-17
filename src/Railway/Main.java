@@ -2,7 +2,6 @@ package Railway;
 
 import Railway.CarTypes.Cars;
 import Railway.CarTypes.PostOfficeCar;
-import Railway.Functionalities.Trainset.GetRandomCar;
 import Railway.Functionalities.TransportedMaterials;
 
 import java.util.ArrayList;
@@ -12,11 +11,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Station st1 = new Station("d");
 
-        Locomotive loco1 = new Locomotive("g", st1, st1, 1, 6000, 4);
-        Locomotive loco2 = new Locomotive("g", st1, st1, 1, 6000, 4);
-        Locomotive loco3 = new Locomotive("g", st1, st1, 1, 6000, 4);
-        Locomotive loco4 = new Locomotive("g", st1, st1, 1, 6000, 4);
-        Locomotive loco5 = new Locomotive("g", st1, st1, 1, 6000, 4);
+        Locomotive loco1 = new Locomotive("g", st1, st1, 1, 6000, 4, 5);
+        Locomotive loco2 = new Locomotive("g", st1, st1, 1, 6000, 4,5);
+        Locomotive loco3 = new Locomotive("g", st1, st1, 1, 6000, 4,5);
+        Locomotive loco4 = new Locomotive("g", st1, st1, 1, 6000, 4,4 );
+        Locomotive loco5 = new Locomotive("g", st1, st1, 1, 6000, 4, 3);
 
 PostOfficeCar car1 = new PostOfficeCar();
 PostOfficeCar car3 = new PostOfficeCar();
@@ -32,7 +31,6 @@ PostOfficeCar car2 = new PostOfficeCar();
 //
 //        }
 
-        GetRandomCar rand = new GetRandomCar();
 
     }
 }
