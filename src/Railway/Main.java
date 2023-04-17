@@ -2,14 +2,14 @@ package Railway;
 
 import Railway.CarTypes.Cars;
 import Railway.CarTypes.PostOfficeCar;
-import Railway.Functionalities.Trainset.GetRandomLocomotive;
+import Railway.Functionalities.Trainset.GetRandomCar;
 import Railway.Functionalities.TransportedMaterials;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Station st1 = new Station("d");
 
         Locomotive loco1 = new Locomotive("g", st1, st1, 1, 6000, 4);
@@ -32,10 +32,7 @@ PostOfficeCar car2 = new PostOfficeCar();
 //
 //        }
 
-
-
-        System.out.println(loco5.getLocomotiveID());
-//        GetRandomLocomotive randomLocomotive = new GetRandomLocomotive(alllocos);
+        GetRandomCar rand = new GetRandomCar();
 
     }
 }

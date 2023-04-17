@@ -50,10 +50,10 @@ public class Locomotive {
         return y;
     }
 
+
     public Integer getLocomotiveID() {
         return locomotiveID;
     }
-
 
     public Integer getMaxNumberCars() {
         return maxNumberCars;
