@@ -2,6 +2,7 @@ package Railway;
 
 import Railway.CarTypes.Cars;
 import Railway.CarTypes.PostOfficeCar;
+import Railway.Functionalities.Trainset.Trainset;
 import Railway.Functionalities.TransportedMaterials;
 
 import java.util.ArrayList;
@@ -22,15 +23,8 @@ PostOfficeCar car3 = new PostOfficeCar();
 PostOfficeCar car2 = new PostOfficeCar();
 
         System.out.println("max id" + Cars.getMaxId());
-
-//
-//        int locoIDmax = Locomotive.getLocomotiveCounterMax();
-//        ArrayList<Locomotive> alllocos = new ArrayList<>();
-//        for (int i = 0; i < (int)locoIDmax; i++) {
-//            alllocos.add(Locomotive.i);
-//
-//        }
-
+        Trainset tset = new Trainset(loco1);
+        tset.addCar(car1);
 
     }
 }

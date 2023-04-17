@@ -22,6 +22,9 @@ public abstract class Cars {
         int y = x.intValue();
         return y;
     }
+
+
+
     public abstract Integer getGrossWeight();
 
     // determining the need to connect to electricity
