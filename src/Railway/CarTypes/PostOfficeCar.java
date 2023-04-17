@@ -24,7 +24,7 @@ public class PostOfficeCar extends Cars {
 
     @Override
     public Integer getGrossWeight() {
-        return null;
+        return Cars.getStandardNetWeight() + getTotalWeight();
     }
 
     @Override
