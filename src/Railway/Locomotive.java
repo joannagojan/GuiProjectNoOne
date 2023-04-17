@@ -15,13 +15,18 @@ public class Locomotive {
 private Integer trainsetID;
     private Integer maxElectricCarsConnected;
 
+    // range of locomotive Load range
+    private final Integer minLocoLoadRange = 5000;// in tons
+    private final Integer maxLocoLoadRange = 30000; // in tons
+
     //Construtor of Railway.Locomotive class
     public Locomotive(String locomotiveName, Station locoHomeStation, Station locoDestinationStation,
                       Integer maxNumberCars, Integer maxLocoLoadWeight,
                       Integer locomotiveSpeed, Integer maxElectricCarsConnected) {
-        // max weight of the load cannot be smaller than 5000 tons and bigger than 13000 tons
-        if (maxLocoLoadWeight < 5000 || maxLocoLoadWeight > 13000) {
-            throw new IllegalArgumentException("Maximum load weight must be in range of 5000-13000 tons ");
+        // max weight of the load
+        if (maxLocoLoadWeight < minLocoLoadRange || maxLocoLoadWeight > maxLocoLoadWeight) {
+            throw new IllegalArgumentException("Maximum load weight must be in range of " +
+                   + minLocoLoadRange + "-" + maxLocoLoadWeight + " tons ");
         }
 
         this.locomotiveID = locomotiveIDCounter.incrementAndGet();

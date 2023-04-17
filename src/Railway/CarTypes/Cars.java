@@ -10,6 +10,7 @@ public abstract class Cars {
     private static Integer carLength = 1500; // Standard Car width in cm
     private static Integer standardMaxCarLoad = 100; // Standard Car maximum load in tons (for all classes except Heavy Freight)
     private static Integer standardNetWeight = 5000; // Standard Net Weight of a car in kgs
+    private Integer trainsetID;
 
 
     // constructor that automatically assigns ID number to new Objects of all Car classes
@@ -24,6 +25,13 @@ public abstract class Cars {
     }
 
 
+    public Integer getTrainsetID() {
+        return trainsetID;
+    }
+
+    public void setTrainsetID(Integer trainsetID) {
+        this.trainsetID = trainsetID;
+    }
 
     public abstract Integer getGrossWeight();
 

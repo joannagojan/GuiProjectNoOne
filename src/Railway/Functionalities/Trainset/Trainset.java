@@ -26,6 +26,9 @@ public class Trainset {
     }
 
     public void addCar(Cars railRoadCar) throws Exception {
+        if(railRoadCar.getTrainsetID() != null) {
+            throw new Exception("This railroad car is assigned to another trainset: " + railRoadCar.getTrainsetID());
+        }
         if (trainsetLocomotive.getMaxNumberCars() < trainsetCars.size()) {
 throw new Exception("Too many cars, this locomotives car limit is: " + trainsetLocomotive.getMaxNumberCars());}
         if (railRoadCar.requiredElectricity()) {
@@ -34,14 +37,26 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
         } else throw new Exception("Too many cars connected to electricity grid");
         Integer currentTrainsetWeight = currentLoadOfTrainset+railRoadCar.getGrossWeight();
         if (currentTrainsetWeight > trainsetLocomotive.getMaxLocoLoadWeight())
-        {throw new Exception("Gross weight of car you are trying to add is too big max load of this locomotive is: "
+        {throw new Exception("Gross weight of car you are trying to add is bigger than maximum load of this locomotive. " +
+                "This locomotives maximum load is: "
                 + trainsetLocomotive.getMaxLocoLoadWeight() + " current weight of the trainset: " + currentTrainsetWeight +
-                "and you are trying to add: " + currentTrainsetWeight);}
+                " and you are trying to add: " + currentTrainsetWeight);}
         currentLoadOfTrainset += railRoadCar.getGrossWeight();
         if (this.trainsetCars.contains(railRoadCar)) {throw new Exception("This car is already added to this trainset");}
         trainsetCars.add(railRoadCar);
+        railRoadCar.setTrainsetID(this.trainsetID);
         System.out.println("Car with id: " + railRoadCar.getCarID() + " was successfully added to the trainset with id: "
         + trainsetID);
+    }
+
+
+    public void removeCar(Cars railRoadCar) throws Exception {
+        if (railRoadCar.getTrainsetID() == null) {
+            throw new Exception("This car is not assigned to any trainset, nothing to remove");
+        }
+        trainsetCars.remove(railRoadCar);
+        System.out.println("Car with ID: " + railRoadCar.getCarID() +
+                " was removed from Trainset with ID: " + railRoadCar.getTrainsetID());
     }
 
 
