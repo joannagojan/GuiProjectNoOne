@@ -15,12 +15,19 @@ public class Locomotive {
 
     private static final AtomicInteger locomotiveIDCounter = new AtomicInteger(0);
     private final Integer locomotiveID;
-private Integer trainsetID;
+    private Integer trainsetID;
     private Integer maxElectricCarsConnected;
 
     // range of locomotive Load range
-    private final Integer minLocoLoadRange = 5000;// in tons
+    private final Integer minLocoLoadRange = 15000;// in tons
     private final Integer maxLocoLoadRange = 30000; // in tons
+    // range of how many Cars can require connection to electricity grid
+    private Integer minElectricConnected = 0;
+    private Integer maxElectricConnected = 10;
+
+    // number of cars connected to the Locomotive
+    private Integer minRangeNumberOfCars = 1;
+    private Integer maxRangeNumberOfCars = 10;
 
     //Construtor of Railway.Locomotive class
     public Locomotive(String locomotiveName, Station sourceStation, Station locoStartStation, Station locoDestinationStation,
@@ -29,19 +36,34 @@ private Integer trainsetID;
         // max weight of the load
         if (maxLocoLoadWeight < minLocoLoadRange || maxLocoLoadWeight > maxLocoLoadWeight) {
             throw new Exception("Maximum load weight must be in range of " +
-                   + minLocoLoadRange + "-" + maxLocoLoadWeight + " tons ");}
+                    +minLocoLoadRange + "-" + maxLocoLoadWeight + " tons ");
+        }
+        else {
+            this.maxLocoLoadWeight = maxLocoLoadWeight;
+        }
         this.locomotiveID = locomotiveIDCounter.incrementAndGet();
         this.sourceStation = sourceStation;
         this.locomotiveName = locomotiveName;
         this.locoStartStation = locoStartStation;
         if (locoDestinationStation.equals(locoStartStation) || locoDestinationStation.equals(sourceStation)) {
-            throw new Exception("Destination station has to be different than Start and Source stations ");}
-        this.locoDestinationStation = locoDestinationStation;
-        this.maxNumberCars = maxNumberCars;
-        this.maxLocoLoadWeight = maxLocoLoadWeight;
+            throw new Exception("Destination station has to be different than Start and Source stations ");
+        } else {
+            this.locoDestinationStation = locoDestinationStation;
+        }
+        if (maxNumberCars < minRangeNumberOfCars || maxNumberCars > maxRangeNumberOfCars) {
+            throw new Exception("Maximum possible connected cars to this locomotive must be in range: " +
+                    +minRangeNumberOfCars + "-" + maxRangeNumberOfCars);
+        } else {
+            this.maxNumberCars = maxNumberCars;
+        }
         this.locomotiveSpeed = locomotiveSpeed;
-        this.maxElectricCarsConnected = maxElectricCarsConnected;
-
+        if (maxElectricCarsConnected < minElectricConnected || maxElectricCarsConnected > maxElectricCarsConnected) {
+            throw new Exception("Maximum possible connected cars to electricity must be in range: " +
+                    +minElectricConnected + "-" + maxElectricCarsConnected);
+        }
+        else {
+            this.maxElectricCarsConnected = maxElectricCarsConnected;
+        }
     }
 
     // toString for printing information about Railway.Locomotive class
@@ -51,7 +73,7 @@ private Integer trainsetID;
                 + "with a destination in " + locoDestinationStation +
                 " with maximum number of cars of " + maxNumberCars + " and maximum weight load "
                 + maxLocoLoadWeight + " of the speed of "
-                + locomotiveSpeed  + '.';
+                + locomotiveSpeed + '.';
     }
 
 
@@ -62,6 +84,7 @@ private Integer trainsetID;
     public void setTrainsetID(Integer trainsetID) {
         this.trainsetID = trainsetID;
     }
+
     public Integer getLocomotiveID() {
         return locomotiveID;
     }

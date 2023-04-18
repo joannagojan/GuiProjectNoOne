@@ -1,4 +1,4 @@
-package Railway.Functionalities.Trainset;
+package Railway.Functionalities.Routes;
 
 import Railway.CarTypes.Cars;
 import Railway.Locomotive;
@@ -13,10 +13,17 @@ public class Trainset {
     private Integer trainsetID;
     private Integer howCarConnectedElectricity;
     private Integer currentLoadOfTrainset;
+    private Station trainsetSourceStation;
+    private Station trainsetStartStation;
+    private Station trainsetEndStation;
+
 
     public Trainset(Locomotive trainsetLocomotive) throws Exception {
         this.trainsetID = trainsetIDCounter.incrementAndGet();
         this.trainsetLocomotive = trainsetLocomotive;
+        this.trainsetSourceStation = trainsetLocomotive.getSourceStation();
+        this.trainsetStartStation = trainsetLocomotive.getLocoStartStation();
+        this.trainsetEndStation = trainsetLocomotive.getLocoDestinationStation();
         this.howCarConnectedElectricity = 0;
         this.currentLoadOfTrainset = 0;
         if(trainsetLocomotive.getTrainsetID() != null) {
@@ -95,6 +102,34 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
 
     public void setCurrentLoadOfTrainset(Integer currentLoadOfTrainset) {
         this.currentLoadOfTrainset = currentLoadOfTrainset;
+    }
+
+    public void setTrainsetID(Integer trainsetID) {
+        this.trainsetID = trainsetID;
+    }
+
+    public Station getTrainsetSourceStation() {
+        return trainsetSourceStation;
+    }
+
+    public void setTrainsetSourceStation(Station trainsetSourceStation) {
+        this.trainsetSourceStation = trainsetSourceStation;
+    }
+
+    public Station getTrainsetStartStation() {
+        return trainsetStartStation;
+    }
+
+    public void setTrainsetStartStation(Station trainsetStartStation) {
+        this.trainsetStartStation = trainsetStartStation;
+    }
+
+    public Station getTrainsetEndStation() {
+        return trainsetEndStation;
+    }
+
+    public void setTrainsetEndStation(Station trainsetEndStation) {
+        this.trainsetEndStation = trainsetEndStation;
     }
 }
 

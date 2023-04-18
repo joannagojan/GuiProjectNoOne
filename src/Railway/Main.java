@@ -1,17 +1,11 @@
 package Railway;//package Railway;
 
-import Railway.CarTypes.Cars;
-import Railway.CarTypes.PostOfficeCar;
-import Railway.Functionalities.Routes.AlgorithmShortestRoute;
 import Railway.Functionalities.Routes.GetBestRoute;
 import Railway.Functionalities.Routes.Route;
 import Railway.Functionalities.Routes.Station;
-import Railway.Functionalities.Trainset.Trainset;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -183,7 +177,14 @@ public class Main {
                 Station randomStartStation = stationsList.get(randomStartStationInt);
                 int randomEndStationInt = (int)(Math.random()*stationsList.size());
                 Station randomEndStation = stationsList.get(randomEndStationInt);
-                Locomotive locomotive[i] = new Locomotive();
+                String alphabet = "abcdefghijklmnopqrstuvwxyzabc";
+                String name = alphabet.substring(i, i+1);
+                Integer maxElectricCarsConnected = (int)((Math.random()*10) + 1);
+                Integer maxLoad = (int)((Math.random()*30000) + 15000);
+                Integer maxCarsConnected = (int)((Math.random()*10) + 1);
+                Locomotive locomotive[i] = new Locomotive(name, randomSource, randomStartStation,
+                        randomEndStation,
+                        );
             }
 
 
