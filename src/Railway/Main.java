@@ -170,17 +170,17 @@ public class Main {
             }
 
             // Creating Locomotives
-
-            for (int i = 0; i<10; i++) {
-                ArrayList<Locomotive> allLocomotives = new ArrayList<>();
-                int randomSourceInt = (int)(Math.random()*stationsList.size());
-                Station randomSource = stationsList.get(randomSourceInt);
-                int randomStartStationInt = (int)(Math.random()*stationsList.size());
-                Station randomStartStation = stationsList.get(randomStartStationInt);
-                allLocomotives.remove(randomSource);
-                allLocomotives.remove(randomStartStation);
-                int randomEndStationInt = (int)(Math.random()*stationsList.size());
-                Station randomEndStation = stationsList.get(randomEndStationInt);
+            ArrayList<Locomotive> allLocomotives = new ArrayList<>();
+            for (int i = 0; i<30; i++) {
+                ArrayList<Station> newstationList = stationsList;
+                int randomSourceInt = (int)(Math.random()*newstationList.size());
+                Station randomSource = newstationList.get(randomSourceInt);
+                int randomStartStationInt = (int)(Math.random()*newstationList.size());
+                Station randomStartStation = newstationList.get(randomStartStationInt);
+                newstationList.remove(randomSource);
+                newstationList.remove(randomStartStation);
+                int randomEndStationInt = (int)(Math.random()*newstationList.size());
+                Station randomEndStation = newstationList.get(randomEndStationInt);
                 String alphabet = "abcdefghijklmnopqrstuvwxyzabcd";
                 String name = alphabet.substring(i, i+1);
                 Integer maxElectricCarsConnected = (int)((Math.random()*10));
