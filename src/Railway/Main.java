@@ -2,6 +2,7 @@ package Railway;
 
 import Railway.CarTypes.Cars;
 import Railway.CarTypes.PostOfficeCar;
+import Railway.Functionalities.Routes.CreateStationsFromList;
 import Railway.Functionalities.Routes.Station;
 import Railway.Functionalities.Trainset.Trainset;
 
@@ -28,10 +29,13 @@ PostOfficeCar car2 = new PostOfficeCar();
             tset1.addCar(car2);
             tset1.removeCar(car2);
 
-        } catch (Exception e ) {
+
+
+
+
+
+
+
+        } catch (Exception e) {
             System.out.println("Exception; " + e);
-        }
-
-
-    }
-}
+        }}}

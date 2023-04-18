@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class getBestRoute {
+public class GetBestRoute {
 
         public void getBestRoute(Station startStation){
 

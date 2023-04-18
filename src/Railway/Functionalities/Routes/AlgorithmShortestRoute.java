@@ -2,7 +2,7 @@ package Railway.Functionalities.Routes;
 
 import java.util.PriorityQueue;
 
-public class algorithmShortestRoute {
+public class AlgorithmShortestRoute {
 
     public void bestRoute(Station startStation){
 
