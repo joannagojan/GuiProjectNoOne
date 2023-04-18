@@ -1,4 +1,6 @@
-package Railway;
+package Railway.Functionalities.Routes;
+
+import Railway.Functionalities.Routes.Station;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,7 @@
 package Railway;
 
+import Railway.Functionalities.Routes.Station;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Locomotive {
