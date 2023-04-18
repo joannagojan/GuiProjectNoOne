@@ -17,25 +17,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         try {
-            Station st1 = new Station("d");
-
-            Locomotive loco1 = new Locomotive("g", st1, st1, 1, 10000, 4, 5);
-            Locomotive loco2 = new Locomotive("g", st1, st1, 1, 10000, 4, 5);
-            Locomotive loco3 = new Locomotive("g", st1, st1, 1, 10000, 4, 5);
-            Locomotive loco4 = new Locomotive("g", st1, st1, 1, 10000, 4, 4);
-            Locomotive loco5 = new Locomotive("g", st1, st1, 1, 10000, 4, 3);
-
-            PostOfficeCar car1 = new PostOfficeCar();
-            PostOfficeCar car3 = new PostOfficeCar();
-            PostOfficeCar car2 = new PostOfficeCar();
-
-            System.out.println("max id" + Cars.getMaxId());
-            Trainset tset1 = new Trainset(loco1);
-            tset1.addCar(car1);
-            Trainset tset2 = new Trainset(loco2);
-            tset1.addCar(car2);
-            tset1.removeCar(car2);
-
             String[] stationNames = {
                     "Perth",
                     "Elizabeth Quay",
@@ -192,6 +173,20 @@ public class Main {
                         + ", weight: " + route.getWeight()
                 );
             }
+
+            // Creating Locomotives
+            ArrayList<Locomotive> allLocomotives = new ArrayList<>();
+            for (int i = 0; i<30; i++) {
+                int randomSourceInt = (int)(Math.random()*stationsList.size());
+                Station randomSource = stationsList.get(randomSourceInt);
+                int randomStartStationInt = (int)(Math.random()*stationsList.size());
+                Station randomStartStation = stationsList.get(randomStartStationInt);
+                int randomEndStationInt = (int)(Math.random()*stationsList.size());
+                Station randomEndStation = stationsList.get(randomEndStationInt);
+                Locomotive locomotive[i] = new Locomotive();
+            }
+
+
 
             GetBestRoute shortestPath = new GetBestRoute();
             shortestPath.getBestRoute(stationsList.get(0));
