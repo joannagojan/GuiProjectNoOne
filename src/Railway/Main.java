@@ -1,4 +1,4 @@
-package Railway;
+package Railway;//package Railway;
 
 import Railway.CarTypes.Cars;
 import Railway.CarTypes.PostOfficeCar;
@@ -165,28 +165,23 @@ public class Main {
                     }
 
 
-            boolean[] visited = new boolean[stationsList.size()];
+            for (Station station : stationsList) {
+                List<Route> adjacenciesList = station.getAdjacenciesList();
 
-// Perform DFS from the first station in the list
-            dfs(stationsList.get(0), visited);
+                // Keep generating random neighbors until the station has at least 3 neighbors
+                do {
+                    // Generate random index to select a neighbor from the stationsList
+                    int randomIndex = (int) (Math.random() * stationsList.size());
+                    Station randomStation = stationsList.get(randomIndex);
 
-// Check if all stations are visited
-            boolean isConnected = true;
-            for (boolean v : visited) {
-                if (!v) {
-                    isConnected = false;
-                    break;
-                }
+                    // Check if the random station is not the same as the current station and is not already a neighbor
+                    if (!station.equals(randomStation) && !adjacenciesList.contains(randomStation)) {
+                        double weight = Math.random() * 10; // Example weight, you can modify as needed
+                        Route route = new Route(weight, station, randomStation);
+                        station.addNeighbour(route);
+                    }
+                } while (adjacenciesList.size() < 3); // Repeat until the station has at least 3 neighbors
             }
-
-            if (isConnected) {
-                System.out.println("All stations are connected.");
-            } else {
-                System.out.println("Not all stations are connected.");
-            }
-
-
-
 
             // Print the created routes
             System.out.println("Created Routes:");
@@ -197,8 +192,8 @@ public class Main {
             }
 
             GetBestRoute shortestPath = new GetBestRoute();
-            shortestPath.getBestRoute(allstations.get(0));
-            List<Station> x = shortestPath.getShortestPathTo(allstations.get(11));
+            shortestPath.getBestRoute(stationsList.get(0));
+            List<Station> x = shortestPath.getShortestPathTo(stationsList.get(11));
             System.out.println();
             System.out.println("List of Stations:");
             for (Station station : x) {
