@@ -3,6 +3,7 @@ package Railway;//package Railway;
 import Railway.Functionalities.Routes.GetBestRoute;
 import Railway.Functionalities.Routes.Route;
 import Railway.Functionalities.Routes.Station;
+import Railway.Functionalities.Routes.Trainset;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -169,22 +170,29 @@ public class Main {
             }
 
             // Creating Locomotives
-            ArrayList<Locomotive> allLocomotives = new ArrayList<>();
-            for (int i = 0; i<30; i++) {
+
+            for (int i = 0; i<10; i++) {
+                ArrayList<Locomotive> allLocomotives = new ArrayList<>();
                 int randomSourceInt = (int)(Math.random()*stationsList.size());
                 Station randomSource = stationsList.get(randomSourceInt);
                 int randomStartStationInt = (int)(Math.random()*stationsList.size());
                 Station randomStartStation = stationsList.get(randomStartStationInt);
+                allLocomotives.remove(randomSource);
+                allLocomotives.remove(randomStartStation);
                 int randomEndStationInt = (int)(Math.random()*stationsList.size());
                 Station randomEndStation = stationsList.get(randomEndStationInt);
-                String alphabet = "abcdefghijklmnopqrstuvwxyzabc";
+                String alphabet = "abcdefghijklmnopqrstuvwxyzabcd";
                 String name = alphabet.substring(i, i+1);
-                Integer maxElectricCarsConnected = (int)((Math.random()*10) + 1);
-                Integer maxLoad = (int)((Math.random()*30000) + 15000);
+                Integer maxElectricCarsConnected = (int)((Math.random()*10));
+                Integer maxLoad = (int)((Math.random()* (30000 - 15000)) + 15000);
+                Integer maxSpeed = (int)((Math.random()* (250 - 100)) + 100);
                 Integer maxCarsConnected = (int)((Math.random()*10) + 1);
-                Locomotive locomotive[i] = new Locomotive(name, randomSource, randomStartStation,
-                        randomEndStation,
-                        );
+                Locomotive locomotive = new Locomotive(name, randomSource, randomStartStation,
+                        randomEndStation, maxCarsConnected, maxLoad, maxSpeed, maxElectricCarsConnected);
+                Trainset trainset = new Trainset(locomotive);
+            System.out.println(locomotive);
+            System.out.println(trainset);
+
             }
 
 

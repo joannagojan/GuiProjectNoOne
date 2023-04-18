@@ -25,9 +25,13 @@ public class Locomotive {
     private Integer minElectricConnected = 0;
     private Integer maxElectricConnected = 10;
 
-    // number of cars connected to the Locomotive
+    // range for number of cars connected to the Locomotive
     private Integer minRangeNumberOfCars = 1;
     private Integer maxRangeNumberOfCars = 10;
+
+    // range for Locomotive's speed in km/h
+    private Integer minRangeSpeed = 100;
+    private Integer maxRangeSpeed = 250;
 
     //Construtor of Railway.Locomotive class
     public Locomotive(String locomotiveName, Station sourceStation, Station locoStartStation, Station locoDestinationStation,
@@ -37,6 +41,13 @@ public class Locomotive {
         if (maxLocoLoadWeight < minLocoLoadRange || maxLocoLoadWeight > maxLocoLoadWeight) {
             throw new Exception("Maximum load weight must be in range of " +
                     +minLocoLoadRange + "-" + maxLocoLoadWeight + " tons ");
+        }
+        else {
+            this.maxLocoLoadWeight = maxLocoLoadWeight;
+        }
+        if (locomotiveSpeed < minRangeSpeed || locomotiveSpeed > maxRangeSpeed) {
+            throw new Exception("Maximum load weight must be in range of " +
+                    +minRangeSpeed + "-" + maxRangeSpeed + " km/h, and you provided speed: " + locomotiveSpeed);
         }
         else {
             this.maxLocoLoadWeight = maxLocoLoadWeight;

@@ -66,6 +66,16 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
                 " was removed from Trainset with ID: " + railRoadCar.getTrainsetID());
     }
 
+    @Override
+    public String toString() {
+        String message = "This trainset info: " +
+                "trainsetID: " + trainsetID +
+                "trainset's locomotive: " + trainsetLocomotive +
+                "trainset's SourceStation: " + trainsetSourceStation + "trainsetStartStation: " + "trainset's EndStation: " + trainsetEndStation +
+                "how many Cars can be connected to electricity grid: " + howCarConnectedElectricity +
+                "current Load Of the Trainset: " + currentLoadOfTrainset;
+        return message;
+    }
 
     public Locomotive getTrainsetLocomotive() {
         return trainsetLocomotive;
