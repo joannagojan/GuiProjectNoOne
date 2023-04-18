@@ -154,15 +154,16 @@ public class Main {
             };
 
 
-                    // Create an ArrayList to store the stations and routes
-                    ArrayList<Station> stationsList = new ArrayList<>();
-                    ArrayList<Route> routes = new ArrayList<>();
+            // Create an ArrayList to store the stations and routes
+            ArrayList<Station> stationsList = new ArrayList<>();
+            ArrayList<Route> routes = new ArrayList<>();
 
-                    // Create stations
-                    for (String stationName : stationNames) {
-                        Station station = new Station(stationName);
-                        stationsList.add(station);
-                    }
+
+            // Create stations
+            for (String stationName : stationNames) {
+                Station station = new Station(stationName);
+                stationsList.add(station);
+            }
 
 
             for (Station station : stationsList) {
@@ -176,8 +177,9 @@ public class Main {
 
                     // Check if the random station is not the same as the current station and is not already a neighbor
                     if (!station.equals(randomStation) && !adjacenciesList.contains(randomStation)) {
-                        double weight = Math.random() * 10; // Example weight, you can modify as needed
+                        double weight = Math.round(Math.random() * 10); // Example weight, you can modify as needed
                         Route route = new Route(weight, station, randomStation);
+                        routes.add(route);
                         station.addNeighbour(route);
                     }
                 } while (adjacenciesList.size() < 3); // Repeat until the station has at least 3 neighbors
@@ -187,7 +189,7 @@ public class Main {
             System.out.println("Created Routes:");
             for (Route route : routes) {
                 System.out.println("Start station: " + route.getStartStation() + " end station: " + route.getEndStation()
-                        + " weight: " + route.getWeight()
+                        + ", weight: " + route.getWeight()
                 );
             }
 
