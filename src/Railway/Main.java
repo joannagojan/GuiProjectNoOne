@@ -10,6 +10,8 @@ import Railway.Functionalities.Trainset.Trainset;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -151,28 +153,40 @@ public class Main {
                     "Jurien Bay"
             };
 
-            ArrayList<Station> allstations = new ArrayList<>();
-            // Creating stations based on the station names list
-            Station[] stations = new Station[stationNames.length];
-            for (int i = 0; i < stationNames.length; i++) {
-                stations[i] = new Station(stationNames[i]);
-                allstations.add(stations[i]);
+
+                    // Create an ArrayList to store the stations and routes
+                    ArrayList<Station> stationsList = new ArrayList<>();
+                    ArrayList<Route> routes = new ArrayList<>();
+
+                    // Create stations
+                    for (String stationName : stationNames) {
+                        Station station = new Station(stationName);
+                        stationsList.add(station);
+                    }
+
+
+            boolean[] visited = new boolean[stationsList.size()];
+
+// Perform DFS from the first station in the list
+            dfs(stationsList.get(0), visited);
+
+// Check if all stations are visited
+            boolean isConnected = true;
+            for (boolean v : visited) {
+                if (!v) {
+                    isConnected = false;
+                    break;
+                }
             }
-            System.out.println("Name of the first station: " + stations[0].getName());
 
-            ArrayList<Route> routes = new ArrayList<>();
-
-            for (int i = 0; i < allstations.size(); i++) {
-                Station startStation = allstations.get(i);
-                Station endStation;
-                do {
-                    endStation = allstations.get((int) (Math.random() * allstations.size()));
-                } while (startStation.equals(endStation)); // Ensure start and end stations are not the same
-
-                double weight = Math.round(Math.random() * 10 + 1); // Generate random weight between 1 and 10
-                Route route = new Route(weight, startStation, endStation);
-                routes.add(route);
+            if (isConnected) {
+                System.out.println("All stations are connected.");
+            } else {
+                System.out.println("Not all stations are connected.");
             }
+
+
+
 
             // Print the created routes
             System.out.println("Created Routes:");
@@ -183,8 +197,8 @@ public class Main {
             }
 
             GetBestRoute shortestPath = new GetBestRoute();
-            shortestPath.getBestRoute(stations[0]);
-            List<Station> x = shortestPath.getShortestPathTo(stations[11]);
+            shortestPath.getBestRoute(allstations.get(0));
+            List<Station> x = shortestPath.getShortestPathTo(allstations.get(11));
             System.out.println();
             System.out.println("List of Stations:");
             for (Station station : x) {
