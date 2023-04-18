@@ -171,6 +171,7 @@ public class Main {
 
             // Creating Locomotives
             ArrayList<Locomotive> allLocomotives = new ArrayList<>();
+            ArrayList<Trainset> allTrainsets = new ArrayList<>();
             for (int i = 0; i<30; i++) {
                 ArrayList<Station> newstationList = stationsList;
                 int randomSourceInt = (int)(Math.random()*newstationList.size());
@@ -190,21 +191,35 @@ public class Main {
                 Locomotive locomotive = new Locomotive(name, randomSource, randomStartStation,
                         randomEndStation, maxCarsConnected, maxLoad, maxSpeed, maxElectricCarsConnected);
                 Trainset trainset = new Trainset(locomotive);
-            System.out.println(locomotive);
-            System.out.println(trainset);
+                allLocomotives.add(locomotive);
+                allTrainsets.add(trainset);
 
+            }
+            for (Trainset trainset : allTrainsets) {
+                Station startStation = trainset.getTrainsetStartStation();
+                Station endStation = trainset.getTrainsetEndStation();
+                Station sourceStation = trainset.getTrainsetSourceStation();
+                GetBestRoute shortestPath = new GetBestRoute();
+                shortestPath.getBestRoute(sourceStation);
+                List<Station> fromSourceToStartBestPath = shortestPath.getShortestPathTo(startStation);
+                System.out.println("this trainsets : " + trainset.getTrainsetID()
+                        + " best path from source to start is: "
+                );
+                for (Station station : fromSourceToStartBestPath) {
+                    System.out.println(station);
+                }
+                shortestPath.getBestRoute(startStation);
+                List<Station> fromStartToEndBestPath = shortestPath.getShortestPathTo(endStation);
+                System.out.println("this trainsets: " + trainset.getTrainsetID()
+                + " best path is: "
+                );
+                for (Station station : fromStartToEndBestPath) {
+                    System.out.println(station);
+                }
             }
 
 
 
-            GetBestRoute shortestPath = new GetBestRoute();
-            shortestPath.getBestRoute(stationsList.get(0));
-            List<Station> x = shortestPath.getShortestPathTo(stationsList.get(11));
-            System.out.println();
-            System.out.println("List of Stations:");
-            for (Station station : x) {
-                System.out.println(station);
-            }
 
         } catch (Exception e) {
             System.out.println("Exception; " + e);
