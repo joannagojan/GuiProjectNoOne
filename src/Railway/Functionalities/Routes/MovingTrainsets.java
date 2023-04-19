@@ -5,6 +5,7 @@ import java.util.List;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class MovingTrainsets implements Runnable {
@@ -15,12 +16,22 @@ public class MovingTrainsets implements Runnable {
     private List<Trainset> allTrainsets;
 
     private boolean reachedDestination = false;
+    private AtomicInteger speed;
+
+    // for printing information
+    private double percentDistanceCompleted;
+    private double percentDistanceToNearestStations;
+
 
     public MovingTrainsets(Trainset trainset, List<Trainset> allTrainsets) {
         this.trainset = trainset;
         this.bestPathStartToFinish = GetBestPath(trainset, trainset.getTrainsetStartStation(), trainset.getTrainsetEndStation());
         this.bestPathFinishToStart = GetBestPath(trainset, trainset.getTrainsetEndStation(), trainset.getTrainsetStartStation());
         this.allTrainsets = allTrainsets;
+        this.percentDistanceCompleted = 0;
+        this.percentDistanceToNearestStations = 0;
+
+
     }
 
     // Calculating best path using Dijkstra's algorithm
@@ -37,19 +48,23 @@ public class MovingTrainsets implements Runnable {
         return fromStartToEndBestPath;
     }
 
-
     @Override
     public void run() {
         while (!trainset.isReachedDestination()) {
             List<Station> bestRoute = bestPathStartToFinish; // Get the best route for the trainset
             int currentStationIndex = 0;
             int nextStationIndex = 1;
+            int totalNumberOfStations = bestRoute.size();
+            boolean returnJourney = false;
+            Thread speedChangeThread = new Thread(new SpeedChangeRunnable());
+            speedChangeThread.start();
 
             while (nextStationIndex < bestRoute.size()) {
 
                 while (nextStationIndex < bestRoute.size()) {
                     Station currentStation = bestRoute.get(currentStationIndex);
                     Station nextStation = bestRoute.get(nextStationIndex);
+
                     boolean roadFree = true;
 
 //            // Check if the trainset ID matches the desired ID (5)
@@ -63,8 +78,10 @@ public class MovingTrainsets implements Runnable {
 
                     if (roadFree) {
                         // Move train to next station at trainset's speed
-                        int speed = trainset.getSpeed();
+
                         try {
+                            AtomicInteger speedAtomic = new AtomicInteger(trainset.getSpeed().get());
+                            int speed = speedAtomic.intValue() * 10; // so 200 km/h means 2000 miliseconds in real time
                             Thread.sleep(speed); // Sleep for the duration of trainset's speed to simulate movement
                             System.out.println("Train id: " + trainset.getTrainsetID() +
                                     " between: " + currentStation.getName() + " and: " + nextStation.getName()
@@ -115,7 +132,8 @@ public class MovingTrainsets implements Runnable {
 
                     // Train has reached the destination, update its status
                     trainset.setReachedDestination(true);
-                    if (trainset.isReachedDestination()) {
+
+                    if (trainset.isReachedDestination() && !returnJourney) {
                         try {
                             Thread.sleep(30000); // Sleep for 30 seconds
                             System.out.println("This train has reached its destination, id: " + trainset.getTrainsetID());
@@ -125,6 +143,7 @@ public class MovingTrainsets implements Runnable {
                             currentStationIndex = 0;
                             nextStationIndex = 1;
                             trainset.setReachedDestination(false); // Reset the flag for the next run
+                            returnJourney = true;
 
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -133,11 +152,63 @@ public class MovingTrainsets implements Runnable {
                 }
             }
 
-        }}
+        }
+    }
+
+
+    private class SpeedChangeRunnable implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    AtomicInteger speed = trainset.getSpeed();
+                    // Sleep for 1 second
+                    Thread.sleep(1000);
+
+                    // Randomly increase or decrease speed by 3%
+                    int speedChange = (int)(Math.random() * 6) - 3; // Random value between -3 and 3
+                    int speedPercentage = (speed.get() * speedChange) / 100;
+                    speed.addAndGet(speedPercentage);
+
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void appStateFile() {
+        sortTrainsetsByRouteLength(); // Sort trainsets by route length
+        StringBuilder sb = new StringBuilder();
+
+        for (Trainset trainset : allTrainsets) {
+            trainset.sortRailroadCarsByWeight(); // Sort railroad cars in the trainset by weight
+            sb.append("Trainset ID: ").append(trainset.getTrainsetID()).append("\n");
+            sb.append("Speed: ").append(trainset.getSpeed()).append("\n");
+            sb.append("Route Length: ").append(trainset.getRouteLength()).append("\n");
+            sb.append("Railroad Cars (sorted by weight):\n");
+
+            for (RailroadCar railroadCar : trainset.getRailroadCars()) {
+                sb.append("  Car ID: ").append(railroadCar.getCarID()).append(", Weight: ")
+                        .append(railroadCar.getWeight()).append("\n");
+            }
+
+            sb.append("---------------\n");
+        }
+
+        // Write the trainset information to AppState.txt file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("AppState.txt"))) {
+            writer.write(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     // Queue to hold awaiting trainsets
     private static Queue<Trainset> trainsetQueue = new LinkedList<>();
+
 
     public List<Station> getBestPathStartToFinish() {
         return bestPathStartToFinish;

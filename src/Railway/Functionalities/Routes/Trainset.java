@@ -83,8 +83,8 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
     }
 
     // 200 km/h means in this 2 seconds in this app
-    public Integer getSpeed() {
-        return trainsetLocomotive.getLocomotiveSpeed() * 10;
+    public AtomicInteger getSpeed() {
+        return trainsetLocomotive.getLocomotiveSpeed();
     }
     public boolean isReachedDestination() {
         return reachedDestination;

@@ -11,7 +11,7 @@ public class Locomotive {
     private Station locoDestinationStation;
     private Integer maxNumberCars; // maximum number of cars that can be connected to a locomotive object
     private Integer maxLocoLoadWeight; // maximum load a locomotive object can carry
-    private Integer locomotiveSpeed; // assigned speed to a locomotive object
+    private AtomicInteger locomotiveSpeed; // assigned speed to a locomotive object
 
     private static final AtomicInteger locomotiveIDCounter = new AtomicInteger(0);
     private final Integer locomotiveID;
@@ -30,13 +30,13 @@ public class Locomotive {
     private Integer maxRangeNumberOfCars = 10;
 
     // range for Locomotive's speed in km/h
-    private Integer minRangeSpeed = 100;
-    private Integer maxRangeSpeed = 250;
+    private AtomicInteger minRangeSpeed = new AtomicInteger(100);
+    private  AtomicInteger maxRangeSpeed = new AtomicInteger(250);
 
     //Construtor of Railway.Locomotive class
     public Locomotive(String locomotiveName, Station sourceStation, Station locoStartStation, Station locoDestinationStation,
                       Integer maxNumberCars, Integer maxLocoLoadWeight,
-                      Integer locomotiveSpeed, Integer maxElectricCarsConnected) throws Exception {
+                      AtomicInteger locomotiveSpeed, Integer maxElectricCarsConnected) throws Exception {
         // max weight of the load
         if (maxLocoLoadWeight < minLocoLoadRange || maxLocoLoadWeight > maxLocoLoadWeight) {
             throw new Exception("Maximum load weight must be in range of " +
@@ -45,9 +45,9 @@ public class Locomotive {
         else {
             this.maxLocoLoadWeight = maxLocoLoadWeight;
         }
-        if (locomotiveSpeed < minRangeSpeed || locomotiveSpeed > maxRangeSpeed) {
+        if (locomotiveSpeed.get() < minRangeSpeed.get() || locomotiveSpeed.get() > maxRangeSpeed.get()) {
             throw new Exception("Maximum load weight must be in range of " +
-                    +minRangeSpeed + "-" + maxRangeSpeed + " km/h, and you provided speed: " + locomotiveSpeed);
+                    +minRangeSpeed.get() + "-" + maxRangeSpeed.get() + " km/h, and you provided speed: " + locomotiveSpeed.get());
         }
         else {
             this.maxLocoLoadWeight = maxLocoLoadWeight;
@@ -148,11 +148,11 @@ public class Locomotive {
         this.maxLocoLoadWeight = maxLocoLoadWeight;
     }
 
-    public Integer getLocomotiveSpeed() {
+    public AtomicInteger getLocomotiveSpeed() {
         return locomotiveSpeed;
     }
 
-    public void setLocomotiveSpeed(Integer locomotiveSpeed) {
+    public void setLocomotiveSpeed(AtomicInteger locomotiveSpeed) {
         this.locomotiveSpeed = locomotiveSpeed;
     }
 

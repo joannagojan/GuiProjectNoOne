@@ -4,6 +4,7 @@ import Railway.Functionalities.Routes.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -183,7 +184,8 @@ public class Main {
                 String name = alphabet.substring(i, i + 1);
                 Integer maxElectricCarsConnected = (int) ((Math.random() * 10));
                 Integer maxLoad = (int) ((Math.random() * (30000 - 15000)) + 15000);
-                Integer maxSpeed = (int) ((Math.random() * (250 - 100)) + 100);
+                Integer maxSpeedInt = (int) ((Math.random() * (250 - 100)) + 100);
+                AtomicInteger maxSpeed = new AtomicInteger(maxSpeedInt);
                 Integer maxCarsConnected = (int) ((Math.random() * 10) + 1);
                 Locomotive locomotive = new Locomotive(name, randomSource, randomStartStation,
                         randomEndStation, maxCarsConnected, maxLoad, maxSpeed, maxElectricCarsConnected);
