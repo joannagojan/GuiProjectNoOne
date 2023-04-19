@@ -12,6 +12,7 @@ public class Station implements Comparable<Station> {
     private Station predecessor;
     private double distance = Double.MAX_VALUE; // distance starting with available closest value to infinity
     private boolean isOccupied = false;
+    private Integer occupyingTrainID;
 
 
     public Station(String name) {
@@ -79,5 +80,13 @@ public class Station implements Comparable<Station> {
 
     public void setOccupied(boolean isOccupied) {
         this.isOccupied = isOccupied;
+    }
+
+    public Integer getOccupyingTrainID() {
+        return occupyingTrainID;
+    };
+
+    public void setOccupyingTrainID(Integer occupyingTrainID) {
+        this.occupyingTrainID = occupyingTrainID;
     }
 }

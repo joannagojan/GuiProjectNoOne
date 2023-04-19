@@ -169,7 +169,7 @@ public class Main {
             // Creating Locomotives, trainsets and threads
             ArrayList<Locomotive> allLocomotives = new ArrayList<>();
             ArrayList<Trainset> allTrainsets = new ArrayList<>();
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 3; i++) {
                 ArrayList<Station> newstationList = stationsList;
                 int randomSourceInt = (int) (Math.random() * newstationList.size());
                 Station randomSource = newstationList.get(randomSourceInt);
