@@ -166,25 +166,25 @@ public class Main {
                 );
             }
 
-            // Creating Locomotives
+            // Creating Locomotives, trainsets and threads
             ArrayList<Locomotive> allLocomotives = new ArrayList<>();
             ArrayList<Trainset> allTrainsets = new ArrayList<>();
-            for (int i = 0; i<30; i++) {
+            for (int i = 0; i < 30; i++) {
                 ArrayList<Station> newstationList = stationsList;
-                int randomSourceInt = (int)(Math.random()*newstationList.size());
+                int randomSourceInt = (int) (Math.random() * newstationList.size());
                 Station randomSource = newstationList.get(randomSourceInt);
-                int randomStartStationInt = (int)(Math.random()*newstationList.size());
+                int randomStartStationInt = (int) (Math.random() * newstationList.size());
                 Station randomStartStation = newstationList.get(randomStartStationInt);
                 newstationList.remove(randomSource);
                 newstationList.remove(randomStartStation);
-                int randomEndStationInt = (int)(Math.random()*newstationList.size());
+                int randomEndStationInt = (int) (Math.random() * newstationList.size());
                 Station randomEndStation = newstationList.get(randomEndStationInt);
                 String alphabet = "abcdefghijklmnopqrstuvwxyzabcd";
-                String name = alphabet.substring(i, i+1);
-                Integer maxElectricCarsConnected = (int)((Math.random()*10));
-                Integer maxLoad = (int)((Math.random()* (30000 - 15000)) + 15000);
-                Integer maxSpeed = (int)((Math.random()* (250 - 100)) + 100);
-                Integer maxCarsConnected = (int)((Math.random()*10) + 1);
+                String name = alphabet.substring(i, i + 1);
+                Integer maxElectricCarsConnected = (int) ((Math.random() * 10));
+                Integer maxLoad = (int) ((Math.random() * (30000 - 15000)) + 15000);
+                Integer maxSpeed = (int) ((Math.random() * (250 - 100)) + 100);
+                Integer maxCarsConnected = (int) ((Math.random() * 10) + 1);
                 Locomotive locomotive = new Locomotive(name, randomSource, randomStartStation,
                         randomEndStation, maxCarsConnected, maxLoad, maxSpeed, maxElectricCarsConnected);
                 Trainset trainset = new Trainset(locomotive);
@@ -192,6 +192,8 @@ public class Main {
                 allTrainsets.add(trainset);
 
             }
+            List<Thread> allThreads = new ArrayList<>();
+
             for (Trainset trainset : allTrainsets) {
                 Station startStation = trainset.getTrainsetStartStation();
                 Station endStation = trainset.getTrainsetEndStation();
@@ -200,15 +202,17 @@ public class Main {
                 shortestPath.getBestRoute(sourceStation);
                 List<Station> fromSourceToStartBestPath = shortestPath.getShortestPathTo(startStation);
                 System.out.println("this trainsets : " + trainset.getTrainsetID()
-                        + " best path from source to start is: "
-                );
+                        + " best path from source to start is: ");
+                Thread thread = new Thread(new MovingTrainsets(trainset));
+                allThreads.add(thread);
+                thread.start();
                 for (Station station : fromSourceToStartBestPath) {
                     System.out.println(station);
                 }
                 shortestPath.getBestRoute(startStation);
                 List<Station> fromStartToEndBestPath = shortestPath.getShortestPathTo(endStation);
                 System.out.println("this trainsets: " + trainset.getTrainsetID()
-                + " best path is: "
+                        + " best path is: "
                 );
                 for (Station station : fromStartToEndBestPath) {
                     System.out.println(station);
@@ -218,7 +222,14 @@ public class Main {
             MovingTrainsets move = new MovingTrainsets(allTrainsets.get(3));
             System.out.println(move.getBestPath());
 
+            try {
+                for (Thread thread : allThreads) {
+                    thread.join();
+                }
 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
 
         } catch (Exception e) {

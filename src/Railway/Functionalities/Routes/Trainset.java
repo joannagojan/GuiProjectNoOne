@@ -16,6 +16,7 @@ public class Trainset {
     private Station trainsetSourceStation;
     private Station trainsetStartStation;
     private Station trainsetEndStation;
+    private boolean reachedDestination = false;
 
 
     public Trainset(Locomotive trainsetLocomotive) throws Exception {
@@ -85,7 +86,13 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
     public Integer getSpeed() {
         return trainsetLocomotive.getLocomotiveSpeed() * 10;
     }
+    public boolean isReachedDestination() {
+        return reachedDestination;
+    }
 
+    public void setReachedDestination(boolean reachedDestination) {
+        this.reachedDestination = reachedDestination;
+    }
 
     public void setTrainsetLocomotive(Locomotive trainsetLocomotive) {
         this.trainsetLocomotive = trainsetLocomotive;

@@ -80,26 +80,26 @@ public class MovingTrainsets implements Runnable  {
                     nextStation.setOccupied(false);
                 }
 
-                // Check the queue for awaiting trains
+                // Queueing trains that are waiting for the route to clear
                 synchronized (MovingTrainsets.class) {
                     if (!trainsetQueue.isEmpty()) {
                         Trainset nextTrainset = trainsetQueue.poll();
                         if (nextTrainset != null) {
-                            // Set nextTrainset as the current trainset and reset the station indices
+
                             trainset = nextTrainset;
-                            bestRoute = trainset.getBestRoute();
+                            bestRoute = bestPath;
                             currentStationIndex = 0;
                             nextStationIndex = 1;
                         }
                     }
                 }
             } else {
-                // Road is not free, add trainset to queue and wait
+                // Adding the train to the queue
                 synchronized (MovingTrainsets.class) {
                     trainsetQueue.offer(trainset);
                 }
                 try {
-                    Thread.sleep(100); // Sleep for a short duration to avoid excessive looping
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
