@@ -203,7 +203,7 @@ public class Main {
                 List<Station> fromSourceToStartBestPath = shortestPath.getShortestPathTo(startStation);
                 System.out.println("this trainsets : " + trainset.getTrainsetID()
                         + " best path from source to start is: ");
-                Thread thread = new Thread(new MovingTrainsets(trainset));
+                Thread thread = new Thread(new MovingTrainsets(trainset, allTrainsets));
                 allThreads.add(thread);
                 thread.start();
                 for (Station station : fromSourceToStartBestPath) {
@@ -219,8 +219,7 @@ public class Main {
                 }
             }
 
-            MovingTrainsets move = new MovingTrainsets(allTrainsets.get(3));
-            System.out.println(move.getBestPath());
+
 
             try {
                 for (Thread thread : allThreads) {
