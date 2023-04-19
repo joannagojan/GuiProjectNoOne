@@ -2,6 +2,9 @@ package Railway.Functionalities.Routes;
 
 import Railway.CarTypes.Cars;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,6 +23,7 @@ public class MovingTrainsets implements Runnable {
     // for printing information
     private double percentDistanceCompleted;
     private double percentDistanceToNearestStations;
+
 
 
     public MovingTrainsets(Trainset trainset, List<Trainset> allTrainsets) {
@@ -44,8 +48,11 @@ public class MovingTrainsets implements Runnable {
         for (Station station : fromStartToEndBestPath) {
             System.out.println(station);
         }
+        trainset.setSizeOfRoute(fromStartToEndBestPath.size());
         return fromStartToEndBestPath;
     }
+
+
 
     @Override
     public void run() {
@@ -179,33 +186,29 @@ public class MovingTrainsets implements Runnable {
 
 
 
-    public Integer getHowLongIsRoute(Trainset trainset) {
-        Integer howLongIsRoute = trainset.getBestPathStartToFinish().size();
-        return howLongIsRoute;
-    }
 
     public void sortTrainsetsByRouteLength(ArrayList<Trainset> trainsets) {
         Collections.sort(trainsets, (t1, t2) -> {
-            Integer routeLengthT1 = getHowLongIsRoute(t1);
-            Integer routeLengthT2 = getHowLongIsRoute(t2);
+            Integer routeLengthT1 = t1.getSizeOfRoute();
+            Integer routeLengthT2 = t2.getSizeOfRoute();
             return Integer.compare(routeLengthT2, routeLengthT1);
         });
     }
 
     public void appStateFile() {
-        sortTrainsetsByRouteLength(allTrainsets); // Sort trainsets by route length
+        sortTrainsetsByRouteLength((ArrayList<Trainset>) allTrainsets); // Sort trainsets by route length
         StringBuilder sb = new StringBuilder();
 
         for (Trainset trainset : allTrainsets) {
-            trainset.sortRailroadCarsByWeight(); // Sort railroad cars in the trainset by weight
+//            trainset.sortRailroadCarsByWeight(); // Sort railroad cars in the trainset by weight
             sb.append("Trainset ID: ").append(trainset.getTrainsetID()).append("\n");
             sb.append("Speed: ").append(trainset.getSpeed()).append("\n");
-            sb.append("Route Length: ").append(trainset.getRouteLength()).append("\n");
+            sb.append("Route Length: ").append(trainset.getSizeOfRoute()).append("\n");
             sb.append("Railroad Cars (sorted by weight):\n");
 
-            for (RailroadCar railroadCar : trainset.getRailroadCars()) {
+            for (Cars railroadCar : trainset.getTrainsetCars()) {
                 sb.append("  Car ID: ").append(railroadCar.getCarID()).append(", Weight: ")
-                        .append(railroadCar.getWeight()).append("\n");
+                        .append(railroadCar.getGrossWeight()).append("\n");
             }
 
             sb.append("---------------\n");

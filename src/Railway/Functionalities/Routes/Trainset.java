@@ -17,6 +17,7 @@ public class Trainset {
     private Station trainsetStartStation;
     private Station trainsetEndStation;
     private boolean reachedDestination = false;
+    private Integer sizeOfRoute;
 
 
     public Trainset(Locomotive trainsetLocomotive) throws Exception {
@@ -108,6 +109,14 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
 
     public Integer getTrainsetID() {
         return trainsetID;
+    }
+
+    public Integer getSizeOfRoute() {
+        return sizeOfRoute;
+    }
+
+    public void setSizeOfRoute(Integer sizeOfRoute) {
+        this.sizeOfRoute = sizeOfRoute;
     }
 
 
