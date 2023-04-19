@@ -1,4 +1,4 @@
-package Railway.Functionalities;
+package Railway.Functionalities.CarRelated;
 
 import Railway.CarTypes.Cars;
 

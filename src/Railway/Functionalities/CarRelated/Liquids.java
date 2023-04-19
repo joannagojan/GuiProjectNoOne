@@ -1,4 +1,4 @@
-package Railway.Functionalities;
+package Railway.Functionalities.CarRelated;
 
 public class Liquids extends TransportedMaterials {
     private Integer volume;

@@ -1,9 +1,6 @@
 package Railway;//package Railway;
 
-import Railway.Functionalities.Routes.GetBestRoute;
-import Railway.Functionalities.Routes.Route;
-import Railway.Functionalities.Routes.Station;
-import Railway.Functionalities.Routes.Trainset;
+import Railway.Functionalities.Routes.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -217,6 +214,9 @@ public class Main {
                     System.out.println(station);
                 }
             }
+
+            MovingTrainsets move = new MovingTrainsets(allTrainsets.get(3));
+            System.out.println(move.getBestPath());
 
 
 

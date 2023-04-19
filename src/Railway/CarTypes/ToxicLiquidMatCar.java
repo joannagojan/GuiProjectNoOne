@@ -1,8 +1,6 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.Liquids;
-
-import java.util.ArrayList;
+import Railway.Functionalities.CarRelated.Liquids;
 
 // One ToxicLiquidMatCar transports one type of Liquid
 public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {

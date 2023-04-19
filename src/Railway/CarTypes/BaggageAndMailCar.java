@@ -1,6 +1,6 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.CustomerLoad;
+import Railway.Functionalities.CarRelated.CustomerLoad;
 
 import java.util.ArrayList;
 

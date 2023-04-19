@@ -1,7 +1,8 @@
-package Railway.Functionalities;
+package Railway.Functionalities.CarRelated;
 
 import Railway.CarTypes.CargoCars;
 import Railway.CarTypes.Cars;
+import Railway.Functionalities.CarRelated.CustomerLoad;
 
 import java.util.ArrayList;
 import java.util.List;

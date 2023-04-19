@@ -1,6 +1,6 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.Packages;
+import Railway.Functionalities.CarRelated.Packages;
 
 import java.util.LinkedList;
 import java.util.List;

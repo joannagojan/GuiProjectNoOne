@@ -1,6 +1,6 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.Liquids;
+import Railway.Functionalities.CarRelated.Liquids;
 
 public abstract class LiquidMatCar extends BasicFreightCar implements LiquidCharCar {
 
