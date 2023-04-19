@@ -42,88 +42,96 @@ public class MovingTrainsets implements Runnable  {
         for (Station station : fromStartToEndBestPath) {
             System.out.println(station);
         }
-        return fromSourceToStartBestPath;
+        return fromStartToEndBestPath;
     }
 
 
 
-        @Override
-        public void run() {
-            List<Station> bestRoute = bestPath; // Get the best route for the trainset
-            int currentStationIndex = 0;
-            int nextStationIndex = 1;
+    @Override
+    public void run() {
+        List<Station> bestRoute = bestPath; // Get the best route for the trainset
+        int currentStationIndex = 0;
+        int nextStationIndex = 1;
 
-
-            while (nextStationIndex < bestRoute.size()) {
-                Station currentStation = bestRoute.get(currentStationIndex);
-                Station nextStation = bestRoute.get(nextStationIndex);
-                boolean roadFree = false;
-                synchronized (currentStation) {
-                    // Check if the road between currentStation and nextStation is free
-                    if (!currentStation.isOccupied() && !nextStation.isOccupied()) {
-                        currentStation.setOccupied(true);
-                        nextStation.setOccupied(true);
-                        if (nextStation.isOccupied())
-                        {System.out.println(nextStation.getName() + "is occupied, by trainset id: " + trainset.getTrainsetID());}
-                        roadFree = true;
-                    }
-                }
-
-                if (roadFree) {
-                    // Move train to next station at trainset's speed
-                    int speed = trainset.getSpeed();
-                    try {
-                        Thread.sleep(speed); // Sleep for the duration of trainset's speed to simulate movement
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    // Update station indices
-                    currentStationIndex++;
-                    nextStationIndex++;
-
-                    synchronized (currentStation) {
-                        currentStation.setOccupied(false);
-                    }
-                    synchronized (nextStation) {
-                        nextStation.setOccupied(false);
-                    }
-
-                    // Queueing trains that are waiting for the route to clear
-                    synchronized (MovingTrainsets.class) {
-                        if (!trainsetQueue.isEmpty()) {
-                            Trainset nextTrainset = trainsetQueue.poll();
-                            if (nextTrainset != null) {
-
-                                trainset = nextTrainset;
-                                bestRoute = bestPath;
-                                currentStationIndex = 0;
-                                nextStationIndex = 1;
-                            }
-                        }
-                    }
-                } else {
-                    // Adding the train to the queue
-                    synchronized (MovingTrainsets.class) {
-                        trainsetQueue.offer(trainset);
-                    }
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+        while (nextStationIndex < bestRoute.size()) {
+            Station currentStation = bestRoute.get(currentStationIndex);
+            Station nextStation = bestRoute.get(nextStationIndex);
+            boolean roadFree = false;
+//            synchronized (currentStation) {
+//                // Check if the road between currentStation and nextStation is free
+//                if (!currentStation.isOccupied() && !nextStation.isOccupied()) {
+//                    currentStation.setOccupied(true);
+//                    nextStation.setOccupied(true);
+//                    if (nextStation.isOccupied()) {
+//                        System.out.println(nextStation.getName() + " is occupied, by trainset id: " + trainset.getTrainsetID());
+//                    }
+//                    roadFree = true;
+//                }
+//            }
+            // Check if the trainset ID matches the desired ID (5)
+            if (trainset.getTrainsetID() == 5) {
+                System.out.println("Train ID: " + trainset.getTrainsetID());
+                System.out.println("Start station: " + trainset.getTrainsetStartStation());
+                System.out.println("Current Station: " + currentStation.getName());
+                System.out.println("Next Station: " + nextStation.getName());
+                System.out.println("Route: " + bestRoute);
             }
 
-            // Train has reached the destination, update its status
-            trainset.setReachedDestination(true);
-            if (trainset.isReachedDestination()) {
-                System.out.println("trainset.getTrainsetID() + );
+            roadFree = true;
+            if (roadFree) {
+                // Move train to next station at trainset's speed
+                int speed = trainset.getSpeed();
+                try {
+                    Thread.sleep(speed); // Sleep for the duration of trainset's speed to simulate movement
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // Update station indices
+                currentStationIndex++;
+                nextStationIndex++;
+
+                synchronized (currentStation) {
+                    currentStation.setOccupied(false);
+                }
+                synchronized (nextStation) {
+                    nextStation.setOccupied(false);
+                }
+
+                // Check if there are trainsets waiting in the queue
+                synchronized (MovingTrainsets.class) {
+                    if (!trainsetQueue.isEmpty()) {
+                        Trainset nextTrainset = trainsetQueue.poll();
+                        if (nextTrainset != null) {
+                            trainset = nextTrainset;
+                            bestRoute = bestPath;
+                            currentStationIndex = 0;
+                            nextStationIndex = 1;
+                        }
+                    }
+                }
+            } else {
+                // Add the train to the queue
+                synchronized (MovingTrainsets.class) {
+                    trainsetQueue.offer(trainset);
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
-        // Queue to hold awaiting trainsets
-        private static Queue<Trainset> trainsetQueue = new LinkedList<>();
+        // Train has reached the destination, update its status
+        trainset.setReachedDestination(true);
+        if (trainset.isReachedDestination()) {
+            System.out.println("This train has reached its destination, id: " + trainset.getTrainsetID());
+        }
+    }
+
+    // Queue to hold awaiting trainsets
+    private static Queue<Trainset> trainsetQueue = new LinkedList<>();
 
         public List<Station> getBestPath() {
             return bestPath;

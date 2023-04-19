@@ -155,7 +155,7 @@ public class Main {
                         routes.add(route);
                         station.addNeighbour(route);
                     }
-                } while (adjacenciesList.size() < 3); // Repeat until the station has at least 3 neighbors
+                } while (adjacenciesList.size() <= 10); // Repeat until the station has at least 10 neighbors
             }
 
             // Print the created routes
