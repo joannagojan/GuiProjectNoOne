@@ -1,10 +1,9 @@
 package Railway.Functionalities.Routes;
 
-import java.util.ArrayList;
-import java.util.List;
+import Railway.CarTypes.Cars;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -166,7 +165,7 @@ public class MovingTrainsets implements Runnable {
                     Thread.sleep(1000);
 
                     // Randomly increase or decrease speed by 3%
-                    int speedChange = (int)(Math.random() * 6) - 3; // Random value between -3 and 3
+                    int speedChange = (int) (Math.random() * 6) - 3; // Random value between -3 and 3
                     int speedPercentage = (speed.get() * speedChange) / 100;
                     speed.addAndGet(speedPercentage);
 
@@ -178,8 +177,23 @@ public class MovingTrainsets implements Runnable {
         }
     }
 
+
+
+    public Integer getHowLongIsRoute(Trainset trainset) {
+        Integer howLongIsRoute = trainset.getBestPathStartToFinish().size();
+        return howLongIsRoute;
+    }
+
+    public void sortTrainsetsByRouteLength(ArrayList<Trainset> trainsets) {
+        Collections.sort(trainsets, (t1, t2) -> {
+            Integer routeLengthT1 = getHowLongIsRoute(t1);
+            Integer routeLengthT2 = getHowLongIsRoute(t2);
+            return Integer.compare(routeLengthT2, routeLengthT1);
+        });
+    }
+
     public void appStateFile() {
-        sortTrainsetsByRouteLength(); // Sort trainsets by route length
+        sortTrainsetsByRouteLength(allTrainsets); // Sort trainsets by route length
         StringBuilder sb = new StringBuilder();
 
         for (Trainset trainset : allTrainsets) {
