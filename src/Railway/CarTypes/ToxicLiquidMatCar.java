@@ -1,6 +1,7 @@
 package Railway.CarTypes;
 
 import Railway.Functionalities.CarRelated.Liquids;
+import Railway.Functionalities.CarRelated.TransportedMaterials;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,6 +20,9 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
             if (liquid.getSecurityLevel() < 1) {
                 throw new Exception("this car only transport toxic liquids with security level above 0");
             } else {
+                if(liquid.getVolume() > MAX_CAPACITY){
+                    throw new Exception("Liquid's volume is too big for this cars max capacity of: " + MAX_CAPACITY);
+                }
                 this.transportedLiquid = liquid;
             }
 
@@ -48,7 +52,11 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
 
     @Override
     public AtomicInteger getGrossWeight() {
-        return null;
+        int totalWeightOfCargo = 0;
+        totalWeightOfCargo += transportedLiquid.getLiquidTotalWeight();
+        AtomicInteger result = new AtomicInteger();
+        result.set(Cars.getStandardNetWeight().get() + totalWeightOfCargo);
+        return result;
     }
 
 

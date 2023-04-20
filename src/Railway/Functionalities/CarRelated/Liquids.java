@@ -13,4 +13,7 @@ public class Liquids extends TransportedMaterials {
     public Integer getLiquidDensity() {
         return weight/volume;
     }
+    public Integer getLiquidTotalWeight() {return weight;}
+    public Integer getVolume() {return volume;}
+
 }
