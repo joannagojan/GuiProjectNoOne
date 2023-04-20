@@ -20,10 +20,6 @@ public class MovingTrainsets implements Runnable {
     private boolean reachedDestination = false;
     private AtomicInteger speed;
 
-    // for printing information
-    private double percentDistanceCompleted;
-    private double percentDistanceToNearestStations;
-    private Integer sizeOfRoute;
 
 
     public MovingTrainsets(Trainset trainset, List<Trainset> allTrainsets) {
@@ -31,9 +27,6 @@ public class MovingTrainsets implements Runnable {
         this.bestPathStartToFinish = GetBestPath(trainset, trainset.getTrainsetStartStation(), trainset.getTrainsetEndStation());
         this.bestPathFinishToStart = GetBestPath(trainset, trainset.getTrainsetEndStation(), trainset.getTrainsetStartStation());
         this.allTrainsets = allTrainsets;
-        this.percentDistanceCompleted = 0;
-        this.percentDistanceToNearestStations = 0;
-        this.sizeOfRoute = bestPathStartToFinish.size();
 
 
     }
@@ -61,7 +54,6 @@ public class MovingTrainsets implements Runnable {
             List<Station> bestRoute = bestPathStartToFinish; // Get the best route for the trainset
             int currentStationIndex = 0;
             int nextStationIndex = 1;
-            int totalNumberOfStations = bestRoute.size();
             boolean returnJourney = false;
             Thread speedChangeThread = new Thread(new SpeedChangeRunnable());
             speedChangeThread.start();
@@ -74,18 +66,7 @@ public class MovingTrainsets implements Runnable {
 
                     boolean roadFree = true;
 
-//            // Check if the trainset ID matches the desired ID (5)
-//            if (trainset.getTrainsetID() == 1 ) {
-//                System.out.println("Train ID: " + trainset.getTrainsetID());
-//                System.out.println("Start station: " + trainset.getTrainsetStartStation());
-//                System.out.println("Current Station: " + currentStation.getName());
-//                System.out.println("Next Station: " + nextStation.getName());
-//                System.out.println("Route: " + bestRoute);
-//            }
-
                     if (roadFree) {
-                        // Move train to next station at trainset's speed
-
                         try {
                             AtomicInteger speedAtomic = new AtomicInteger(trainset.getSpeed().get());
                             int speed = speedAtomic.intValue() * 10; // so 200 km/h means 2000 miliseconds in real time
