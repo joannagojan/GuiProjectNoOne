@@ -1,6 +1,6 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.CarRelated.Packages;
+import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PostOfficeCar extends Cars {
 
-    private List<Packages> packages = new LinkedList<>();
+    private List<Cargo> aPackages = new LinkedList<>();
 
 //    public void addPackage(Package package) {
 //        packages.add(package);
@@ -16,7 +16,7 @@ public class PostOfficeCar extends Cars {
 
     public Integer getTotalWeight() {
         int sum = 0;
-        for (Packages p : packages) {
+        for (Cargo p : aPackages) {
             sum += p.getLoadWeight();
         }
         return sum;

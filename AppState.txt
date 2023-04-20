@@ -1,12 +1,12 @@
 Trainsets sorted by route length:
 Trainset ID: 1
-Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: This is locomotive number 1 called a it departs from Eglintonwith a destination in Sunset Beach with maximum number of cars of 5 and maximum weight load 15852 of the speed of 33.trainset's SourceStation: PaynesvilletrainsetStartStation: trainset's EndStation: Sunset Beachhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 7
+Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: This is locomotive number 1 called a it departs from Urawawith a destination in Burdett with maximum number of cars of 4 and maximum weight load 29622 of the speed of 222.trainset's SourceStation: Whiteman ParktrainsetStartStation: trainset's EndStation: Burdetthow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 5
 Sorted Railroad cars:
 Trainsets sorted by route length:
 Trainset ID: 2
-Trainset informationThis trainset info: trainsetID: 2trainset's locomotive: This is locomotive number 2 called b it departs from Drummond Covewith a destination in Woodbridge Riverside Park with maximum number of cars of 2 and maximum weight load 25078 of the speed of 33.trainset's SourceStation: AshfieldtrainsetStartStation: trainset's EndStation: Woodbridge Riverside Parkhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 6
+Trainset informationThis trainset info: trainsetID: 2trainset's locomotive: This is locomotive number 2 called b it departs from Hazelmerewith a destination in Beachlands with maximum number of cars of 4 and maximum weight load 18227 of the speed of 90.trainset's SourceStation: DongaratrainsetStartStation: trainset's EndStation: Beachlandshow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 4
 Sorted Railroad cars:
 Trainsets sorted by route length:
 Trainset ID: 3
-Trainset informationThis trainset info: trainsetID: 3trainset's locomotive: This is locomotive number 3 called c it departs from Bayswaterwith a destination in Eradu with maximum number of cars of 9 and maximum weight load 17007 of the speed of 33.trainset's SourceStation: CatabytrainsetStartStation: trainset's EndStation: Eraduhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 3
+Trainset informationThis trainset info: trainsetID: 3trainset's locomotive: This is locomotive number 3 called c it departs from New Norciawith a destination in Gingin with maximum number of cars of 1 and maximum weight load 19796 of the speed of 192.trainset's SourceStation: GuildertontrainsetStartStation: trainset's EndStation: Ginginhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 3
 Sorted Railroad cars:

@@ -1,10 +1,26 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.CarRelated.Packages;
+import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.ArrayList;
 
-public interface CargoCars<T> {
-    public ArrayList<T> getAllCargo();
-public void addCargo(Packages packages);
+public abstract class CargoCars<T> {
+    private ArrayList<T> allCargo;
+
+    CargoCars() {
+        this.allCargo = new ArrayList<>();
+
+    }
+
+    private void addPackage(Cargo cargo)
+    {
+
+    }
+
+
+    public void addCargo(T cargo) {
+
+    }
+
+    ;
 }

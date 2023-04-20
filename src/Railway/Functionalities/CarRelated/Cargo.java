@@ -2,14 +2,14 @@ package Railway.Functionalities.CarRelated;
 
 import Railway.CarTypes.Cars;
 
-public class Packages {
+public class Cargo {
     private Integer packageWeight;
     private Integer packageWidth;
     private Integer packageHeight;
     private Integer packageLength;
 
 
-    public Packages(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
+    public Cargo(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
         if (!isPackageSizeWeightValid(packageWeight, packageWidth, packageHeight, packageLength)) {
             throw new IllegalArgumentException("Package size is too big, maximum size available on this train: " +
                     Cars.getCarWidth() + "cmx" + Cars.getCarHeight() + "cmx" + Cars.getCarLength() +

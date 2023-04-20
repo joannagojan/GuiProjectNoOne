@@ -1,11 +1,11 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.CarRelated.Packages;
+import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.ArrayList;
 
-public class BaggageAndMailCar extends Cars implements CargoCars {
-    private ArrayList<Packages> allCargo;
+public class BaggageAndMailCar extends Cars {
+    private ArrayList<Cargo> allCargo;
     private Integer maxNumberOfPackages;
 
     public BaggageAndMailCar(Integer maxNumberOfPackages) {
@@ -13,29 +13,35 @@ public class BaggageAndMailCar extends Cars implements CargoCars {
         this.maxNumberOfPackages = maxNumberOfPackages;
     }
 
+    public void addCargo(Cargo cargo) {
+        if(maxNumberOfPackages < allCargo.size()){
+        allCargo.add(cargo);
+        System.out.println("Package added! Package information: " + cargo);}
+        else {System.out.println("This package will not fit in this car. This car's max capacity: " + maxNumberOfPackages);}
+    }
 
-    @Override
-    public Integer getGrossWeight() {
-        Integer totalWeightOfLoad = 0;
-        for (Packages bag : allCargo) {
-            totalWeightOfLoad += bag.getLoadWeight();
+    public void removeCargo(Cargo cargo) {
+        if (allCargo.contains(cargo)) {
+            allCargo.remove(cargo);
+        } else {
+            System.out.println("Package you are trying to remove is not transported in this car."
+            );
+
+        }}
+
+        @Override
+        public Integer getGrossWeight () {
+            Integer totalWeightOfLoad = 0;
+            for (Cargo cargo : allCargo) {
+                totalWeightOfLoad += cargo.getLoadWeight();
+            }
+            return totalWeightOfLoad;
         }
-        return totalWeightOfLoad;
-    }
 
 
-    @Override
-    public boolean requiredElectricity() {
-        return false;
-    }
-
-    @Override
-    public ArrayList getAllCargo() {
-        return null;
-    }
-
-    @Override
-    public void addCargo(Packages packages) {
+        @Override
+        public boolean requiredElectricity () {
+            return false;
+        }
 
     }
-}

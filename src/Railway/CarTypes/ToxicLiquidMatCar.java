@@ -5,7 +5,7 @@ import Railway.Functionalities.CarRelated.Liquids;
 // One ToxicLiquidMatCar transports one type of Liquid
 public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
 
-    private Integer maxCapacityLiters = 80000;
+    private final Integer MAX_CAPACITY = 80000; // maximum capacity of ToxicLiquidMatCar in liters
     private Liquids transportedLiquid;
 
     public ToxicLiquidMatCar() {
