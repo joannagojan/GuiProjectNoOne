@@ -2,11 +2,16 @@ package Railway.CarTypes;
 
 import Railway.Functionalities.CarRelated.Liquids;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public abstract class LiquidMatCar extends BasicFreightCar implements LiquidCharCar {
 
+    private static final AtomicInteger liquidMatIDCounter = new AtomicInteger(0);
+    private Integer liquidMatCarID;
     private Integer maxCapacityLiters = 100000;
     private Liquids transportedLiquid;
     public LiquidMatCar() {
+        this.liquidMatCarID = liquidMatIDCounter.incrementAndGet();
     }
 
 
@@ -35,4 +40,13 @@ public abstract class LiquidMatCar extends BasicFreightCar implements LiquidChar
         return false;
     }
 
+
+    @Override
+    public String toString() {
+        return "LiquidMatCar: " +
+                "of ID: " + liquidMatCarID +
+                ", maximum capacity in liters: " + maxCapacityLiters +
+                ", name of transported liquid: " + transportedLiquid +
+                ", risk of spillage: "  + riskOfSpillage();
+    }
 }
