@@ -1,10 +1,10 @@
 Trainsets sorted by route length:
-Trainset ID: 1
-Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: Locomotive of ID: 1of name: a, it's start station is: Mt. Tarcoola, it's source station is:Ballajura, it's destination station is:Kalbarri, it's current speed=33trainset's SourceStation: BallajuratrainsetStartStation: trainset's EndStation: Kalbarrihow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 6
-Sorted Railroad cars:
-Trainsets sorted by route length:
 Trainset ID: 2
 Trainset informationThis trainset info: trainsetID: 2trainset's locomotive: Locomotive of ID: 2of name: b, it's start station is: East Guildford, it's source station is:Woodbridge Riverside Park, it's destination station is:Paynesville, it's current speed=33trainset's SourceStation: Woodbridge Riverside ParktrainsetStartStation: trainset's EndStation: Paynesvillehow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 8
+Sorted Railroad cars:
+Trainsets sorted by route length:
+Trainset ID: 1
+Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: Locomotive of ID: 1of name: a, it's start station is: Mt. Tarcoola, it's source station is:Ballajura, it's destination station is:Kalbarri, it's current speed=33trainset's SourceStation: BallajuratrainsetStartStation: trainset's EndStation: Kalbarrihow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 6
 Sorted Railroad cars:
 Trainsets sorted by route length:
 Trainset ID: 3

@@ -11,8 +11,11 @@ public class ExplosivesCar extends HeavyFreightCar {
     private AtomicInteger currentSecurityLevel;
     private Integer maxAllowedSecurity;
     private ArrayList<TransportedMaterials> transportedExplosives;
+    private static final AtomicInteger explosivesCarIDCounter = new AtomicInteger(0);
+    private Integer explosivesCarID;
 
     public ExplosivesCar(Integer maxAllowedSecurity) {
+        this.explosivesCarID = explosivesCarIDCounter.incrementAndGet();
         this.currentSecurityLevel = new AtomicInteger(0);
         this.maxAllowedSecurity = maxAllowedSecurity;
         this.transportedExplosives = new ArrayList<>();
@@ -57,7 +60,7 @@ public class ExplosivesCar extends HeavyFreightCar {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ExplosivesCar [");
+        sb.append("ExplosivesCar of ID: ").append(explosivesCarID);
         sb.append("currentSecurityLevel: ").append(currentSecurityLevel.get());
         sb.append(", maxAllowedSecurity: ").append(maxAllowedSecurity);
         sb.append(", transportedExplosives: ").append(transportedExplosives);
