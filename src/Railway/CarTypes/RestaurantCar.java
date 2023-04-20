@@ -16,6 +16,7 @@ public class RestaurantCar extends Cars {
         this.numberOfVegetarianMeals = numberOfVegetarianMeals;
     }
 
+    // based on time needed to prepare the meal calculating total time needed to prepare all meals
     public AtomicInteger getTimeToPrepareMeals() {
         Integer totalTimeVegMeals = timeVegMeals * numberOfVegetarianMeals.intValue();
         Integer totalTimeMeatMeals = timeMeatMeal * numberOfMeatMeals.intValue();
@@ -23,6 +24,8 @@ public class RestaurantCar extends Cars {
         return totalTime;
     }
 
+
+    // passenger can add meals to be prepared in restaurant car
     public void reserveMeal(String vegOrMeat) throws Exception {
 
         if (vegOrMeat.equals("vegetarian")) {
@@ -36,9 +39,11 @@ public class RestaurantCar extends Cars {
 
     }
 
+
+// Weight of meals is very small so gross weight is approximately equal to net weight of a car
     @Override
     public AtomicInteger getGrossWeight() {
-        return null;
+        return Cars.getStandardNetWeight();
     }
 
     @Override
