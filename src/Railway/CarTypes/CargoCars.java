@@ -4,23 +4,8 @@ import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.ArrayList;
 
-public abstract class CargoCars<T> {
-    private ArrayList<T> allCargo;
+public interface CargoCars {
 
-    CargoCars() {
-        this.allCargo = new ArrayList<>();
-
-    }
-
-    private void addPackage(Cargo cargo)
-    {
-
-    }
-
-
-    public void addCargo(T cargo) {
-
-    }
-
-    ;
+    public void addCargo(Cargo cargo);
+    public void removeCargo(Cargo cargo);
 }

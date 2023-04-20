@@ -27,7 +27,7 @@ public abstract class Cars {
         this.trainsetID = trainsetID;
     }
 
-    public abstract Integer getGrossWeight();
+    public abstract AtomicInteger getGrossWeight();
 
     // determining the need to connect to electricity
     public abstract boolean requiredElectricity();

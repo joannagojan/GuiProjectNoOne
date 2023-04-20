@@ -4,6 +4,7 @@ import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class PostOfficeCar extends Cars {
@@ -23,7 +24,7 @@ public class PostOfficeCar extends Cars {
     }
 
     @Override
-    public Integer getGrossWeight() {
+    public AtomicInteger getGrossWeight() {
         return Cars.getStandardNetWeight() + getTotalWeight();
     }
 

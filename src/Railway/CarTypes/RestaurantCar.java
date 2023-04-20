@@ -1,5 +1,7 @@
 package Railway.CarTypes;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class RestaurantCar extends Cars {
 
     private Integer numberOfMeatMeals;
@@ -11,7 +13,7 @@ public class RestaurantCar extends Cars {
     }
 
     @Override
-    public Integer getGrossWeight() {
+    public AtomicInteger getGrossWeight() {
         return null;
     }
 

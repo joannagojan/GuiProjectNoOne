@@ -1,9 +1,11 @@
 package Railway.CarTypes;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class GaseousMatCar extends BasicFreightCar {
 
     @Override
-    public Integer getGrossWeight() {
+    public AtomicInteger getGrossWeight() {
         return null;
     }
 

@@ -2,6 +2,8 @@ package Railway.CarTypes;
 
 import Railway.Functionalities.CarRelated.Liquids;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 // One ToxicLiquidMatCar transports one type of Liquid
 public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
 
@@ -45,7 +47,7 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
     }
 
     @Override
-    public Integer getGrossWeight() {
+    public AtomicInteger getGrossWeight() {
         return null;
     }
 

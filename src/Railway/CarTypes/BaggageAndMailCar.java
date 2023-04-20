@@ -3,23 +3,32 @@ package Railway.CarTypes;
 import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class BaggageAndMailCar extends Cars {
+public class BaggageAndMailCar extends Cars implements CargoCars {
     private ArrayList<Cargo> allCargo;
-    private Integer maxNumberOfPackages;
+    private Integer maxNumberOfLetters;
+    private AtomicInteger currentNumberOfTransportedLetters;
 
-    public BaggageAndMailCar(Integer maxNumberOfPackages) {
+    public BaggageAndMailCar(Integer maxNumberOfLetters) {
         this.allCargo = new ArrayList<>();
-        this.maxNumberOfPackages = maxNumberOfPackages;
+        this.maxNumberOfLetters = maxNumberOfLetters;
+        this.currentNumberOfTransportedLetters = new AtomicInteger(0);
     }
 
+    @Override
     public void addCargo(Cargo cargo) {
-        if(maxNumberOfPackages < allCargo.size()){
-        allCargo.add(cargo);
-        System.out.println("Package added! Package information: " + cargo);}
-        else {System.out.println("This package will not fit in this car. This car's max capacity: " + maxNumberOfPackages);}
+        if(maxNumberOfLetters < allCargo.size()){
+            if (cargo.getPackageType().equals("Letter"))
+            {
+                allCargo.add(cargo);
+                currentNumberOfTransportedLetters.incrementAndGet();
+                System.out.println("Letter added to mail car! Letter information: " + cargo);}
+            else {System.out.println("You can only add letters to mail car");}
+        }
+        else {System.out.println("This letter will not fit into Mail Car. This car's max number of transported letters: " + maxNumberOfLetters);}
     }
-
+@Override
     public void removeCargo(Cargo cargo) {
         if (allCargo.contains(cargo)) {
             allCargo.remove(cargo);
@@ -30,10 +39,10 @@ public class BaggageAndMailCar extends Cars {
         }}
 
         @Override
-        public Integer getGrossWeight () {
-            Integer totalWeightOfLoad = 0;
+        public AtomicInteger getGrossWeight () {
+            AtomicInteger totalWeightOfLoad = new AtomicInteger(0);
             for (Cargo cargo : allCargo) {
-                totalWeightOfLoad += cargo.getLoadWeight();
+                totalWeightOfLoad.addAndGet(cargo.getLoadWeight());
             }
             return totalWeightOfLoad;
         }
