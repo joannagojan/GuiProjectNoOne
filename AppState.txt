@@ -1,12 +1,12 @@
 Trainsets sorted by route length:
-Trainset ID: 2
-Trainset informationThis trainset info: trainsetID: 2trainset's locomotive: Locomotive of ID: 2of name: b, it's start station is: East Guildford, it's source station is:Woodbridge Riverside Park, it's destination station is:Paynesville, it's current speed=33trainset's SourceStation: Woodbridge Riverside ParktrainsetStartStation: trainset's EndStation: Paynesvillehow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 8
+Trainset ID: 1
+Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: Locomotive of ID: 1of name: a, it's start station is: Lancelin, it's source station is:Cue, it's destination station is:Woodbridge, it's current speed=116trainset's SourceStation: CuetrainsetStartStation: trainset's EndStation: Woodbridgehow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 3
 Sorted Railroad cars:
 Trainsets sorted by route length:
-Trainset ID: 1
-Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: Locomotive of ID: 1of name: a, it's start station is: Mt. Tarcoola, it's source station is:Ballajura, it's destination station is:Kalbarri, it's current speed=33trainset's SourceStation: BallajuratrainsetStartStation: trainset's EndStation: Kalbarrihow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 6
+Trainset ID: 2
+Trainset informationThis trainset info: trainsetID: 2trainset's locomotive: Locomotive of ID: 2of name: b, it's start station is: Dandaragan, it's source station is:Elizabeth Quay, it's destination station is:Currambine, it's current speed=95trainset's SourceStation: Elizabeth QuaytrainsetStartStation: trainset's EndStation: Currambinehow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 3
 Sorted Railroad cars:
 Trainsets sorted by route length:
 Trainset ID: 3
-Trainset informationThis trainset info: trainsetID: 3trainset's locomotive: Locomotive of ID: 3of name: c, it's start station is: Bayswater, it's source station is:Woodbridge, it's destination station is:Miling, it's current speed=33trainset's SourceStation: WoodbridgetrainsetStartStation: trainset's EndStation: Milinghow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 3
+Trainset informationThis trainset info: trainsetID: 3trainset's locomotive: Locomotive of ID: 3of name: c, it's start station is: Jindalee, it's source station is:Morawa, it's destination station is:Carnamah, it's current speed=95trainset's SourceStation: MorawatrainsetStartStation: trainset's EndStation: Carnamahhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 7
 Sorted Railroad cars:

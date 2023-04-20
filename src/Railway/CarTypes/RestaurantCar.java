@@ -13,6 +13,7 @@ public class RestaurantCar extends Cars {
     private Integer timeVegMeals = 30; // in minutes
     private AtomicInteger timeToPrepareMeals;
 
+
     public RestaurantCar(AtomicInteger numberOfMeatMeals, AtomicInteger numberOfVegetarianMeals) {
         this.numberOfMeatMeals = numberOfMeatMeals;
         this.numberOfVegetarianMeals = numberOfVegetarianMeals;

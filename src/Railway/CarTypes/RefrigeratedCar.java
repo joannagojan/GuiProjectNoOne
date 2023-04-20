@@ -14,12 +14,15 @@ public class RefrigeratedCar extends BasicFreightCar {
     private Integer minEffectiveTemperature;
     private ArrayList<Cargo> cargos;
     private Integer temperatureRaise = 1;
+    private static final AtomicInteger refrigeratedCarIDCounter = new AtomicInteger(0);
+    private Integer refrigeratedCarID;
 
     public RefrigeratedCar(Integer maxNumberOfItems) {
         this.maxEffectiveTemperature = 0; // temperature max range in Celsius
         this.minEffectiveTemperature = -15; // min range
         this.currentTemperature = new AtomicInteger(0);
         cargos = new ArrayList<>();
+        this.refrigeratedCarID = refrigeratedCarIDCounter.incrementAndGet();
     }
 
 
@@ -100,8 +103,8 @@ public class RefrigeratedCar extends BasicFreightCar {
 
     @Override
     public String toString() {
-        return "RefrigeratedCar{" +
-                "currentTemperature:" + currentTemperature +
+        return "RefrigeratedCar ID: " + refrigeratedCarID +
+                ", currentTemperature:" + currentTemperature +
                 ", maxEffectiveTemperature:" + maxEffectiveTemperature +
                 ", minEffectiveTemperature:" + minEffectiveTemperature +
                 ", cargos:" + cargos +
