@@ -1,11 +1,11 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.CarRelated.Cargo;
+import Railway.Functionalities.CarRelated.Packages;
 
 import java.util.ArrayList;
 
-public class BaggageAndMailCar<T extends Cargo> extends Cars implements CargoCars {
-    private ArrayList<T> allCargo;
+public class BaggageAndMailCar extends Cars implements CargoCars {
+    private ArrayList<Packages> allCargo;
     private Integer maxNumberOfPackages;
 
     public BaggageAndMailCar(Integer maxNumberOfPackages) {
@@ -13,21 +13,29 @@ public class BaggageAndMailCar<T extends Cargo> extends Cars implements CargoCar
         this.maxNumberOfPackages = maxNumberOfPackages;
     }
 
+
     @Override
     public Integer getGrossWeight() {
         Integer totalWeightOfLoad = 0;
-        for (T bag : allCargo) {
+        for (Packages bag : allCargo) {
             totalWeightOfLoad += bag.getLoadWeight();
         }
         return totalWeightOfLoad;
     }
 
-    public ArrayList<T> getAllCargo() {
-        return allCargo;
-    }
 
     @Override
     public boolean requiredElectricity() {
         return false;
+    }
+
+    @Override
+    public ArrayList getAllCargo() {
+        return null;
+    }
+
+    @Override
+    public void addCargo(Packages packages) {
+
     }
 }
