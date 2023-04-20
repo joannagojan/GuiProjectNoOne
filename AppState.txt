@@ -1,15 +1,15 @@
+Trainsets sorted by route length:
 Trainset ID: 1
-Speed: 159
-Route Length: 10
-Railroad Cars (sorted by weight):
+Route Length: 6
+Sorted Railroad cars:
 ---------------
+Trainsets sorted by route length:
 Trainset ID: 2
-Speed: 131
-Route Length: 3
-Railroad Cars (sorted by weight):
+Route Length: 0
+Sorted Railroad cars:
 ---------------
+Trainsets sorted by route length:
 Trainset ID: 3
-Speed: 85
-Route Length: 10
-Railroad Cars (sorted by weight):
+Route Length: 0
+Sorted Railroad cars:
 ---------------

@@ -23,7 +23,7 @@ public class MovingTrainsets implements Runnable {
     // for printing information
     private double percentDistanceCompleted;
     private double percentDistanceToNearestStations;
-
+    private Integer sizeOfRoute;
 
 
     public MovingTrainsets(Trainset trainset, List<Trainset> allTrainsets) {
@@ -33,6 +33,7 @@ public class MovingTrainsets implements Runnable {
         this.allTrainsets = allTrainsets;
         this.percentDistanceCompleted = 0;
         this.percentDistanceToNearestStations = 0;
+        this.sizeOfRoute = bestPathStartToFinish.size();
 
 
     }
@@ -45,13 +46,13 @@ public class MovingTrainsets implements Runnable {
         System.out.println("this trainsets: " + trainset.getTrainsetID()
                 + " best path is: "
         );
+
         for (Station station : fromStartToEndBestPath) {
             System.out.println(station);
         }
         trainset.setSizeOfRoute(fromStartToEndBestPath.size());
         return fromStartToEndBestPath;
     }
-
 
 
     @Override
@@ -88,7 +89,7 @@ public class MovingTrainsets implements Runnable {
                         try {
                             AtomicInteger speedAtomic = new AtomicInteger(trainset.getSpeed().get());
                             int speed = speedAtomic.intValue() * 10; // so 200 km/h means 2000 miliseconds in real time
-                            Thread.sleep(speed); // Sleep for the duration of trainset's speed to simulate movement
+                            Thread.sleep(speed); // Moving train between stations
                             System.out.println("Train id: " + trainset.getTrainsetID() +
                                     " between: " + currentStation.getName() + " and: " + nextStation.getName()
                             );
@@ -186,18 +187,27 @@ public class MovingTrainsets implements Runnable {
 
 
 
+    public void sortTrainsetsByRouteLength(List<Trainset> trainsets) {
+        Collections.sort(trainsets, (train1, train2) -> {
+            Integer routeLengthT1 = (Integer)train1.getSizeOfRoute();
+            Integer routeLengthT2 = train2.getSizeOfRoute();
+            return Integer.compare(routeLengthT2, routeLengthT1);
 
-//    public void sortTrainsetsByRouteLength(List<Trainset> trainsets) {
-//        Collections.sort(trainsets, (train1, train2) -> {
-//            Integer routeLengthT1 = train1.getSizeOfRoute();
-//            Integer routeLengthT2 = train2.getSizeOfRoute();
-//            return Integer.compare(routeLengthT2, routeLengthT1);
+        });
+    }
+
+    //    public void sortCarsByWeight() {
+//        Collections.sort(trainsetCars, (car1, car2) -> {
+//            Integer carWeight1 = car1.getGrossWeight();
+//            Integer carWeight2 = car2.getGrossWeight();
+//            return Integer.compare(carWeight2, carWeight1);
 //        });
 //    }
 
 
     public void appStateFile() {
-//        sortTrainsetsByRouteLength(allTrainsets);
+
+        sortTrainsetsByRouteLength(allTrainsets);
         Thread thread = new Thread(() -> {
             while (true) {
                 try {
@@ -205,11 +215,11 @@ public class MovingTrainsets implements Runnable {
                     StringBuilder sb = new StringBuilder();
 
                     for (Trainset trainset : allTrainsets) {
+                        sb.append("Trainsets sorted by route length:\n");
 //                        trainset.sortCarsByWeight(); // Sort railroad cars in the trainset by weight
                         sb.append("Trainset ID: ").append(trainset.getTrainsetID()).append("\n");
-                        sb.append("Speed: ").append(trainset.getSpeed()).append("\n");
                         sb.append("Route Length: ").append(trainset.getSizeOfRoute()).append("\n");
-                        sb.append("Railroad Cars (sorted by weight):\n");
+                        sb.append("Sorted Railroad cars:\n");
 
                         for (Cars railroadCar : trainset.getTrainsetCars()) {
                             sb.append("  Car ID: ").append(railroadCar.getCarID()).append(", Weight: ")
@@ -222,7 +232,6 @@ public class MovingTrainsets implements Runnable {
 
                     try (BufferedWriter writer = new BufferedWriter(new FileWriter("AppState.txt"))) {
                         writer.write(sb.toString());
-                        writer.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -230,12 +239,12 @@ public class MovingTrainsets implements Runnable {
                     e.printStackTrace();
                     break;
                 }
+
             }
         });
 
         thread.start();
     }
-
 
 
     // Queue to hold awaiting trainsets

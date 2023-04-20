@@ -29,6 +29,8 @@ public class Trainset {
         this.trainsetEndStation = trainsetLocomotive.getLocoDestinationStation();
         this.howCarConnectedElectricity = 0;
         this.currentLoadOfTrainset = 0;
+        this.sizeOfRoute = 0;
+
         if(trainsetLocomotive.getTrainsetID() != null) {
             throw new Exception("This locomotive is assigned to Trainset: " + trainsetLocomotive.getTrainsetID());
         }
@@ -81,13 +83,7 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
     }
 
 
-//    public void sortCarsByWeight() {
-//        Collections.sort(trainsetCars, (car1, car2) -> {
-//            Integer carWeight1 = car1.getGrossWeight();
-//            Integer carWeight2 = car2.getGrossWeight();
-//            return Integer.compare(carWeight2, carWeight1);
-//        });
-//    }
+
 
     public Locomotive getTrainsetLocomotive() {
         return trainsetLocomotive;
