@@ -55,7 +55,7 @@ public void removePassenger(Passenger passenger) throws Exception{
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("PassengerCar of ")
-                .append("ID: ").append(passengerCarID)
+                .append("ID: ").append(passsengerCarID)
                 .append(", total number of seats on this car: ").append(numberOfSeats)
                 .append(", current number of passengers on this car: ").append(currentNumberOfPassengers)
                 .append(", passengers on this car's IDs list: ");
