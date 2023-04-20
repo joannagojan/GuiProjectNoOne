@@ -167,10 +167,13 @@ public class Main {
                 );
             }
 
+
+            Integer  numberOfTrainsets; // How many trainsets should be created
+            numberOfTrainsets = 4;
             // Creating Locomotives, trainsets and threads
             ArrayList<Locomotive> allLocomotives = new ArrayList<>();
             ArrayList<Trainset> allTrainsets = new ArrayList<>();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < numberOfTrainsets; i++) {
                 ArrayList<Station> newstationList = stationsList;
                 int randomSourceInt = (int) (Math.random() * newstationList.size());
                 Station randomSource = newstationList.get(randomSourceInt);

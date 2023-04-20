@@ -59,81 +59,76 @@ public class MovingTrainsets implements Runnable {
 
             while (nextStationIndex < bestRoute.size()) {
 
-                while (nextStationIndex < bestRoute.size()) {
-                    Station currentStation = bestRoute.get(currentStationIndex);
-                    Station nextStation = bestRoute.get(nextStationIndex);
+                Station currentStation = bestRoute.get(currentStationIndex);
+                Station nextStation = bestRoute.get(nextStationIndex);
 
-                    try {
-                        AtomicInteger speedAtomic = trainset.getSpeed();
-                        int speed = speedAtomic.intValue() * 10; // so 200 km/h means 2000 miliseconds in real time
-                        Thread.sleep(speed); // Moving train between stations
-                        System.out.println("Train id: " + trainset.getTrainsetID() +
-                                " between: " + currentStation.getName() + " and: " + nextStation.getName()
-                        );
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                synchronized (currentStation) {
+                    if (!currentStation.isOccupied() && !nextStation.isOccupied()
+                            && !trainset.getTrainsetID().equals(currentStation.getOccupyingTrainID())
+                            && !trainset.getTrainsetID().equals(nextStation.getOccupyingTrainID())
+                    ) {
 
-                    // Update station indices
-                    currentStationIndex++;
-                    nextStationIndex++;
-
-                    synchronized (currentStation) {
-                        currentStation.setOccupied(false);
-                    }
-                    synchronized (nextStation) {
-                        nextStation.setOccupied(false);
-                    }
-                    synchronized (currentStation) {
-                        if (!currentStation.isOccupied() && !nextStation.isOccupied()
-                                && !trainset.getTrainsetID().equals(currentStation.getOccupyingTrainID())
-                                && !trainset.getTrainsetID().equals(nextStation.getOccupyingTrainID())
-                        ) {
-                            if (!currentStation.isOccupied()) {
-                                System.out.println("station id: " + currentStation.getName() + "train occup: " + currentStation.getOccupyingTrainID());
-                            }
-                            currentStation.setOccupied(true);
-                            currentStation.setOccupyingTrainID(trainset.getTrainsetID());
-                            nextStation.setOccupied(true);
-                            nextStation.setOccupyingTrainID(trainset.getTrainsetID());
-                        }
-                    }
-
-                    synchronized (MovingTrainsets.class) {
-                        if (!trainsetQueue.isEmpty()) {
-                            Trainset nextTrainset = trainsetQueue.poll();
-                            if (nextTrainset != null) {
-                                trainset = nextTrainset;
-                                bestRoute = bestPathStartToFinish;
-                                currentStationIndex = 0;
-                                nextStationIndex = 1;
-                            }
-                        }
+                        currentStation.setOccupied(true);
+                        currentStation.setOccupyingTrainID(trainset.getTrainsetID());
+                        nextStation.setOccupied(true);
+                        nextStation.setOccupyingTrainID(trainset.getTrainsetID());
                     }
                 }
 
+                try {
+                    AtomicInteger speedAtomic = trainset.getSpeed();
+                    int speed = speedAtomic.intValue() * 10; // so 200 km/h means 2000 milliseconds in real time
+                    Thread.sleep(speed); // Moving train between stations
+                    System.out.println("Train id: " + trainset.getTrainsetID() +
+                            " is between " + currentStation.getName() + " and " + nextStation.getName()
+                    );
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-                trainset.setReachedDestination(true);
-                if (trainset.isReachedDestination() && !returnJourney) {
-                    try {
-                        Thread.sleep(30000); // Sleep for 30 seconds
-                        System.out.println("This train has reached its destination, id: " + trainset.getTrainsetID());
+                synchronized (currentStation) {
+                    currentStation.setOccupied(false);
+                }
+                synchronized (nextStation) {
+                    nextStation.setOccupied(false);
+                }
 
+                // Update station indices
+                currentStationIndex++;
+                nextStationIndex++;
 
-                        bestRoute.addAll(bestPathFinishToStart);
-                        currentStationIndex = 0;
-                        nextStationIndex = 1;
-                        trainset.setReachedDestination(false);
-                        returnJourney = true;
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                synchronized (MovingTrainsets.class) {
+                    if (!trainsetQueue.isEmpty()) {
+                        Trainset nextTrainset = trainsetQueue.poll();
+                        if (nextTrainset != null) {
+                            trainset = nextTrainset;
+                            bestRoute = bestPathStartToFinish;
+                            currentStationIndex = 0;
+                            nextStationIndex = 1;
+                        }
                     }
                 }
             }
 
+            trainset.setReachedDestination(true);
+            if (trainset.isReachedDestination() && !returnJourney) {
+                try {
+                    Thread.sleep(30000); // Sleep for 30 seconds
+                    System.out.println("This train has reached its destination, id: " + trainset.getTrainsetID());
+
+                    bestRoute.addAll(bestPathFinishToStart);
+                    currentStationIndex = 0;
+                    nextStationIndex = 1;
+                    trainset.setReachedDestination(false);
+                    returnJourney = true;
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
+
 
     private class SpeedChangeRunnable implements Runnable {
         @Override
@@ -158,6 +153,39 @@ public class MovingTrainsets implements Runnable {
     }
 
 
+    // Railroad Hazard exception when trainspeed is higher than 200 km/h
+    public class SpeedChecker implements Runnable {
+
+        Integer speed = MovingTrainsets.this.speed.intValue();
+
+        @Override
+        public void run() {
+            while (true) {
+
+                if (speed > 200) {
+                    throw new RailroadHazard("Trains speed exceeds 200 km/h");
+                }
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        private static class RailroadHazard extends RuntimeException {
+            public RailroadHazard(String message) {
+                super(message);
+
+            }
+        }
+    }
+
+
+
+    // for printing in AppState file. Method to sort trainsets by the lenght of their best routes
     public void sortTrainsetsByRouteLength(List<Trainset> trainsets) {
         Collections.sort(trainsets, (train1, train2) -> {
             Integer routeLengthT1 = train1.getSizeOfRoute();
@@ -167,7 +195,7 @@ public class MovingTrainsets implements Runnable {
         });
     }
 
-
+// Adding current stats to AppState file
     public void appStateFile() {
         List<Trainset> sortedTrainsets = new ArrayList<>();
         sortedTrainsets.addAll(allTrainsets);
@@ -212,12 +240,12 @@ public class MovingTrainsets implements Runnable {
         thread.start();
     }
 
-
-    public void displayInfo(String trainsetID) {
+// Method do display current information about a trainset based on ID
+    public void displayInfo(Integer trainsetID) {
         Trainset trainset = null;
-        for (Trainset t : allTrainsets) {
-            if (t.getTrainsetID().equals(trainsetID)) {
-                trainset = t;
+        for (Trainset trainset1 : allTrainsets) {
+            if (trainset1.getTrainsetID().equals(trainsetID)) {
+                trainset = trainset1;
                 break;
             }
         }
@@ -233,15 +261,6 @@ public class MovingTrainsets implements Runnable {
         for (Cars car : trainset.getTrainsetCars()) {
             System.out.println(car);
         }
-
-        int distanceStartToFinish = bestPathStartToFinish.size() - 1;
-        int distanceCompleted = trainset.getSizeOfRoute();
-        double percentageCompleted = (double) distanceCompleted / distanceStartToFinish * 100;
-        System.out.println("Distance Completed: " + percentageCompleted + "%");
-
-        int distanceNearestStations = bestPathStartToFinish.size() + bestPathFinishToStart.size() - 2;
-        double percentageNearestStations = (double) distanceCompleted / distanceNearestStations * 100;
-        System.out.println("Distance Completed between Nearest Stations: " + percentageNearestStations + "%");
     }
 
 
