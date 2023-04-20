@@ -28,7 +28,7 @@ public void addPassengerToCar(Passenger passenger) throws Exception {
         if (++currentNumberOfPassengers <= numberOfSeats ) {
             allPassengers.add(passenger);
         }
-        else {throw new Exception("All seats are already taken in this car")}
+        else {throw new Exception("All seats are already taken in this car");}
 }
 
 public void removePassenger(Passenger passenger) throws Exception{
