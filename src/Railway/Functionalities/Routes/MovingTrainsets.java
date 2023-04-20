@@ -46,14 +46,14 @@ public class MovingTrainsets implements Runnable {
         return fromStartToEndBestPath;
     }
 
-
+// threads for moving trainsets between stations
     @Override
     public void run() {
         while (!trainset.isReachedDestination()) {
             List<Station> bestRoute = bestPathStartToFinish;
             int currentStationIndex = 0;
             int nextStationIndex = 1;
-            boolean returnJourney = false;
+            int returnJourney = 0;
             Thread speedChangeThread = new Thread(new SpeedChangeRunnable());
             speedChangeThread.start();
 
@@ -93,42 +93,47 @@ public class MovingTrainsets implements Runnable {
                     nextStation.setOccupied(false);
                 }
 
-                // Update station indices
                 currentStationIndex++;
                 nextStationIndex++;
 
-                synchronized (MovingTrainsets.class) {
-                    if (!trainsetQueue.isEmpty()) {
-                        Trainset nextTrainset = trainsetQueue.poll();
-                        if (nextTrainset != null) {
-                            trainset = nextTrainset;
-                            bestRoute = bestPathStartToFinish;
-                            currentStationIndex = 0;
-                            nextStationIndex = 1;
-                        }
+
+                if (!trainsetQueue.isEmpty()) {
+                    Trainset nextTrainset = trainsetQueue.poll();
+                    if (nextTrainset != null) {
+                        trainset = nextTrainset;
+                        bestRoute = bestPathStartToFinish;
+                        currentStationIndex = 0;
+                        nextStationIndex = 1;
+
                     }
                 }
-            }
 
-            trainset.setReachedDestination(true);
-            if (trainset.isReachedDestination() && !returnJourney) {
-                try {
-                    Thread.sleep(30000); // Sleep for 30 seconds
-                    System.out.println("This train has reached its destination, id: " + trainset.getTrainsetID());
 
-                    bestRoute.addAll(bestPathFinishToStart);
-                    currentStationIndex = 0;
-                    nextStationIndex = 1;
-                    trainset.setReachedDestination(false);
-                    returnJourney = true;
+                trainset.setReachedDestination(true);
+                if (trainset.isReachedDestination() && returnJourney == 0) {
+                    try {
+                        returnJourney++;
+                        Thread.sleep(30000);
+                        System.out.println("This train has reached its destination, id: " + trainset.getTrainsetID());
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                        bestRoute.addAll(bestPathFinishToStart);
+                        currentStationIndex = 0;
+                        nextStationIndex = 1;
+                        trainset.setReachedDestination(false);
+
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+                else {break;}
             }
         }
     }
 
+
+
+    // for changing current speed of trainsets
 
     private class SpeedChangeRunnable implements Runnable {
         @Override
@@ -136,7 +141,6 @@ public class MovingTrainsets implements Runnable {
             while (true) {
                 try {
                     AtomicInteger speed = trainset.getSpeed();
-                    // Sleep for 1 second
                     Thread.sleep(1000);
 
                     // Randomly increase or decrease speed by 3%
@@ -184,7 +188,6 @@ public class MovingTrainsets implements Runnable {
     }
 
 
-
     // for printing in AppState file. Method to sort trainsets by the lenght of their best routes
     public void sortTrainsetsByRouteLength(List<Trainset> trainsets) {
         Collections.sort(trainsets, (train1, train2) -> {
@@ -195,7 +198,7 @@ public class MovingTrainsets implements Runnable {
         });
     }
 
-// Adding current stats to AppState file
+    // Adding current stats to AppState file
     public void appStateFile() {
         List<Trainset> sortedTrainsets = new ArrayList<>();
         sortedTrainsets.addAll(allTrainsets);
@@ -240,8 +243,8 @@ public class MovingTrainsets implements Runnable {
         thread.start();
     }
 
-// Method do display current information about a trainset based on ID
-    public void displayInfo(Integer trainsetID) throws Exception{
+    // Method do display current information about a trainset based on ID
+    public void displayInfo(Integer trainsetID) throws Exception {
         Trainset trainset = null;
         for (Trainset trainset1 : allTrainsets) {
             if (trainset1.getTrainsetID().equals(trainsetID)) {
@@ -251,7 +254,7 @@ public class MovingTrainsets implements Runnable {
         }
 
         if (trainset == null) {
-            throw new Exception("No trainset created with this ID" );
+            throw new Exception("No trainset created with this ID");
         }
 
         System.out.println("Trainset ID: " + trainset.getTrainsetID());
