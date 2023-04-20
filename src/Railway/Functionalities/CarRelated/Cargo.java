@@ -2,23 +2,26 @@ package Railway.Functionalities.CarRelated;
 
 import Railway.CarTypes.Cars;
 
-public class Cargo {
+public class Cargo extends TransportedMaterials {
     private Integer packageWeight;
     private Integer packageWidth;
     private Integer packageHeight;
     private Integer packageLength;
 
 
-    public Cargo(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
+    public Cargo(String description, String name, Integer securityLevel, Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
+        super(description, name, securityLevel);
         if (!isPackageSizeWeightValid(packageWeight, packageWidth, packageHeight, packageLength)) {
             throw new IllegalArgumentException("Package size is too big, maximum size available on this train: " +
                     Cars.getCarWidth() + "cmx" + Cars.getCarHeight() + "cmx" + Cars.getCarLength() +
                     "cm, the weight cannot exceed: " + Cars.getStandardMaxCarLoad() + "tons.");
+        } else {
+            this.packageWeight = packageWeight;
+            this.packageWidth = packageWidth;
+            this.packageHeight = packageHeight;
+            this.packageLength = packageLength;
         }
-        this.packageWeight = packageWeight;
-        this.packageWidth = packageWidth;
-        this.packageHeight = packageHeight;
-        this.packageLength = packageLength;
+
     }
 
     public boolean isPackageSizeWeightValid(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {

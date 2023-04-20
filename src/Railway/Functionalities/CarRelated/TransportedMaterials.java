@@ -3,18 +3,15 @@ package Railway.Functionalities.CarRelated;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class TransportedMaterials {
-    private static final AtomicInteger cargoIDCounter = new AtomicInteger(0);
-    private final Integer cargoID;
-
+public abstract class TransportedMaterials extends AllTypesTransported {
     private String name;
     private Integer securityLevel;
 
 
-    public TransportedMaterials(String name, Integer securityLevel) {
+    public TransportedMaterials(String description, String name, Integer securityLevel) {
+        super(description);
         this.name = name;
         this.securityLevel = securityLevel;
-        this.cargoID = cargoIDCounter.incrementAndGet();
     }
 
     public String getName() {
