@@ -23,6 +23,19 @@ public class RestaurantCar extends Cars {
         return totalTime;
     }
 
+    public void reserveMeal(String vegOrMeat) throws Exception {
+
+        if (vegOrMeat.equals("vegetarian")) {
+            numberOfVegetarianMeals.incrementAndGet();
+        }
+        if (vegOrMeat.equals("meat"))
+        {
+            numberOfMeatMeals.incrementAndGet();
+        }
+        else{throw new Exception("This meal type not available on this train");}
+
+    }
+
     @Override
     public AtomicInteger getGrossWeight() {
         return null;
