@@ -74,14 +74,16 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
 
     @Override
     public String toString() {
-        String message = "This trainset info: " +
-                "trainsetID: " + trainsetID +
-                "trainset's locomotive: " + trainsetLocomotive +
-                "trainset's SourceStation: " + trainsetSourceStation + "trainsetStartStation: " + "trainset's EndStation: " + trainsetEndStation +
-                "how many Cars can be connected to electricity grid: " + howCarConnectedElectricity +
+        String message = "This trainset info:\n" +
+                "trainsetID: " + trainsetID + "\n" +
+                "trainset's locomotive: " + trainsetLocomotive + "\n" +
+                "trainset's source station: " + trainsetSourceStation + ", trainset : " + "\n" +
+                "trainset's end station : " + trainsetEndStation + "\n" +
+                "how many Cars can be connected to electricity grid: " + howCarConnectedElectricity + "\n" +
                 "current Load Of the Trainset: " + currentLoadOfTrainset;
         return message;
     }
+
 
 
     public void sortCarsByWeight(ArrayList<Cars> cars) {
