@@ -1,11 +1,12 @@
 package Railway.CarTypes;
 
+import Railway.Functionalities.CarRelated.AllTypesTransported;
 import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.ArrayList;
 
-public interface CargoCars{
+public interface CargoCars<T extends AllTypesTransported>{
 
-    public void addCargo(Cargo cargo);
-    public void removeCargo(Cargo cargo);
+    public void addCargo(T cargo);
+    public void removeCargo(T cargo);
 }

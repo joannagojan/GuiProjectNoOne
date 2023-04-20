@@ -5,7 +5,7 @@ import Railway.Functionalities.CarRelated.Cargo;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class BaggageAndMailCar extends Cars implements CargoCars {
+public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
     private ArrayList<Cargo> allCargo;
     private Integer maxNumberOfLetters;
     private AtomicInteger currentNumberOfTransportedLetters;
