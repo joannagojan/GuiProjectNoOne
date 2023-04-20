@@ -11,9 +11,9 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
     private final Integer MAX_CAPACITY = 80000; // maximum capacity of ToxicLiquidMatCar in liters
     private Liquids transportedLiquid;
 
-    public ToxicLiquidMatCar() {
-    }
 
+
+    // adding only toxic liquids to this car and checking if liquids volume will fit this car
     @Override
     public void addOneLiquidToCar(Liquids liquid) throws Exception {
         if (this.transportedLiquid == null) {
@@ -31,8 +31,10 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
         }
     }
 
+    // removing liquid from a car
+
     public void removeTransportedLiquid() {
-        this.transportedLiquid = null;
+        transportedLiquid = null;
     }
 
 
@@ -50,6 +52,7 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
         }
     }
 
+    // gross weight based on given weight of a liquid
     @Override
     public AtomicInteger getGrossWeight() {
         int totalWeightOfCargo = 0;
@@ -60,4 +63,11 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
     }
 
 
+    public Integer getSecurityOfLiquid(){
+        return transportedLiquid.getSecurityLevel();
+    }
+    public Liquids getTransportedLiquid() {
+        return transportedLiquid;
+    }
 }
+
