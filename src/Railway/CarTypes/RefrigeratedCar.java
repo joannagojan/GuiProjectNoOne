@@ -19,10 +19,8 @@ public class RefrigeratedCar extends BasicFreightCar {
         this.maxEffectiveTemperature = 0; // temperature max range in Celsius
         this.minEffectiveTemperature = -15; // min range
         this.currentTemperature = new AtomicInteger(0);
-
         cargos = new ArrayList<>();
     }
-
 
 
     // Adding an item to refrigerated car raises temperature by 1 degree
@@ -34,21 +32,22 @@ public class RefrigeratedCar extends BasicFreightCar {
 
     // Method to remove a cargo from the refrigerator car
     public void removeCargo(Cargo cargo) throws Exception {
-        if (cargos.contains(cargo)){
-        cargos.remove(cargo);
-        Integer currentTempInts = currentTemperature.intValue() - temperatureRaise;
-        currentTemperature.set(currentTempInts);
+        if (cargos.contains(cargo)) {
+            cargos.remove(cargo);
+            Integer currentTempInts = currentTemperature.intValue() - temperatureRaise;
+            currentTemperature.set(currentTempInts);
+        } else {
+            throw new Exception("This refrigerated item is not transported on this car");
         }
-        else {throw new Exception("This refrigerated item is not transported on this car");}
     }
 
-    // Method to check if the current temperature is within the effective temperature range
+    // Checking if the current temperature is within the effective temperature range
     public boolean isTemperatureInRange() {
         int temperature = currentTemperature.get();
         return temperature >= minEffectiveTemperature && temperature <= maxEffectiveTemperature;
     }
 
-    // Method to display a warning if the current temperature is outside the effective temperature range
+    // To display a warning if the current temperature is outside the effective temperature range
     public void displayTemperatureWarning() {
         int temperature = currentTemperature.get();
         if (temperature < minEffectiveTemperature || temperature > maxEffectiveTemperature) {
@@ -98,6 +97,17 @@ public class RefrigeratedCar extends BasicFreightCar {
         return totalWeightOfLoad;
     }
 
+
+    @Override
+    public String toString() {
+        return "RefrigeratedCar{" +
+                "currentTemperature:" + currentTemperature +
+                ", maxEffectiveTemperature:" + maxEffectiveTemperature +
+                ", minEffectiveTemperature:" + minEffectiveTemperature +
+                ", cargos:" + cargos +
+                ", temperatureRaise:" + temperatureRaise +
+                '}';
+    }
     @Override
     public boolean requiredElectricity() {
 
