@@ -24,7 +24,7 @@ public abstract class LiquidMatCar extends BasicFreightCar implements LiquidChar
         }
     }
 
-    // Risk of spilage based on liquid density. Less dense liquids are more likely to spill (density in kg/m^3)
+    // Risk of spillage based on liquid density. Less dense liquids are more likely to spill (density in kg/m^3)
     public String riskOfSpillage() {
         if (transportedLiquid.getLiquidDensity() < 500) {
             return "Medium risk";}

@@ -1,10 +1,14 @@
 package Railway.CarTypes;
 
+import Railway.Functionalities.CarRelated.Passenger;
+
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PassengerCar extends Cars {
     private Integer numberOfSeats; // how many seats are available
     private Integer currentNumberOfPassengers;
+    private ArrayList<Passenger> allPassengers;
 
     //Constructor
 
@@ -14,11 +18,23 @@ public class PassengerCar extends Cars {
             throw new IllegalArgumentException("Pick a number of seats from a range 10-100, you picked: "+ numberOfSeats);
         }
         else {this.numberOfSeats = numberOfSeats;}
-
+this.allPassengers = new ArrayList<>();
         this.currentNumberOfPassengers = 0;
     }
 
+public void addPassengerToCar(Passenger passenger) throws Exception {
+        if (++currentNumberOfPassengers <= numberOfSeats ) {
+            allPassengers.add(passenger);
+        }
+        else {throw new Exception("All seats are already taken in this car")}
+}
 
+public void removePassenger(Passenger passenger) throws Exception{
+        if (allPassengers.contains(passenger)){
+            allPassengers.remove(passenger);
+        }
+        else {throw new Exception("Passenger you are trying to remove is not in this car");}
+}
     @Override
     public AtomicInteger getGrossWeight() {
         return null;

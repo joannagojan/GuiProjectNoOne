@@ -1,12 +1,12 @@
 Trainsets sorted by route length:
-Trainset ID: 2
-Trainset informationThis trainset info: trainsetID: 2trainset's locomotive: This is locomotive number 2 called b it departs from Leemanwith a destination in Whiteman Park with maximum number of cars of 10 and maximum weight load 24921 of the speed of 33.trainset's SourceStation: YalgootrainsetStartStation: trainset's EndStation: Whiteman Parkhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 7
+Trainset ID: 1
+Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: This is locomotive number 1 called a it departs from Mullaloowith a destination in Perth Underground with maximum number of cars of 3 and maximum weight load 27634 of the speed of 33.trainset's SourceStation: BurdetttrainsetStartStation: trainset's EndStation: Perth Undergroundhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 6
 Sorted Railroad cars:
 Trainsets sorted by route length:
-Trainset ID: 1
-Trainset informationThis trainset info: trainsetID: 1trainset's locomotive: This is locomotive number 1 called a it departs from Morawawith a destination in Spalding with maximum number of cars of 9 and maximum weight load 17934 of the speed of 33.trainset's SourceStation: PerenjoritrainsetStartStation: trainset's EndStation: Spaldinghow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 4
+Trainset ID: 2
+Trainset informationThis trainset info: trainsetID: 2trainset's locomotive: This is locomotive number 2 called b it departs from Mullewawith a destination in Guilderton with maximum number of cars of 5 and maximum weight load 28745 of the speed of 33.trainset's SourceStation: LeemantrainsetStartStation: trainset's EndStation: Guildertonhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 3
 Sorted Railroad cars:
 Trainsets sorted by route length:
 Trainset ID: 3
-Trainset informationThis trainset info: trainsetID: 3trainset's locomotive: This is locomotive number 3 called c it departs from Leemanwith a destination in Mullewa with maximum number of cars of 7 and maximum weight load 18357 of the speed of 33.trainset's SourceStation: Sunset BeachtrainsetStartStation: trainset's EndStation: Mullewahow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 4
+Trainset informationThis trainset info: trainsetID: 3trainset's locomotive: This is locomotive number 3 called c it departs from Nansonwith a destination in Beecher with maximum number of cars of 10 and maximum weight load 28937 of the speed of 33.trainset's SourceStation: WoodbridgetrainsetStartStation: trainset's EndStation: Beecherhow many Cars can be connected to electricity grid: 0current Load Of the Trainset: 0Route Length: 7
 Sorted Railroad cars:

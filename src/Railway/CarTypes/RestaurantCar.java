@@ -12,6 +12,7 @@ public class RestaurantCar extends Cars {
         this.numberOfVegetarianMeals = numberOfVegetarianMeals;
     }
 
+
     @Override
     public AtomicInteger getGrossWeight() {
         return null;
