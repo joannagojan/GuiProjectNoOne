@@ -9,12 +9,15 @@ public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
     private ArrayList<Cargo> allCargo;
     private final Integer MAX_TRANSPORTED_VOLUME = Cars.getCarWidth() * Cars.getCarHeight() * getCarLength();
     private AtomicInteger currentTransportedVolume;
+    private static final AtomicInteger baggageCarIDCounter = new AtomicInteger(0);
+    private Integer baggageCarID;
 
 
 
     public BaggageAndMailCar() {
         this.allCargo = new ArrayList<>();
         this.currentTransportedVolume = new AtomicInteger(0);
+        this.baggageCarID = baggageCarIDCounter.incrementAndGet();
 
     }
 
@@ -63,4 +66,20 @@ public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
         return false;
     }
 
+    public Integer getBaggageCarID() {
+        return baggageCarID;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("This is Baggage Car of ID: ").append(baggageCarID)
+                .append(", allCargo names: ");
+        for (Cargo cargo : allCargo) {
+            sb.append(cargo.getName()).append(", ");
+        }
+        sb.append("maximum possible transported weight on this car: ").append(MAX_TRANSPORTED_VOLUME).append(" kgs")
+                .append(", currently transported weight: ").append(currentTransportedVolume).append(" kgs.");
+        return sb.toString();
+    }
 }
