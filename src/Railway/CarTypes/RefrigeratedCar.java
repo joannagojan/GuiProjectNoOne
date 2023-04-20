@@ -15,8 +15,5 @@ public class RefrigeratedCar extends BasicFreightCar {
         return true;
     }
 
-    @Override
-    public Integer getTotalWeightOfPackages() {
-        return super.getTotalWeightOfPackages();
-    }
+
 }

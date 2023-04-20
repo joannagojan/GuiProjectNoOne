@@ -47,12 +47,14 @@ public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
         }}
 
     @Override
-    public AtomicInteger getGrossWeight () {
-        AtomicInteger totalWeightOfLoad = new AtomicInteger(0);
+    public AtomicInteger getGrossWeight() {
+        int totalWeightOfCargo = 0;
         for (Cargo cargo : allCargo) {
-            totalWeightOfLoad.addAndGet(cargo.getLoadWeight());
+            totalWeightOfCargo += cargo.getLoadWeight();
         }
-        return totalWeightOfLoad;
+        AtomicInteger result = new AtomicInteger();
+        result.set(Cars.getStandardNetWeight().get() + totalWeightOfCargo);
+        return result;
     }
 
 

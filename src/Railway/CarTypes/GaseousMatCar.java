@@ -14,8 +14,5 @@ public class GaseousMatCar extends BasicFreightCar {
         return false;
     }
 
-    @Override
-    public Integer getTotalWeightOfPackages() {
-        return super.getTotalWeightOfPackages();
-    }
+
 }

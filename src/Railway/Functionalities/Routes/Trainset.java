@@ -48,13 +48,13 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
             if (howCarConnectedElectricity <= trainsetLocomotive.getMaxElectricCarsConnected())
                 howCarConnectedElectricity++;
         } else throw new Exception("Too many cars connected to electricity grid");
-        Integer currentTrainsetWeight = currentLoadOfTrainset+railRoadCar.getGrossWeight();
+        Integer currentTrainsetWeight = currentLoadOfTrainset.intValue() +railRoadCar.getGrossWeight().intValue();
         if (currentTrainsetWeight > trainsetLocomotive.getMaxLocoLoadWeight())
         {throw new Exception("Gross weight of car you are trying to add is bigger than maximum load of this locomotive. " +
                 "This locomotives maximum load is: "
                 + trainsetLocomotive.getMaxLocoLoadWeight() + " current weight of the trainset: " + currentTrainsetWeight +
                 " and you are trying to add: " + currentTrainsetWeight);}
-        currentLoadOfTrainset += railRoadCar.getGrossWeight();
+        currentLoadOfTrainset += railRoadCar.getGrossWeight().intValue();
         if (this.trainsetCars.contains(railRoadCar)) {throw new Exception("This car is already added to this trainset");}
         trainsetCars.add(railRoadCar);
         railRoadCar.setTrainsetID(this.trainsetID);

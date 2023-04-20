@@ -9,7 +9,7 @@ public abstract class Cars {
     private final static Integer CAR_HEIGHT = 260; // Standard Car height in cm
     private final static Integer CAR_LENGTH = 1500; // Standard Car width in cm
     private final static Integer STANDARD_MAX_CAR_LOAD = 100; // Standard Car maximum load in tons (for all classes except Heavy Freight)
-    private final static Integer STANDARD_NET_WEIGHT = 5000; // Standard Net Weight of a car in kgs
+    private final static AtomicInteger STANDARD_NET_WEIGHT = new AtomicInteger(5000); // Standard Net Weight of a car in kgs
     private Integer trainsetID;
 
 
@@ -57,8 +57,7 @@ public abstract class Cars {
         return STANDARD_MAX_CAR_LOAD;
     }
 
-    public static Integer getStandardNetWeight() {
+    public static AtomicInteger getStandardNetWeight() {
         return STANDARD_NET_WEIGHT;
     }
-
 }

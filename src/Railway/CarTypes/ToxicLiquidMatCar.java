@@ -55,11 +55,7 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
     public boolean requiredElectricity() {
         return super.requiredElectricity();
     }
-
-    @Override
-    public Integer getTotalWeightOfPackages() {
-        return super.getTotalWeightOfPackages();
-    }
+    
 
 
 }
