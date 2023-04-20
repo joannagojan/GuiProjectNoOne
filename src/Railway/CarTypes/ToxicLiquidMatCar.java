@@ -10,8 +10,13 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
 
     private final Integer MAX_CAPACITY = 80000; // maximum capacity of ToxicLiquidMatCar in liters
     private Liquids transportedLiquid;
+    private static final AtomicInteger toxicLiquidCarIDCounter = new AtomicInteger(0);
+    private Integer toxicLiquidCarID;
 
 
+    public ToxicLiquidMatCar() {
+        this.toxicLiquidCarID = toxicLiquidCarIDCounter.incrementAndGet();
+    }
 
     // adding only toxic liquids to this car and checking if liquids volume will fit this car
     @Override
@@ -60,6 +65,22 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
         AtomicInteger result = new AtomicInteger();
         result.set(Cars.getStandardNetWeight().get() + totalWeightOfCargo);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ToxicLiquidMatCar ID: ").append(toxicLiquidCarID).append("\n");
+        sb.append("Transported Liquid: ");
+        if (transportedLiquid == null) {
+            sb.append("None");
+        } else {
+            sb.append(transportedLiquid.getName()).append("\n");
+            sb.append("Liquid Security Level: ").append(transportedLiquid.getSecurityLevel()).append("\n");
+            sb.append("Risk of Spillage: ").append(riskOfSpillage()).append("\n");
+            sb.append("Gross Weight: ").append(getGrossWeight()).append("\n");
+        }
+        return sb.toString();
     }
 
 

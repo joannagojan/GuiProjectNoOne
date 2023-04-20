@@ -8,10 +8,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ToxicMatCar extends HeavyFreightCar {
     private ArrayList<String> notAllowedToxicMaterials;
     private ArrayList<TransportedMaterials> allTransportedToxicMat;
+    private static final AtomicInteger toxicCarIDCounter = new AtomicInteger(0);
+    private Integer toxicCarID;
 
     public ToxicMatCar(Integer maxAllowedSecurity) {
         this.allTransportedToxicMat = new ArrayList<>();
         this.notAllowedToxicMaterials = new ArrayList<>();
+        this.toxicCarID = toxicCarIDCounter.incrementAndGet();
         notAllowedToxicMaterials.add("Nuclear");
     }
 
@@ -48,4 +51,25 @@ public class ToxicMatCar extends HeavyFreightCar {
     public boolean requiredElectricity() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ToxicMatCar ID: ").append(toxicCarID).append("\n");
+        sb.append("Transported Toxic Materials: ");
+        if (allTransportedToxicMat.isEmpty()) {
+            sb.append("None");
+        } else {
+            for (TransportedMaterials toxicMat : allTransportedToxicMat) {
+                sb.append(toxicMat.getName()).append(", ");
+            }
+            sb.delete(sb.length() - 2, sb.length());
+        }
+        sb.append("\n");
+        sb.append("Gross Weight: ").append(getGrossWeight()).append("\n");
+        sb.append("Required Electricity: ").append(requiredElectricity()).append("\n");
+        return sb.toString();
+    }
+
+
 }
