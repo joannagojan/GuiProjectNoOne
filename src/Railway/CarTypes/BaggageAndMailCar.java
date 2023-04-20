@@ -7,29 +7,37 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
     private ArrayList<Cargo> allCargo;
-    private Integer maxNumberOfLetters;
-    private AtomicInteger currentNumberOfTransportedLetters;
+    private final Integer MAX_TRANSPORTED_VOLUME = Cars.getCarWidth() * Cars.getCarHeight() * getCarLength();
+    private AtomicInteger currentTransportedVolume;
 
-    public BaggageAndMailCar(Integer maxNumberOfLetters) {
+
+
+    public BaggageAndMailCar() {
         this.allCargo = new ArrayList<>();
-        this.maxNumberOfLetters = maxNumberOfLetters;
-        this.currentNumberOfTransportedLetters = new AtomicInteger(0);
+        this.currentTransportedVolume = new AtomicInteger(0);
+
     }
+
 
     @Override
-    public void addCargo(Cargo cargo) {
-        if(maxNumberOfLetters < allCargo.size()){
-            if (cargo.getPackageType().equals("Letter"))
+    public void addCargo(Cargo cargo) throws Exception {
+        int howFreeMuchVolumeLeft = MAX_TRANSPORTED_VOLUME - currentTransportedVolume.get();
+        if(allCargo.size() > howFreeMuchVolumeLeft) {
+            if (cargo.getPackageType().equals("Small") || cargo.getPackageType().equals("Medium") || cargo.getPackageType().equals("Large") )
             {
                 allCargo.add(cargo);
-                currentNumberOfTransportedLetters.incrementAndGet();
+                int packageVolume = cargo.calculatePackageVolume();
+                currentTransportedVolume.addAndGet(packageVolume);
                 System.out.println("Letter added to mail car! Letter information: " + cargo);}
-            else {System.out.println("You can only add letters to mail car");}
-        }
-        else {System.out.println("This letter will not fit into Mail Car. This car's max number of transported letters: " + maxNumberOfLetters);}
+            else {throw  new Exception("You can only add letters to mail car");}}
+    else {throw new Exception("Not enought volume left to add another package, volume left: " + howFreeMuchVolumeLeft);}
+
     }
-@Override
-    public void removeCargo(Cargo cargo) {
+
+
+
+    @Override
+    public void removeCargo(Cargo cargo) throws Exception {
         if (allCargo.contains(cargo)) {
             allCargo.remove(cargo);
         } else {
@@ -38,19 +46,19 @@ public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
 
         }}
 
-        @Override
-        public AtomicInteger getGrossWeight () {
-            AtomicInteger totalWeightOfLoad = new AtomicInteger(0);
-            for (Cargo cargo : allCargo) {
-                totalWeightOfLoad.addAndGet(cargo.getLoadWeight());
-            }
-            return totalWeightOfLoad;
+    @Override
+    public AtomicInteger getGrossWeight () {
+        AtomicInteger totalWeightOfLoad = new AtomicInteger(0);
+        for (Cargo cargo : allCargo) {
+            totalWeightOfLoad.addAndGet(cargo.getLoadWeight());
         }
-
-
-        @Override
-        public boolean requiredElectricity () {
-            return false;
-        }
-
+        return totalWeightOfLoad;
     }
+
+
+    @Override
+    public boolean requiredElectricity () {
+        return false;
+    }
+
+}

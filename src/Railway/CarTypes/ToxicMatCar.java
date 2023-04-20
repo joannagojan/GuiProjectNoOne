@@ -1,5 +1,7 @@
 package Railway.CarTypes;
 
+import Railway.Functionalities.CarRelated.TransportedMaterials;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ToxicMatCar extends HeavyFreightCar {

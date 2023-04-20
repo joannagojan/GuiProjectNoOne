@@ -21,7 +21,7 @@ public class PassengerCar extends Cars {
 
     @Override
     public AtomicInteger getGrossWeight() {
-        return getStandardNetWeight() * currentNumberOfPassengers;
+        return null;
     }
 
     @Override

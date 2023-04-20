@@ -86,8 +86,8 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
 
     public void sortCarsByWeight(ArrayList<Cars> cars) {
         Collections.sort(cars, (car1, car2) -> {
-            Integer carWeight1 = car1.getGrossWeight();
-            Integer carWeight2 = car2.getGrossWeight();
+            Integer carWeight1 = car1.getGrossWeight().get();
+            Integer carWeight2 = car2.getGrossWeight().get();
             return Integer.compare(carWeight2, carWeight1);
         });
     }
