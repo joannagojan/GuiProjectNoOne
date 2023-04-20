@@ -1,10 +1,10 @@
 package Railway.CarTypes;
 
-import Railway.Functionalities.CarRelated.CustomerLoad;
+import Railway.Functionalities.CarRelated.Cargo;
 
 import java.util.ArrayList;
 
-public class BaggageAndMailCar<T extends CustomerLoad> extends Cars implements CargoCars {
+public class BaggageAndMailCar<T extends Cargo> extends Cars implements CargoCars {
     private ArrayList<T> allCargo;
     private Integer maxNumberOfPackages;
 

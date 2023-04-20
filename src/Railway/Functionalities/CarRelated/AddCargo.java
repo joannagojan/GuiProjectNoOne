@@ -2,12 +2,11 @@ package Railway.Functionalities.CarRelated;
 
 import Railway.CarTypes.CargoCars;
 import Railway.CarTypes.Cars;
-import Railway.Functionalities.CarRelated.CustomerLoad;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddCargo<T extends CustomerLoad> {
+public class AddCargo<T extends Cargo> {
 
     public boolean addBagsAndMailCar(List<T> bagsAndMailToAdd, CargoCars cargoCars) {
         Integer maxLoadWeight = Cars.getStandardMaxCarLoad();

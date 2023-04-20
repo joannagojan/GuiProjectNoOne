@@ -48,27 +48,24 @@ public class MovingTrainsets implements Runnable {
     }
 
 
-    @Override
-    public void run() {
-        while (!trainset.isReachedDestination()) {
-            List<Station> bestRoute = bestPathStartToFinish; // Get the best route for the trainset
-            int currentStationIndex = 0;
-            int nextStationIndex = 1;
-            boolean returnJourney = false;
-            Thread speedChangeThread = new Thread(new SpeedChangeRunnable());
-            speedChangeThread.start();
-
-            while (nextStationIndex < bestRoute.size()) {
+        @Override
+        public void run() {
+            while (!trainset.isReachedDestination()) {
+                List<Station> bestRoute = bestPathStartToFinish;
+                int currentStationIndex = 0;
+                int nextStationIndex = 1;
+                boolean returnJourney = false;
+                Thread speedChangeThread = new Thread(new SpeedChangeRunnable());
+                speedChangeThread.start();
 
                 while (nextStationIndex < bestRoute.size()) {
-                    Station currentStation = bestRoute.get(currentStationIndex);
-                    Station nextStation = bestRoute.get(nextStationIndex);
 
-                    boolean roadFree = true;
+                    while (nextStationIndex < bestRoute.size()) {
+                        Station currentStation = bestRoute.get(currentStationIndex);
+                        Station nextStation = bestRoute.get(nextStationIndex);
 
-                    if (roadFree) {
                         try {
-                            AtomicInteger speedAtomic = new AtomicInteger(trainset.getSpeed().get());
+                            AtomicInteger speedAtomic = trainset.getSpeed();
                             int speed = speedAtomic.intValue() * 10; // so 200 km/h means 2000 miliseconds in real time
                             Thread.sleep(speed); // Moving train between stations
                             System.out.println("Train id: " + trainset.getTrainsetID() +
@@ -89,7 +86,6 @@ public class MovingTrainsets implements Runnable {
                             nextStation.setOccupied(false);
                         }
                         synchronized (currentStation) {
-                            // Check if the road between currentStation and nextStation is free
                             if (!currentStation.isOccupied() && !nextStation.isOccupied()
                                     && !trainset.getTrainsetID().equals(currentStation.getOccupyingTrainID())
                                     && !trainset.getTrainsetID().equals(nextStation.getOccupyingTrainID())
@@ -101,7 +97,6 @@ public class MovingTrainsets implements Runnable {
                                 currentStation.setOccupyingTrainID(trainset.getTrainsetID());
                                 nextStation.setOccupied(true);
                                 nextStation.setOccupyingTrainID(trainset.getTrainsetID());
-                                roadFree = true;
                             }
                         }
 
@@ -118,19 +113,18 @@ public class MovingTrainsets implements Runnable {
                         }
                     }
 
-                    // Train has reached the destination, update its status
-                    trainset.setReachedDestination(true);
 
+                    trainset.setReachedDestination(true);
                     if (trainset.isReachedDestination() && !returnJourney) {
                         try {
                             Thread.sleep(30000); // Sleep for 30 seconds
                             System.out.println("This train has reached its destination, id: " + trainset.getTrainsetID());
 
-                            // Reset the parameters for the next run
+
                             bestRoute.addAll(bestPathFinishToStart);
                             currentStationIndex = 0;
                             nextStationIndex = 1;
-                            trainset.setReachedDestination(false); // Reset the flag for the next run
+                            trainset.setReachedDestination(false);
                             returnJourney = true;
 
                         } catch (InterruptedException e) {
@@ -138,13 +132,11 @@ public class MovingTrainsets implements Runnable {
                         }
                     }
                 }
+
             }
-
         }
-    }
 
-
-    private class SpeedChangeRunnable implements Runnable {
+            private class SpeedChangeRunnable implements Runnable {
         @Override
         public void run() {
             while (true) {
@@ -170,44 +162,40 @@ public class MovingTrainsets implements Runnable {
 
     public void sortTrainsetsByRouteLength(List<Trainset> trainsets) {
         Collections.sort(trainsets, (train1, train2) -> {
-            Integer routeLengthT1 = (Integer)train1.getSizeOfRoute();
+            Integer routeLengthT1 = train1.getSizeOfRoute();
             Integer routeLengthT2 = train2.getSizeOfRoute();
             return Integer.compare(routeLengthT2, routeLengthT1);
 
         });
     }
 
-    //    public void sortCarsByWeight() {
-//        Collections.sort(trainsetCars, (car1, car2) -> {
-//            Integer carWeight1 = car1.getGrossWeight();
-//            Integer carWeight2 = car2.getGrossWeight();
-//            return Integer.compare(carWeight2, carWeight1);
-//        });
-//    }
 
 
     public void appStateFile() {
-
-        sortTrainsetsByRouteLength(allTrainsets);
+        List<Trainset> sortedTrainsets = new ArrayList<>();
+        sortedTrainsets.addAll(allTrainsets);
+        sortTrainsetsByRouteLength(sortedTrainsets);
         Thread thread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(5000); // Sleep for 5 seconds
+                    Thread.sleep(5000);
                     StringBuilder sb = new StringBuilder();
 
-                    for (Trainset trainset : allTrainsets) {
+                    for (Trainset trainset : sortedTrainsets) {
                         sb.append("Trainsets sorted by route length:\n");
-//                        trainset.sortCarsByWeight(); // Sort railroad cars in the trainset by weight
+                        ArrayList<Cars> sortedCars = new ArrayList<>();
+                        sortedCars.addAll(trainset.getTrainsetCars());
+                        trainset.sortCarsByWeight(sortedCars); // Sort railroad cars in the trainset by weight
                         sb.append("Trainset ID: ").append(trainset.getTrainsetID()).append("\n");
+                        sb.append("Trainset information").append(trainset);
                         sb.append("Route Length: ").append(trainset.getSizeOfRoute()).append("\n");
                         sb.append("Sorted Railroad cars:\n");
 
-                        for (Cars railroadCar : trainset.getTrainsetCars()) {
+                        for (Cars railroadCar : sortedCars) {
                             sb.append("  Car ID: ").append(railroadCar.getCarID()).append(", Weight: ")
                                     .append(railroadCar.getGrossWeight()).append("\n");
                         }
 
-                        sb.append("---------------\n");
                     }
 
 

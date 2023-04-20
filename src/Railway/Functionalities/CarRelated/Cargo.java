@@ -1,5 +1,5 @@
 package Railway.Functionalities.CarRelated;
 
-public interface CustomerLoad {
+public interface Cargo {
     Integer getLoadWeight();
 }

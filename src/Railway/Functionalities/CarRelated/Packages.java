@@ -2,7 +2,7 @@ package Railway.Functionalities.CarRelated;
 
 import Railway.CarTypes.Cars;
 
-public class Packages implements CustomerLoad {
+public class Packages implements Cargo {
     private Integer packageWeight;
     private Integer packageWidth;
     private Integer packageHeight;
