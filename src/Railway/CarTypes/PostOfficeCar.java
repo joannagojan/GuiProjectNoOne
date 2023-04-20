@@ -9,11 +9,14 @@ public class PostOfficeCar extends Cars implements CargoCars<Cargo> {
     private ArrayList<Cargo> allCargo;
     private Integer maxNumberOfLetters;
     private AtomicInteger currentNumberOfTransportedLetters;
+    private static final AtomicInteger postCarIDCounter = new AtomicInteger(0);
+    private Integer postCarID;
 
     public PostOfficeCar(Integer maxNumberOfLetters) {
         this.allCargo = new ArrayList<>();
         this.maxNumberOfLetters = maxNumberOfLetters;
         this.currentNumberOfTransportedLetters = new AtomicInteger(0);
+        this.postCarID = postCarIDCounter.incrementAndGet();
     }
 
     @Override
@@ -51,6 +54,15 @@ public class PostOfficeCar extends Cars implements CargoCars<Cargo> {
     @Override
     public boolean requiredElectricity () {
         return false;
+    }
+
+
+    @Override
+    public String toString() {
+        return "PostOfficeCar ID: " + postCarID +
+                ", allCargo=" + allCargo +
+                ", maxNumberOfLetters=" + maxNumberOfLetters +
+                ", currentNumberOfTransportedLetters=" + currentNumberOfTransportedLetters ;
     }
 
 }

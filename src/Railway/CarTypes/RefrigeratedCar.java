@@ -108,8 +108,7 @@ public class RefrigeratedCar extends BasicFreightCar {
                 ", maxEffectiveTemperature:" + maxEffectiveTemperature +
                 ", minEffectiveTemperature:" + minEffectiveTemperature +
                 ", cargos:" + cargos +
-                ", temperatureRaise:" + temperatureRaise +
-                '}';
+                ", temperatureRaise:" + temperatureRaise ;
     }
     @Override
     public boolean requiredElectricity() {
