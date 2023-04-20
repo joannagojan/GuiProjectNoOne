@@ -1,6 +1,7 @@
 package Railway.CarTypes;
 
 import Railway.Functionalities.CarRelated.Passenger;
+import Railway.Functionalities.CarRelated.TransportedMaterials;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -9,6 +10,7 @@ public class PassengerCar extends Cars {
     private Integer numberOfSeats; // how many seats are available
     private Integer currentNumberOfPassengers;
     private ArrayList<Passenger> allPassengers;
+
 
     //Constructor
 
@@ -37,8 +39,15 @@ public void removePassenger(Passenger passenger) throws Exception{
 }
     @Override
     public AtomicInteger getGrossWeight() {
-        return null;
+        int weighOfAllPassengers = 0;
+        for (Passenger passenger : allPassengers) {
+            weighOfAllPassengers += passenger.getAverageWeightOfPassenger();
+        }
+        AtomicInteger result = new AtomicInteger();
+        result.set(Cars.getStandardNetWeight().get() + weighOfAllPassengers);
+        return result;
     }
+
 
     @Override
     public boolean requiredElectricity() {
