@@ -75,6 +75,7 @@ public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
         StringBuilder sb = new StringBuilder();
         sb.append("This is Baggage Car of ID: ").append(baggageCarID)
                 .append(", allCargo names: ");
+        sb.append("This cars trainset ID: ").append(getTrainsetID());
         for (Cargo cargo : allCargo) {
             sb.append(cargo.getName()).append(", ");
         }

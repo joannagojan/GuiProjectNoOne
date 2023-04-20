@@ -77,16 +77,6 @@ public class Locomotive {
         }
     }
 
-    // toString for printing information about Railway.Locomotive class
-    @Override
-    public String toString() {
-        return "This is locomotive number " + locomotiveID + " called " + locomotiveName + " it departs from " + locoStartStation
-                + "with a destination in " + locoDestinationStation +
-                " with maximum number of cars of " + maxNumberCars + " and maximum weight load "
-                + maxLocoLoadWeight + " of the speed of "
-                + locomotiveSpeed + '.';
-    }
-
 
     public Integer getTrainsetID() {
         return trainsetID;
@@ -171,4 +161,15 @@ public class Locomotive {
     public Integer getMaxLocoLoadRange() {
         return maxLocoLoadRange;
     }
+
+    @Override
+    public String toString() {
+        return "Locomotive of ID: " + locomotiveID +
+                "of name: " + locomotiveName +
+                ", it's start station is: " + locoStartStation +
+                ", it's source station is:" + sourceStation +
+                ", it's destination station is:" + locoDestinationStation +
+                ", it's current speed=" + locomotiveSpeed ;
+    }
+
 }
