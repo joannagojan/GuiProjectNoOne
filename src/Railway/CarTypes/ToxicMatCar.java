@@ -28,7 +28,7 @@ public class ToxicMatCar extends HeavyFreightCar {
         if (allTransportedToxicMat.contains(toxicMaterial)) {
             allTransportedToxicMat.remove(toxicMaterial);
         } else {
-            System.out.println("Package you are trying to remove is not transported in this car."
+            System.out.println("Toxic material you are trying is not transported on this car"
             );
         }}
 

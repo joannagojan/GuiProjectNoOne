@@ -9,8 +9,8 @@ public class Cargo extends TransportedMaterials {
     private Integer packageLength;
 
 
-    public Cargo(String description, String name, Integer securityLevel, Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
-        super(description, name, securityLevel);
+    public Cargo(String description, String name, Integer securityLevel, Integer weight, Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
+        super(description, name, securityLevel, weight);
         if (!isPackageSizeWeightValid(packageWeight, packageWidth, packageHeight, packageLength)) {
             throw new IllegalArgumentException("Package size is too big, maximum size available on this train: " +
                     Cars.getCarWidth() + "cmx" + Cars.getCarHeight() + "cmx" + Cars.getCarLength() +
@@ -21,7 +21,6 @@ public class Cargo extends TransportedMaterials {
             this.packageHeight = packageHeight;
             this.packageLength = packageLength;
         }
-
     }
 
     public boolean isPackageSizeWeightValid(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {

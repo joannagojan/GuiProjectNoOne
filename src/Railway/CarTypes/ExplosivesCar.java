@@ -23,7 +23,7 @@ public class ExplosivesCar extends HeavyFreightCar {
         int packageSecurity = explosive.getSecurityLevel();
         int newSecurityLevel = currentSecurityLevel.get() + packageSecurity;
 
-        // With every package the level of security rises exponencially
+        // With every package the level of security rises exponentially
         double growthFactor = 1.5;
         if (newSecurityLevel * growthFactor < maxAllowedSecurity) {
             transportedExplosives.add(explosive);
