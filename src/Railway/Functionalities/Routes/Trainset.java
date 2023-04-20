@@ -4,6 +4,7 @@ import Railway.CarTypes.Cars;
 import Railway.Locomotive;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Trainset {
@@ -78,6 +79,15 @@ throw new Exception("Too many cars, this locomotives car limit is: " + trainsetL
                 "current Load Of the Trainset: " + currentLoadOfTrainset;
         return message;
     }
+
+
+//    public void sortCarsByWeight() {
+//        Collections.sort(trainsetCars, (car1, car2) -> {
+//            Integer carWeight1 = car1.getGrossWeight();
+//            Integer carWeight2 = car2.getGrossWeight();
+//            return Integer.compare(carWeight2, carWeight1);
+//        });
+//    }
 
     public Locomotive getTrainsetLocomotive() {
         return trainsetLocomotive;

@@ -128,7 +128,6 @@ public class Main {
             };
 
 
-
             // Create an ArrayList to store the stations and routes
             ArrayList<Station> stationsList = new ArrayList<>();
             ArrayList<Route> routes = new ArrayList<>();
@@ -206,7 +205,9 @@ public class Main {
                 List<Station> fromSourceToStartBestPath = shortestPath.getShortestPathTo(startStation);
                 System.out.println("this trainsets : " + trainset.getTrainsetID()
                         + " best path from source to start is: ");
-                Thread thread = new Thread(new MovingTrainsets(trainset, allTrainsets));
+                MovingTrainsets movingTrainsets = new MovingTrainsets(trainset, allTrainsets);
+                movingTrainsets.appStateFile();
+                Thread thread = new Thread(movingTrainsets);
                 allThreads.add(thread);
                 thread.start();
                 for (Station station : fromSourceToStartBestPath) {

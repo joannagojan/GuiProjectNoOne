@@ -187,40 +187,55 @@ public class MovingTrainsets implements Runnable {
 
 
 
-    public void sortTrainsetsByRouteLength(ArrayList<Trainset> trainsets) {
-        Collections.sort(trainsets, (t1, t2) -> {
-            Integer routeLengthT1 = t1.getSizeOfRoute();
-            Integer routeLengthT2 = t2.getSizeOfRoute();
-            return Integer.compare(routeLengthT2, routeLengthT1);
-        });
-    }
+//    public void sortTrainsetsByRouteLength(List<Trainset> trainsets) {
+//        Collections.sort(trainsets, (train1, train2) -> {
+//            Integer routeLengthT1 = train1.getSizeOfRoute();
+//            Integer routeLengthT2 = train2.getSizeOfRoute();
+//            return Integer.compare(routeLengthT2, routeLengthT1);
+//        });
+//    }
+
 
     public void appStateFile() {
-        sortTrainsetsByRouteLength((ArrayList<Trainset>) allTrainsets); // Sort trainsets by route length
-        StringBuilder sb = new StringBuilder();
+//        sortTrainsetsByRouteLength(allTrainsets);
+        Thread thread = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(5000); // Sleep for 5 seconds
+                    StringBuilder sb = new StringBuilder();
 
-        for (Trainset trainset : allTrainsets) {
-//            trainset.sortRailroadCarsByWeight(); // Sort railroad cars in the trainset by weight
-            sb.append("Trainset ID: ").append(trainset.getTrainsetID()).append("\n");
-            sb.append("Speed: ").append(trainset.getSpeed()).append("\n");
-            sb.append("Route Length: ").append(trainset.getSizeOfRoute()).append("\n");
-            sb.append("Railroad Cars (sorted by weight):\n");
+                    for (Trainset trainset : allTrainsets) {
+//                        trainset.sortCarsByWeight(); // Sort railroad cars in the trainset by weight
+                        sb.append("Trainset ID: ").append(trainset.getTrainsetID()).append("\n");
+                        sb.append("Speed: ").append(trainset.getSpeed()).append("\n");
+                        sb.append("Route Length: ").append(trainset.getSizeOfRoute()).append("\n");
+                        sb.append("Railroad Cars (sorted by weight):\n");
 
-            for (Cars railroadCar : trainset.getTrainsetCars()) {
-                sb.append("  Car ID: ").append(railroadCar.getCarID()).append(", Weight: ")
-                        .append(railroadCar.getGrossWeight()).append("\n");
+                        for (Cars railroadCar : trainset.getTrainsetCars()) {
+                            sb.append("  Car ID: ").append(railroadCar.getCarID()).append(", Weight: ")
+                                    .append(railroadCar.getGrossWeight()).append("\n");
+                        }
+
+                        sb.append("---------------\n");
+                    }
+
+
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter("AppState.txt"))) {
+                        writer.write(sb.toString());
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
             }
+        });
 
-            sb.append("---------------\n");
-        }
-
-        // Write the trainset information to AppState.txt file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("AppState.txt"))) {
-            writer.write(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        thread.start();
     }
+
 
 
     // Queue to hold awaiting trainsets
