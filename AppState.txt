@@ -1,10 +1,10 @@
 Trainsets sorted by route length:
-Trainset ID: 1
+Trainset ID: 4
 Trainset informationThis trainset info:
-trainsetID: 1
-trainset's locomotive: Locomotive of ID: 1of name: a, it's start station is: Warradarge, it's source station is:Yalgoo, it's destination station is:Mogumber, it's current speed=174
-trainset's source station: Yalgoo, trainset : 
-trainset's end station : Mogumber
+trainsetID: 4
+trainset's locomotive: Locomotive of ID: 4of name: d, it's start station is: Mirrabooka, it's source station is:Ashfield, it's destination station is:Moore River, it's current speed=77
+trainset's source station: Ashfield, trainset : 
+trainset's end station : Moore River
 how many Cars can be connected to electricity grid: 0
 current Load Of the Trainset: 0Route Length: 7
 Sorted Railroad cars:
@@ -12,29 +12,29 @@ Trainsets sorted by route length:
 Trainset ID: 2
 Trainset informationThis trainset info:
 trainsetID: 2
-trainset's locomotive: Locomotive of ID: 2of name: b, it's start station is: Binnu, it's source station is:Stirling, it's destination station is:Clarkson, it's current speed=171
-trainset's source station: Stirling, trainset : 
-trainset's end station : Clarkson
+trainset's locomotive: Locomotive of ID: 2of name: b, it's start station is: Northampton, it's source station is:Perth, it's destination station is:Hazelmere, it's current speed=82
+trainset's source station: Perth, trainset : 
+trainset's end station : Hazelmere
 how many Cars can be connected to electricity grid: 0
-current Load Of the Trainset: 0Route Length: 3
+current Load Of the Trainset: 0Route Length: 5
 Sorted Railroad cars:
 Trainsets sorted by route length:
 Trainset ID: 3
 Trainset informationThis trainset info:
 trainsetID: 3
-trainset's locomotive: Locomotive of ID: 3of name: c, it's start station is: Edgewater, it's source station is:Urawa, it's destination station is:East Perth, it's current speed=195
-trainset's source station: Urawa, trainset : 
-trainset's end station : East Perth
+trainset's locomotive: Locomotive of ID: 3of name: c, it's start station is: Whitfords, it's source station is:Woodbridge, it's destination station is:Hazelmere, it's current speed=135
+trainset's source station: Woodbridge, trainset : 
+trainset's end station : Hazelmere
 how many Cars can be connected to electricity grid: 0
-current Load Of the Trainset: 0Route Length: 2
+current Load Of the Trainset: 0Route Length: 5
 Sorted Railroad cars:
 Trainsets sorted by route length:
-Trainset ID: 4
+Trainset ID: 1
 Trainset informationThis trainset info:
-trainsetID: 4
-trainset's locomotive: Locomotive of ID: 4of name: d, it's start station is: Leinster, it's source station is:Malaga, it's destination station is:Mingenew, it's current speed=140
-trainset's source station: Malaga, trainset : 
-trainset's end station : Mingenew
+trainsetID: 1
+trainset's locomotive: Locomotive of ID: 1of name: a, it's start station is: Perth Underground, it's source station is:Nanson, it's destination station is:Gingin, it's current speed=111
+trainset's source station: Nanson, trainset : 
+trainset's end station : Gingin
 how many Cars can be connected to electricity grid: 0
-current Load Of the Trainset: 0Route Length: 6
+current Load Of the Trainset: 0Route Length: 3
 Sorted Railroad cars:

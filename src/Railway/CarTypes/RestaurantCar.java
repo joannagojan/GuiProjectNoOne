@@ -14,9 +14,9 @@ public class RestaurantCar extends Cars {
     private AtomicInteger timeToPrepareMeals;
 
 
-    public RestaurantCar(AtomicInteger numberOfMeatMeals, AtomicInteger numberOfVegetarianMeals) {
-        this.numberOfMeatMeals = numberOfMeatMeals;
-        this.numberOfVegetarianMeals = numberOfVegetarianMeals;
+    public RestaurantCar(Integer numberOfMeatMeals, Integer numberOfVegetarianMeals) {
+        this.numberOfMeatMeals = new AtomicInteger(numberOfMeatMeals);
+        this.numberOfVegetarianMeals = new AtomicInteger(numberOfVegetarianMeals);
         this.restaurantCarID = restaurantCarIDCounter.incrementAndGet();
     }
 

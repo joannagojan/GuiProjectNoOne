@@ -24,7 +24,8 @@ public class Cargo extends TransportedMaterials {
     }
 
     public boolean isPackageSizeWeightValid(Integer packageWeight, Integer packageWidth, Integer packageHeight, Integer packageLength) {
-        if (packageWidth <= Cars.getCarWidth() && packageHeight <= Cars.getCarHeight()
+        if (packageWidth <= Cars.getCarWidth() && packageLength <= 0 && packageHeight <=0 && packageWidth <=0 && packageWeight <= 0
+                && packageHeight <= Cars.getCarHeight()
                 && packageLength <= Cars.getCarLength() && packageWeight <= Cars.getStandardMaxCarLoad()) {
             return true;
         } else {

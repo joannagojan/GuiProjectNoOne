@@ -1,16 +1,18 @@
-package Railway;//package Railway;
+package Railway;
 
+import Railway.CarTypes.*;
+import Railway.Functionalities.CarRelated.Cargo;
 import Railway.Functionalities.Routes.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Main {
+public class Presentation {
     public static void main(String[] args) throws Exception {
 
         try {
-            String[] stationNames = { "Perth", "Elizabeth Quay", "Perth Underground", "Esplanade", "McIver", "Claisebrook", "East Perth",
+            String[] stationNames = {"Perth", "Elizabeth Quay", "Perth Underground", "Esplanade", "McIver", "Claisebrook", "East Perth",
                     "Maylands", "Meltham", "Bayswater", "Ashfield", "Bassendean", "Success Hill", "Guildford", "Woodbridge", "East Guildford",
                     "Hazelmere", "Midland", "Woodbridge", "Woodbridge Riverside Park", "Stratton", "Altone Park", "Beechboro", "Whiteman Park",
                     "Malaga", "Ballajura", "Mirrabooka", "Nollamara", "Stirling", "Karrinyup", "Warwick", "Greenwood", "Whitfords", "Mullaloo",
@@ -21,7 +23,7 @@ public class Main {
                     "Utakarra", "Glenfield", "Karloo", "Spalding", "Mount Magnet", "Yalgoo", "Paynes Find", "Sandstone", "Leinster", "Wiluna",
                     "Cue", "Morawa", "Binnu", "Kalbarri", "Northampton", "Ajana", "Bowes", "Perenjori", "Bancannia", "Paynesville", "Mullewa",
                     "Walkaway", "Beecher", "Nanson", "Warradarge", "Burdett", "Urawa", "Arrino", "Marchagee", "Eradu", "Gunyidi", "Mogumber",
-                    "Coorow", "Miling", "New Norcia", "Bolgart", "Dandaragan", "Regans Ford", "Cataby", "Cervantes", "Jurien Bay" };
+                    "Coorow", "Miling", "New Norcia", "Bolgart", "Dandaragan", "Regans Ford", "Cataby", "Cervantes", "Jurien Bay"};
 
             // Create an ArrayList to store the stations and routes
             ArrayList<Station> stationsList = new ArrayList<>();
@@ -60,12 +62,10 @@ public class Main {
             }
 
 
-            Integer  numberOfTrainsets;
-            numberOfTrainsets = 4;
             // Creating Locomotives, trainsets and threads
             ArrayList<Locomotive> allLocomotives = new ArrayList<>();
             ArrayList<Trainset> allTrainsets = new ArrayList<>();
-            for (int i = 0; i < numberOfTrainsets; i++) {
+            for (int i = 0; i < 4; i++) {
                 ArrayList<Station> newstationList = stationsList;
                 int randomSourceInt = (int) (Math.random() * newstationList.size());
                 Station randomSource = newstationList.get(randomSourceInt);
@@ -118,6 +118,30 @@ public class Main {
                 }
             }
 
+            PassengerCar pasCarGood = new PassengerCar(10);
+            PassengerCar pasCarBad = new PassengerCar(-1);
+            Cargo newCargoGood = new Cargo("Transported cargo", "Non toxic", 2, 50,
+                    30, 500, 50, 200);
+            Cargo newCargoBad = new Cargo("Transported cargo", "Non toxic", 2, 50,
+                    30000, 500, 50, 200);
+            BaggageAndMailCar bagCarGood = new BaggageAndMailCar();
+            bagCarGood.addCargo(newCargoGood);
+            bagCarGood.addCargo(newCargoBad);
+            ExplosivesCar explosivesCar = new ExplosivesCar(3);
+            GaseousMatCar gaseousMatCar = new GaseousMatCar();
+            PostOfficeCar postOfficeCar = new PostOfficeCar(300);
+            RestaurantCar restaurantCar = new RestaurantCar(10, 2);
+            ToxicMatCar toxicMatCar = new ToxicMatCar(10);
+            ToxicLiquidMatCar toxicLiquidMatCar = new ToxicLiquidMatCar();
+
+            Cargo explosive = new Cargo("Explosive mat", "Bomb", 10, 50,
+                    30000, 500, 50, 200);
+
+            explosivesCar.addCargo(explosive);
+
+            allTrainsets.get(0).addCar(pasCarGood);
+            allTrainsets.get(1).addCar(pasCarBad);
+            allTrainsets.get(1).addCar(bagCarGood);
 
 
             try {

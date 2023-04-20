@@ -241,7 +241,7 @@ public class MovingTrainsets implements Runnable {
     }
 
 // Method do display current information about a trainset based on ID
-    public void displayInfo(Integer trainsetID) {
+    public void displayInfo(Integer trainsetID) throws Exception{
         Trainset trainset = null;
         for (Trainset trainset1 : allTrainsets) {
             if (trainset1.getTrainsetID().equals(trainsetID)) {
@@ -251,8 +251,7 @@ public class MovingTrainsets implements Runnable {
         }
 
         if (trainset == null) {
-            System.out.println("Trainset not found");
-            return;
+            throw new Exception("No trainset created with this ID" );
         }
 
         System.out.println("Trainset ID: " + trainset.getTrainsetID());
