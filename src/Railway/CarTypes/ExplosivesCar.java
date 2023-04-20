@@ -53,6 +53,18 @@ public class ExplosivesCar extends HeavyFreightCar {
         return result;
     }
 
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ExplosivesCar [");
+        sb.append("currentSecurityLevel: ").append(currentSecurityLevel.get());
+        sb.append(", maxAllowedSecurity: ").append(maxAllowedSecurity);
+        sb.append(", transportedExplosives: ").append(transportedExplosives);
+        sb.append("]");
+        return sb.toString();
+    }
+
     @Override
     public boolean requiredElectricity() {
         return false;
