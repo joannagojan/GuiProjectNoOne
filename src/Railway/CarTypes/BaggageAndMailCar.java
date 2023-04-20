@@ -44,8 +44,7 @@ public class BaggageAndMailCar extends Cars implements CargoCars<Cargo> {
         if (allCargo.contains(cargo)) {
             allCargo.remove(cargo);
         } else {
-            System.out.println("Package you are trying to remove is not transported in this car."
-            );
+            throw new Exception("Package you are trying to remove is not transported in this car.");
 
         }}
 
