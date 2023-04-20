@@ -9,15 +9,6 @@ public abstract class HeavyFreightCar extends FreightCar {
     private static Integer standardMaxCarLoad = 200; // Heavy Freight Car maximum load in tons
 
 
-    @Override
-    public void addCargo(TransportedMaterials cargo) throws Exception {
-
-    }
-
-    @Override
-    public void removeCargo(TransportedMaterials cargo) throws Exception {
-
-    }
 
     @Override
     public boolean requiredElectricity() {

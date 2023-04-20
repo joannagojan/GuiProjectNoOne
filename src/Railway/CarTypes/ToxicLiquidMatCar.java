@@ -32,7 +32,7 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
     }
 
 
-    // Risk of spilage based on liquid density and security level
+    // Risk of spillage based on liquid density and security level
     @Override
     public String riskOfSpillage() {
         if (transportedLiquid.getLiquidDensity() < 500) {
@@ -50,12 +50,6 @@ public class ToxicLiquidMatCar extends LiquidMatCar implements LiquidCharCar {
     public AtomicInteger getGrossWeight() {
         return null;
     }
-
-    @Override
-    public boolean requiredElectricity() {
-        return super.requiredElectricity();
-    }
-    
 
 
 }
