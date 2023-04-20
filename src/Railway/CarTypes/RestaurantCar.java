@@ -5,6 +5,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RestaurantCar extends Cars {
 
+    private static final AtomicInteger restaurantCarIDCounter = new AtomicInteger(0);
+    private Integer restaurantCarID;
     private AtomicInteger numberOfMeatMeals; // number of reserved meat meals
     private AtomicInteger numberOfVegetarianMeals; // number of reserved vegetarian meals
     private Integer timeMeatMeal = 40; // in minutes
@@ -14,6 +16,7 @@ public class RestaurantCar extends Cars {
     public RestaurantCar(AtomicInteger numberOfMeatMeals, AtomicInteger numberOfVegetarianMeals) {
         this.numberOfMeatMeals = numberOfMeatMeals;
         this.numberOfVegetarianMeals = numberOfVegetarianMeals;
+        this.restaurantCarID = restaurantCarIDCounter.incrementAndGet();
     }
 
     // based on time needed to prepare the meal calculating total time needed to prepare all meals
@@ -49,5 +52,17 @@ public class RestaurantCar extends Cars {
     @Override
     public boolean requiredElectricity() {
         return true;
+    }
+@Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("RestaurantCar ID: ").append(restaurantCarID);
+        sb.append("numberOfMeatMeals:").append(numberOfMeatMeals);
+        sb.append(", numberOfVegetarianMeals:").append(numberOfVegetarianMeals);
+        sb.append(", timeMeatMeal:").append(timeMeatMeal);
+        sb.append(", timeVegMeals:").append(timeVegMeals);
+        sb.append(", timeToPrepareMeals:").append(timeToPrepareMeals);
+        sb.append("}");
+        return sb.toString();
     }
 }
